@@ -1,0 +1,60 @@
+<!--index.wxml-->
+<!--头部-->
+<view>
+     <view>
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+            <!-- 搜索框 -->
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
+                    <input bindtap="search" type="text" class="weui-search-bar__input" placeholder="大家都在搜：家乡美食"/>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="top">
+  <view class="top_tabbar1">推 荐</view>
+  <view class="top_tabbar">关 注</view>
+  <view class="top_tabbar">风 景</view>
+  <view class="top_tabbar">美 食</view>
+  <view class="top_tabbar">活 动</view>
+  <view class="top_tabbar">文 化</view>
+  <view class="top_tabbar">其 他</view>
+</view>
+<view class="main">
+  <view wx:for="{{columns}}" class="column">
+    <view wx:for="{{item}}" class="column_item" wx:for-item="pics">
+      <image bindtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" />
+      <view class="list-loc" style="opacity:{{0.6}}">
+      <image  src="/images/图层 180 拷贝.png" class="loc11"></image>
+      <view class="loc_text">{{pics.loctext}}</view>
+    </view>
+    <view class="list-main">
+        <view class="list-text">
+      {{pics.content}}
+    </view>
+    <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
+    <view class="list-user">
+      <image class="motou" src="/images/南南1.jpg"></image>
+      <text class="authname">作者的昵称</text>
+    </view>
+    <view class="list-love">
+      <image src="/images/矢量智能对象 拷贝 2.png" class="love-img"></image>
+      <view>100w</view>
+    </view>
+  </view>
+    </view>
+  </view>
+</view>
+<view class="hide">
+  <image wx:for="{{tempPics}}" src="{{item.pic}}" bindload="loadPic" binderror="loadPicError" data-index="{{index}}" />
+</view>
+<view class="over" bindtap='adddetial'>
+    <image class="overtext" src="/images/求助.png">
+    </image>
+</view>
+<view class="over1" bindtap='adddetial1'>
+  <image class="overtext" src="/images/发表.png">
+   </image>
+</view>
