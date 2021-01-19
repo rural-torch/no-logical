@@ -3,9 +3,9 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/auth/index",
-    "pages/help/index",
     "pages/jumpto/index",
-    "pages/search/index"
+    "pages/search/index",
+    "pages/help/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

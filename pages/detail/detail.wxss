@@ -1,0 +1,184 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  border: 0.5px  #666 solid;
+ }
+ /*.hide{
+  opacity: 0;
+ }*/
+ .author-date {
+   position: absolute;
+   left:5px;
+
+  flex-direction: row;
+  margin-left: 10px;
+ 
+ }
+ .jubao{
+  width: 60px;
+  position: absolute;
+  top:5px;
+  left:270px;
+  font-size: 27rpx;
+  color: #666;
+  vertical-align: middle;
+  font-weight: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 3px;
+ }
+  
+ .avatar {
+  position: absolute;
+  height: 100rpx;
+  width: 100rpx;
+  vertical-align: middle;
+  top:25px;
+  left:10px;
+ }
+  
+ .author {
+  font-size: 35rpx;
+  font-weight: 600;
+  margin-left: 20rpx;
+  vertical-align: middle;
+  color: #000000;
+  width:70px;
+  position: absolute;
+  top:25px;
+  left:60px;
+  letter-spacing: 3px;
+ }
+.sixin{
+  width: 60px;
+  position: absolute;
+  top:28px;
+  left:150px;
+  font-size: 27rpx;
+  color: #666;
+  vertical-align: middle;
+  font-weight: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 3px;
+}
+.didian{
+  width: 60px;
+  position: absolute;
+  top:55px;
+  left:140px;
+  font-size: 27rpx;
+  color: #666;
+  vertical-align: middle;
+  font-weight: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 3px;
+}
+.rongyu{
+  width: 150px;
+  position: absolute;
+  top:55px;
+  left:200px;
+  font-size: 27rpx;
+  color: #666;
+  vertical-align: middle;
+  font-weight: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 3px;
+}
+ .date {
+  font-size: 24rpx;
+  margin-left: 20rpx;
+  vertical-align: middle;
+  color: #999;
+  width: 280px;
+  position: absolute;
+  top:55px;
+  left:60px;
+ }
+  
+ .title {
+   position: absolute;
+   left: 60px;
+   top: 70px;
+   height: 50px;
+   width:260px;
+  margin-left: 40rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  margin-top: 25rpx;
+  margin-right: 15rpx;
+  letter-spacing: 2px;
+  color: #4b556c;
+ }
+  .biaotidet{
+   
+  margin-top: 15px;
+  margin-left: 8px;
+   position: absolute;
+   top:262px;
+   height:120px;
+   width: 660rpx;
+   border-bottom:1px #e5e5e5 solid;
+   letter-spacing: 5px;
+  }
+ .leibie{
+  line-height:40px;
+   margin: 8px;
+  position: absolute;
+  top:132px;
+  height:40px;
+  width: 660rpx;
+  border-bottom:1px #e5e5e5 solid;
+  border-top:1px #e5e5e5 solid;
+  
+ }
+ .sucai{
+  line-height:50px;
+  margin: 8px;
+ position: absolute;
+ top:172px;
+ height:50px;
+ width: 660rpx;
+ border-bottom:1px #e5e5e5 solid;
+
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ }
+ .jiezhi{
+  line-height:40px;
+  margin: 8px;
+ position: absolute;
+ top:222px;
+ height:40px;
+ width: 660rpx;
+ border-bottom:1px #e5e5e5 solid;
+ }
+ .butt{
+   border-radius:15px;
+   background-color: #FBB871;
+   font-size: 20px;
+   color:#FFFEFD;
+   position: absolute;
+   bottom:100px;
+   width:330rpx;
+   height:110rpx;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   letter-spacing: 3px;
+ }
+ .suolue{margin-right: 7px;}

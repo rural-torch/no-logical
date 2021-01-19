@@ -1,0 +1,6 @@
+<!--pages/sev/s.wxml-->
+<view>
+  <view>
+    <button open-type="contact" bindcontact="handleContact" type="Normal">在线咨询客服</button>
+  </view>
+</view>

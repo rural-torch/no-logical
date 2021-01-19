@@ -1,0 +1,36 @@
+<!--先静后动，先样式再数据-->
+<view class="container">
+
+
+ <view class="author-date">
+ <image class="avatar" src="{{needData.peopic}}"></image>
+ <view class="jubao">
+                  <image  src='/images/jubao.jpg' style="width:15px; height:15px"></image>
+                <text>  举报</text>
+                  </view>
+ <text class="author">{{needData.name}}</text>
+ <view class="sixin">
+                  <image  src='/images/xinzhi.png' style="width:15px; height:15px"></image>
+                  <text decode="{{true}}">&nbsp;私信</text>
+                  </view>
+ <view class="didian">
+                  <image  src='/images/location.png' style="width:15px; height:15px"> </image>                
+                  <text decode="{{true}}">&nbsp;{{needData.location}}</text></view>
+<view class="rongyu">
+    <image  src='/images/rongyu.png' style="width:15px; height:15px"> </image>
+    <text decode="{{true}}">&nbsp;荣誉积分：{{needData.honrnum}}</text>
+                  </view>
+ <text class="date">{{needData.dats}}</text>
+ </view>
+ <text class="title">{{needData.forwanner}}
+ </text>
+ <text class="leibie">求助类别：乡村美食</text>
+ <view class='sucai'>图片素材： 
+  <image class="suolue"  src='/images/fengjing.png' style="width:30px; height:30px"></image>
+  <image class="suolue" src='/images/fengjing.png' style="width:30px; height:30px"></image>
+  <image  class="suolue" src='/images/fengjing.png' style="width:30px; height:30px"></image>
+ </view>
+ <text class="jiezhi">时间限制：2021-01-01 前完成</text>
+ <text class='biaotidet'>求助详情：{{needData.detail}}</text>
+ <view class='butt'>帮助完成</view>
+</view>

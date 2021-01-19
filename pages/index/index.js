@@ -179,4 +179,14 @@ Page({
   onReachBottom: function() {
     this.loadData()
   },
+  adddetial:function(e){
+    wx.navigateTo({
+      url: '/pages/report/index',
+    })
+  },
+  adddetial1:function(e){
+    wx.navigateTo({
+      url: '/pages/askhelp/help',
+    })
+  },
 })
