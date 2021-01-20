@@ -44,10 +44,10 @@
 }
  
 .on i {
-  border: 10rpx solid #0e0d01;
-  border-top-color: #0e0d01;
+  border: 10rpx solid  #a8a5a5;
+  border-left-color:   hsl(0, 0%, 3%);
   border-bottom-color: transparent;
-  border-left-color: transparent;
+  border-top-color: transparent;
   border-right-color: transparent;
 }
 
@@ -380,21 +380,21 @@
       top:0px;
       left: 90px;
       top:18px;
-      font-size: 20px;
+      font-size: 17px;
       letter-spacing:5rpx;
     }
     .need-dats{
       position: absolute;
       top:46px;
       left:90px;
-      font-size: 12px;
+      font-size: 10px;
       color: rgb(206, 200, 200);
     }
     .need-wanner{
       position: absolute;
       left:90px;
       letter-spacing:5rpx;
-      font-size: 15px;
+      font-size: 13px;
     }
     .need-pic{
       position: absolute;
@@ -410,8 +410,10 @@
      position: absolute;
       left:90px;
       bottom:20px;
+      font-size: 13px;
     }
     .need-location{ 
       position: absolute;
       left:140px;
-      bottom:20px;}
+      bottom:20px;
+      font-size: 13px;}

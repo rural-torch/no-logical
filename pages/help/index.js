@@ -44,6 +44,11 @@ Page({
     })
   },
     // 区域
+    search:function(e){
+      wx.navigateTo({
+        url: '/pages/search/index',
+      })
+  },
   tabNav: function (e) {
     this.setData({
       displays: "block"
