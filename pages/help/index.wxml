@@ -95,7 +95,7 @@
             <!-- 搜索框 -->
                 <view class="weui-search-bar__box">
                     <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
-                    <input type="text" class="weui-search-bar__input" placeholder="大家都在搜：家乡美食"/>
+                    <input bindtap='search' type="text" class="weui-search-bar__input" placeholder="大家都在搜：家乡美食"/>
                 </view>
                 </view>
             </view>

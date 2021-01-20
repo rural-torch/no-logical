@@ -21,7 +21,7 @@
   top:5px;
   left:270px;
   font-size: 27rpx;
-  color: #666;
+  color:  #070707;
   vertical-align: middle;
   font-weight: 100;
   display: flex;
@@ -58,7 +58,7 @@
   top:28px;
   left:150px;
   font-size: 27rpx;
-  color: #666;
+  color:  #070707;
   vertical-align: middle;
   font-weight: 100;
   display: flex;
@@ -73,7 +73,7 @@
   top:55px;
   left:140px;
   font-size: 27rpx;
-  color: #666;
+  color:  #070707;
   vertical-align: middle;
   font-weight: 100;
   display: flex;
@@ -88,7 +88,7 @@
   top:55px;
   left:200px;
   font-size: 27rpx;
-  color: #666;
+  color: #070707;
   vertical-align: middle;
   font-weight: 100;
   display: flex;
@@ -101,7 +101,7 @@
   font-size: 24rpx;
   margin-left: 20rpx;
   vertical-align: middle;
-  color: #999;
+  color:  #070707;
   width: 280px;
   position: absolute;
   top:55px;
@@ -182,3 +182,9 @@
    letter-spacing: 3px;
  }
  .suolue{margin-right: 7px;}
+ .mingcheng{
+   color: hsl(0, 0%, 0%);
+ }
+ .shuju{
+   color: #726e6e;
+ }
