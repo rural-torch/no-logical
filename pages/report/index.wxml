@@ -1,7 +1,6 @@
-<view class="container">
+<view class="container1">
   <view class="title">
     <input type="text" placeholder="请输入您的标题" />
-    <view class="btn" bindtap="submit">发表{{imgNum}}/9</view>
   </view>
 
   <view class="imgs">
@@ -44,3 +43,4 @@
 
   <textarea class="need" placeholder="您可以详细描述您的需求 ......" bindinput="inputDetail"></textarea>
 </view>
+<view class="btn" bindtap="submit">发表{{imgNum}}/9</view>

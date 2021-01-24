@@ -1,0 +1,112 @@
+<!-- “我”页面的首页 -->
+
+<!-- 切换栏上面的页面 -->
+<view class="message">
+    <view class="tmessage">
+    <!-- 头像 -->
+      <button open-type="getUserInfo" class="head" style="background-image: url({{avatarUrl}});background-size:100% 100%"
+      size="default"></button>
+      <!-- 我的消息以上区域的内容 -->
+      <view class="mamsg">
+        <!-- 第一行内容 -->
+        <view class="l1">
+          <view class="f1">{{focu}}</view>
+          <view class="focus" bindtap="bindfocus" >关注</view>
+          <view class="f2">{{fans}}</view>
+          <view class="fans" bindtap="bindfans">粉丝</view>
+        </view>
+        <view class="iden">用户ID：{{id}}</view>
+        <!-- 第二行内容 -->
+        <view class="l2">
+          <view class="sex">♂ 男性</view>
+          <image src="/images/locat.png" style="width:20rpx;height:22rpx;margin-left:25rpx;margin-top:8rpx;"></image>
+          <view class="label">四川甘孜</view>
+          <view class="label2" >职业XXX</view>
+        </view>
+      </view>
+      <!-- 客服和设置 -->
+      <view class="sev" bindtap="bindsev">
+        <image src="/images/ser.png" style="height:38rpx;width:36rpx;margin-left:8rpx"></image>客服</view>
+      <view class="set">
+        <image src="/images/set.png" style="height:38rpx;width:36rpx;margin-left:8rpx"></image>设置</view>
+    </view>
+    <!-- 我的消息以下区域的内容 -->
+    <view class="bmessage">
+      <image src="/images/chat.png" style="width:54rpx;height:45rpx;margin-left:100rpx"></image>
+      <view class="t" bindtap="bindmess">我的消息</view>
+      <view class="t1">({{mes}})</view>
+      <image src="/images/mark.png" style="width:29rpx;height:40rpx;margin-left:58rpx"></image>
+      <view class="mark" bindtap="bindmark">荣耀积分:</view>
+      <view class="mark1">{{mark}}</view>
+    </view>
+
+  </view>
+
+<!-- 创作 喜欢 任务的内容 -->
+  <view class="main">
+    <!-- 选项切换的三个组件 -->
+    <view class="menu">
+      <view bindtap="bt1" style="" class="{{bu1}}">创作</view>
+      <view bindtap="bt2" class="{{bu2}}">喜欢</view>
+      <view bindtap="bt3" class="{{bu3}}">任务</view>
+    </view>
+    <!-- 选中创作时出现的页面 -->
+    <view wx:if="{{condition1}}" class="workv">
+      <view wx:for="{{video}}" class="box1">
+        <image class="video" src="/images/bc.png">
+      </image></view>
+      <!-- 固定布局的按钮 -->
+      <view class="over" bindtap='adddetial'>
+    <image class="overtext1" src="/images/多人.png">
+    </image>
+    <view class="overtext3">求助</view>
+</view>
+<view class="over1" bindtap='adddetial1'>
+  <image class="overtext" src="/images/发表帖子.png" mode="widthFix">
+   </image>
+   <view class="overtext3">发表</view>
+</view>
+</view>
+    <!-- 选中创作时出现的页面 -->
+    <view wx:if="{{condition2}}" class="likev">
+    <!-- 固定按钮 -->
+    <view class="over" bindtap='adddetial'>
+    <image class="overtext1" src="/images/多人.png">
+    </image>
+    <view class="overtext3">求助</view>
+</view>
+<view class="over1" bindtap='adddetial1'>
+  <image class="overtext" src="/images/发表帖子.png" mode="widthFix">
+   </image>
+   <view class="overtext3">发表</view>
+</view>
+      <!-- 视频内容 -->
+      <view wx:for="{{video2}}" class="box2">
+        <image class="video" src="/images/bc.png"></image></view>
+    </view>
+   <!-- 选中任务出现的页面 -->
+    <view wx:if="{{condition3}}" class="mov">
+      <view wx:for="{{tasklist}}" class="ta" bindtap="bindtask">
+        <!-- 左边内容 -->
+        <view class="tleft">
+          <view class="da">{{item.date}}</view>
+          <view class="ti">{{item.title}}</view>
+          <!-- 左下内容 -->
+          <view class="tleft-b">
+            <view class="taskhead">
+              <image src="/images/head.png" style="width:100%;height:100%"></image>
+            </view>
+            <view class="na" style="white-space: nowrap;margin-top:25rpx;margin-left:8rpx" >{{item.name}}</view>
+            <image src="/images/mark.png" style="width:20rpx;height:26rpx;margin-left:8rpx;margin-top:25rpx"></image>
+            <view class="em" style="margin-left:5rpx;white-space: nowrap;margin-top:25rpx">{{item.emark}}</view>
+            <image src="/images/locat.png" style="width:20rpx;height:28rpx;margin-left:5rpx;margin-top:25rpx"></image>
+            <view class="pl" style="margin-left:5rpx;white-space: nowrap;margin-top:25rpx;margin-left:8rpx">{{item.place}}</view>
+          </view>
+
+        </view>
+        <!-- 积分 -->
+        <view class="s">{{item.si}}</view>
+      </view>
+      
+    </view>
+</view>

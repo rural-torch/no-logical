@@ -111,7 +111,7 @@
                 <view class="need-dats">{{needItem.dats}}</view>
                 <view class="need-wanner">{{needItem.forwanner}}</view>
                 <view class="need-pic">
-                    <image  src='{{needItem.pic}}' style="width:90px; height:90px"> </image>
+                    <image  src='{{needItem.pic}}' style="width:70px; height:70px"> </image>
                 </view>
                 <view class="need-honrnum">
                   <image  src='/images/rongyu.png' style="width:15px; height:15px"> </image>

@@ -399,7 +399,7 @@
     .need-pic{
       position: absolute;
       right:10px;
-      top:18px;
+      top:28px;
     }
     .need-peopic{
       position: absolute;

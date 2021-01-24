@@ -51,10 +51,12 @@
   <image wx:for="{{tempPics}}" src="{{item.pic}}" bindload="loadPic" binderror="loadPicError" data-index="{{index}}" />
 </view>
 <view class="over" bindtap='adddetial'>
-    <image class="overtext" src="/images/求助.png">
+    <image class="overtext1" src="/images/多人.png">
     </image>
+    <view class="overtext3">求助</view>
 </view>
 <view class="over1" bindtap='adddetial1'>
-  <image class="overtext" src="/images/发表.png">
+  <image class="overtext" src="/images/发表帖子.png" mode="widthFix">
    </image>
+   <view class="overtext3">发表</view>
 </view>

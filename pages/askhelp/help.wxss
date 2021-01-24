@@ -1,5 +1,6 @@
-.container{
+.container2{
   margin: 15rpx;
+  padding:0;
 }
 .title{
   background-color: #F5F5F5;
@@ -7,21 +8,25 @@
   border-radius: 30rpx;
   padding: 30rpx;
   margin: 20rpx auto;
+  width: 90%;
 }
 .btn{
-  background-color: #FFA500;
-  border: #40E0D0 1rpx solid;
-  border-radius: 30rpx;
-  font-size: small;
-  width: 130rpx;
-  height: 50rpx;
+  background-color: white;
+  border: rgb(252, 191, 80) 1rpx solid;
+  border-radius: 19px;
+  font-size: medium;
+  width: 100px;
+  height: 30px;
+  padding-top: 10px;
   text-align: center;
   line-height: 50rpx;
-  margin-top: 20rpx;
-  color: #00FFFF;
+  bottom: 20px;
+  left:30%;
+  color: rgb(252, 191, 80);
   position: absolute;
-  margin-left: 70%;
-  margin-top: 0;
+  display:table-cell; 
+  text-align:center;
+  vertical-align:middle
 }
 .imgs{
   margin: 10rpx auto;
@@ -32,7 +37,7 @@
 .img{
   display: flex;
   justify-content: center;
-  width: 33%;
+  /* width: 33%; */
   margin-bottom: 20rpx;
 }
 .imgs image{

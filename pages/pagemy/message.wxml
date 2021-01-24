@@ -1,6 +1,6 @@
-<!--pages/focus/f.wxml-->
+<!--历史消息-->
 <view>
-  <view class="search-bar">
+<view class="search-bar">
     <view class="search-bar__form">
       <!-- 搜索框 -->
       <view class="search-bar__box">
@@ -11,11 +11,18 @@
     <!-- 搜索按钮,调用搜索查询方法 -->
     <view class="search-bar__cancel-btn" bindtap='方法名a'>搜索</view>
   </view>
-  <view wx:for="{{fanslist}}" >
-    <view class="fbox">
-      <view class="fphoto"></view>
-      <view class="fname">{{item.name}}</view>
-      <view wx:if="{{item.iffocus}}"class="fbtn">关注</view>
+  <!-- 消息列表 -->
+<view wx:for="{{meslist}}" bindtap="chat">
+    <!-- 头像 -->
+    <view class="mbox">
+      <view class="mphoto"></view>
+    <!-- 名字和消息 -->
+      <view class="mcbox">
+        <view class="mname">{{item.name}}</view>
+        <view class="mess">{{item.mess}}</view>
+      </view>
+      <!-- 时间 -->
+      <view class="mtime">{{item.time}}</view>
     </view>
-  </view>
+</view>
 </view>

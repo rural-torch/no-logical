@@ -1,5 +1,5 @@
 <!--先静后动，先样式再数据-->
-<view class="container">
+<view class="container3">
 
 
  <view class="author-date">
@@ -17,7 +17,7 @@
                   <image  src='/images/location.png' style="width:15px; height:15px"> </image>                
                   <text decode="{{true}}">&nbsp;{{needData.location}}</text></view>
 <view class="rongyu">
-    <image  src='/images/rongyu.png' style="width:15px; height:15px"> </image>
+    <image  src='/images/rongyu.png' style="width:15px; height:17px"> </image>
     <text decode="{{true}}">&nbsp;荣誉积分：{{needData.honrnum}}</text>
                   </view>
  <text class="date">{{needData.dats}}</text>

@@ -1,4 +1,4 @@
-<!--pages/focus/f.wxml-->
+<!-- 关注页面 -->
 <view>
   <view class="search-bar">
     <view class="search-bar__form">

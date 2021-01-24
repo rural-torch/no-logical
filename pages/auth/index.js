@@ -1,131 +1,66 @@
-//index.js
-//获取应用实例
-const app = getApp()
-
+// pages/auth/index.js
 Page({
-  data:{
-    
-    focu:15,
-    fans:"1.5w",
-    mark:60,
-    id:"856942333",
-    mes:20,
-    bu1:"bu",
-    bu2:"",
-    bu3:"",
-    condition1:true,
-     condition2:false,
-     condition3:false,
-    video:[1,2,3,4,1,1,1,1,1],
-    video2:[1,2,3,4,5,1,1,1,1],
-    tasklist:[{
-      date:"2021-1-8 9:00",
-      title:"标题标题标题标题标题标题标题标题标题",
-      name:"胡乱起的名字",
-      place:"四川甘孜",
-      emark:30,
-      si:"执行中",
-      fi:false
-    },
-    {
-      date:"2021-1-8 9:00",
-      title:"标题标题标题标题标题标题标题标题标题",
-      name:"胡乱起的名字",
-      place:"四川甘孜",
-      emark:40,
-      si:"已完成",
-      fi:true
-    },
-    {
-      date:"2021-1-8 9:00",
-      title:"标题标题标题标题标题标题标题标题标题",
-      name:"胡乱起的名字",
-      place:"四川甘孜",
-      emark:20,
-      si:"已完成",
-      fi:true
-    }
-  ]
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
 
   },
-  handleContact (e) {
-    console.log(e.detail.path)
-    console.log(e.detail.query)
-},
-  bt1:function(){
-    this.setData({
-      bu1:"bu",
-      bu2:"",
-      bu3:"",
-      condition1:true,
-     condition2:false,
-     condition3:false
-    })
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
   },
-  onLoad: function() {
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl
-              })
-            }
-          })
-        }
-      }
-    })
-    },
-    
-  bt2:function(){
-    this.setData({
-     bu1:"",
-     bu2:"bu",
-     bu3:"",
-     condition2:true,
-     condition1:false,
-     condition3:false
-    })
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
   },
-  bt3:function(){
-    this.setData({
-     bu1:"",
-     bu2:"",
-     bu3:"bu",
-     condition3:true,
-     condition2:false,
-     condition1:false
-    })
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
   },
-  bindfocus: function(){
-   wx.navigateTo({
-      url: '/pages/focus/f',
-    })
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
   },
-  bindfans: function(){
-    wx.navigateTo({
-      url: '/pages/fans/f',
-    })
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
   },
-  bindmark:function(){
-    wx.navigateTo({
-      url: '/pages/mark/m',
-    })
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
   },
-  bindmess:function(){
-    wx.navigateTo({
-      url: '/pages/mess/m',
-    })
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
   },
-  bindsev:function(){
-    wx.navigateTo({
-      url: '/pages/sev/s',
-    })
-  },
-  bindtask:function(){
-    wx.navigateTo({
-      url: '/pages/task/t',
-    })
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

@@ -1,6 +1,6 @@
-<!--pages/mess/m.wxml-->
+<!--粉丝页面-->
 <view>
-<view class="search-bar">
+  <view class="search-bar">
     <view class="search-bar__form">
       <!-- 搜索框 -->
       <view class="search-bar__box">
@@ -11,14 +11,12 @@
     <!-- 搜索按钮,调用搜索查询方法 -->
     <view class="search-bar__cancel-btn" bindtap='方法名a'>搜索</view>
   </view>
-<view wx:for="{{meslist}}" bindtap="chat">
-    <view class="mbox">
-      <view class="mphoto"></view>
-      <view class="mcbox">
-        <view class="mname">{{item.name}}</view>
-        <view class="mess">{{item.mess}}</view>
-      </view>
-      <view class="mtime">{{item.time}}</view>
+  <view wx:for="{{fanslist}}" >
+    <!-- 关注列表 -->
+    <view class="fbox">
+      <view class="fphoto"></view>
+      <view class="fname">{{item.name}}</view>
+      <view wx:if="{{item.iffocus}}"class="fbtn">关注</view>
     </view>
-</view>
+  </view>
 </view>
