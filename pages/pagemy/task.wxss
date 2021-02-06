@@ -74,6 +74,7 @@
   text-indent:20rpx;
   letter-spacing: 3rpx;
   font-family: "Microsoft YaHei","Arial","黑体","宋体",sans-serif;
+  white-space: nowrap;
 }
 .p{
   width: 60rpx;
@@ -83,7 +84,7 @@
 .box3{
   display: flex;
   flex-direction: row;
-  height: 200rpx;
+  height: 180rpx;
   font-size: 33rpx;
   padding-left: 80rpx;
   background-color: rgb(255, 255, 255);

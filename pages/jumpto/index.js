@@ -37,6 +37,7 @@ Page({
       pagey: '',
       vsrc: ['/images/vio.qlv'],
       src: '',
+      showimg:[]
    
     },
     /// 单击、双击
@@ -261,7 +262,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this
+    var index = options.index
+    console.log(index)
+    wx.request({
+      　　url: 'http://duing.site:8888/home', //服务器地址
+      header: {
+        　　'content-type': 'application/json'
+        　　},
+        method: 'GET',
+        data: {
+          　　},
+      　　success: function (res) {
+      　　console.log(res.data)
+      var i=0
+      var images=[]
+      for(i=0;i<res.data.length;i++){
+        images[i]=res.data[i].image
+      }
+      that.setData({
+        showimg:images[index]
+      })
+      　　}
+      　　})
   },
 
   /**

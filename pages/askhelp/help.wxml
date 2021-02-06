@@ -1,6 +1,7 @@
+<form bindsubmit="repo">
 <view class="container2">
   <view class="top">
-    <textarea class="title" placeholder="请输入您的标题 ......">
+    <textarea class="title1" name="title" placeholder="请输入您的标题 ......" bindinput="addTitle" value='{{title}}'>
     </textarea>
   </view>
 
@@ -28,4 +29,5 @@
     </picker>
   </view>
 </view>
-<view class="btn">发表{{imgNum}}/9</view>
+<button class="btn"  form-type="submit">发表{{imgNum}}/9</button>
+</form>

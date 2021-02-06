@@ -1,52 +1,34 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const myid = app.globalData.uid;
 Page({
   data:{
-    
-    focu:15,
-    fans:"1.5w",
-    mark:60,
-    id:"856942333",
-    mes:20,
+    focu:0,
+    fans:0,
+    mark:0,
+    id:'',
+    mes:0,
+    sex:"",
+    nickname:"",
+    avatarUrl:"",
+    userid:"",
+    iflogin:true,
+    uid:"",
     bu1:"bu",
     bu2:"",
     bu3:"",
+    bu4:'',
+    city:"",
+    job:"",
+    ifauth:true,
     condition1:true,
      condition2:false,
      condition3:false,
+     condition4:false,
     video:[1,2,3,4,1,1,1,1,1],
     video2:[1,2,3,4,5,1,1,1,1],
-    tasklist:[{
-      date:"2021-1-8 9:00",
-      title:"标题标题标题标题标题标题标题标题标题",
-      name:"胡乱起的名字",
-      place:"四川甘孜",
-      emark:30,
-      si:"执行中",
-      fi:false
-    },
-    {
-      date:"2021-1-8 9:00",
-      title:"标题标题标题标题标题标题标题标题标题",
-      name:"胡乱起的名字",
-      place:"四川甘孜",
-      emark:40,
-      si:"已完成",
-      fi:true
-    },
-    {
-      date:"2021-1-8 9:00",
-      title:"标题标题标题标题标题标题标题标题标题",
-      name:"胡乱起的名字",
-      place:"四川甘孜",
-      emark:20,
-      si:"已完成",
-      fi:true
-    }
-  ]
-
+    tasklist:[],
   },
   handleContact (e) {
     console.log(e.detail.path)
@@ -57,43 +39,154 @@ Page({
       bu1:"bu",
       bu2:"",
       bu3:"",
+      bu4:"",
       condition1:true,
      condition2:false,
-     condition3:false
+     condition3:false,
+     condition4:false,
     })
   },
+  
   onLoad: function() {
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl
-              })
-            }
-          })
-        }
+    this.requdata();
+    wx.getStorage({
+      key:'user',
+      success:function(res){
+        console.log(res.data)
       }
     })
-    },
     
+    },
+    onPullDownRefresh: function () {
+      this.requdata()
+    },
+  changeData:function(){
+    this.onShow();//最好是只写需要刷新的区域的代码，onload也可，效率低，有点low
+  },
+    onShow: function () {
+      let focu;
+      let fans;
+      let mark;
+      let id;
+      let that=this
+
+      wx.getStorage({
+        key: 'job',
+      success:function(res){
+      that.setData({
+        job:res.data
+        });
+      }
+      })
+      wx.getStorage({
+        key: 'city',
+      success:function(res){
+      that.setData({
+        city:res.data
+        });
+      }
+      })
+      wx.getStorage({
+        key: 'user',
+      success:function(res){
+      that.setData({
+        userid:res.data.uid,
+        avatarUrl:res.data.avatarUrl,
+        nickname:res.data.nickname,
+        sex:res.data.sex,
+        });
+      // console.log(res)
+      wx.request({//get请求
+        url: 'http://duing.site:8888/user/getUser?userid='+that.data.userid, //服务器网址
+        method:"GET",
+        header: {
+            'content-type': 'application/json' // 默认值
+        },
+        success: function(res) {
+          focu=res.data.focus,
+          fans=res.data.fans,
+          mark=res.data.integral,
+          id=res.data.userid,
+          // console.log(res.data.avatarUrl)
+          // message=res.data.message,
+          that.setData({
+            fans:fans,
+            focu:focu,
+            mark:mark,
+            id:id,
+          })
+          wx.setNavigationBarTitle({
+            title: that.data.nickname,
+          })
+        },
+        fail:function(err){
+          console.log(err);
+        },
+      })
+      }
+      })
+
+  
+      if(that.data.iflogin==true){
+        wx.getStorage({
+          key: 'iflogin',
+          success:function(res){
+          that.setData({
+            iflogin:res.data
+            });
+            }
+          })
+      }
+    },
+  login:function(){
+    wx.navigateTo({
+      url: '/pages/pagemy/adddetail',
+    })
+    wx.setStorage({
+      data:false,
+      key: 'iflogin',
+      success: function(res){
+      }
+        })
+  },
+  addlabel:function(){
+  wx.navigateTo({
+    url: './adddetail',
+  })
+  },
   bt2:function(){
     this.setData({
      bu1:"",
      bu2:"bu",
      bu3:"",
+     bu4:"",
      condition2:true,
      condition1:false,
-     condition3:false
+     condition3:false,
+     condition4:false
     })
   },
   bt3:function(){
+    console.log('myid:',myid)
     this.setData({
      bu1:"",
      bu2:"",
      bu3:"bu",
+     bu4:"",
      condition3:true,
+     condition2:false,
+     condition1:false,
+     condition4:false
+    })
+  },
+  bt4:function(){
+    this.setData({
+     bu1:"",
+     bu4:"bu",
+     bu3:"",
+     bu2:"",
+     condition4:true,
+     condition3:false,
      condition2:false,
      condition1:false
     })
@@ -123,9 +216,45 @@ Page({
       url: '/pages/pagemy/service',
     })
   },
-  bindtask:function(){
+  bindtask:function(event){
+    var Id=event.currentTarget.dataset.helpid
     wx.navigateTo({
-      url: '/pages/pagemy/task',
+      url: "./task?id= " + Id
     })
-  }
+  },
+  adddetial:function(e){
+    wx.navigateTo({
+      url: '/pages/report/index1',
+    })
+  },
+  adddetial1:function(e){
+    wx.navigateTo({
+      url: '/pages/askhelp/help',
+    })
+  },
+  requdata:function(){  
+    // 请求数据
+    let that = this;
+    wx.request({//get请求
+      url: 'http://duing.site:8888/task/getUserTasks?userid='+app.globalData.uid, ////服务器网址
+      method:"GET",
+      header: {
+          'content-type': 'application/json' // 默认值
+      },
+      success: function(res) {
+        console.log('获得的数据是：',res.data)
+       
+        that.setData({
+          tasklist:res.data
+        })
+        console.log('任务三',that.data.tasklist)
+       // wx.setNavigationBarTitle({
+         // title: that.data.nickname,
+        //})
+      },
+      fail:function(err){
+        console.log(err);
+      },
+    })
+    }
 })

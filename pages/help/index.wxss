@@ -391,10 +391,16 @@
       color: rgb(206, 200, 200);
     }
     .need-wanner{
+      display: flex;
+
+
+      justify-content: flex-start;
+      width: 200px;
       position: absolute;
       left:90px;
       letter-spacing:5rpx;
       font-size: 13px;
+    
     }
     .need-pic{
       position: absolute;
@@ -413,7 +419,15 @@
       font-size: 13px;
     }
     .need-location{ 
+      
       position: absolute;
       left:140px;
       bottom:20px;
-      font-size: 13px;}
+      font-size: 13px;
+      width: 150px;
+      display:-webkit-box;
+  -webkit-line-clamp:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  -webkit-box-orient:vertical;
+  word-break:break-all}

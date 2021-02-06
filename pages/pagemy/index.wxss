@@ -48,6 +48,10 @@
   font-weight: 900;
   padding-left:40rpx;
 }
+.addmore{
+  margin-top:40rpx;
+  margin-left:30rpx;
+}
 /* 文字 */
 .focus{
   display: flex;
@@ -62,9 +66,22 @@
   display: flex;
   flex-direction: row;
   margin-top:13rpx;
-
+  flex-wrap: wrap;
   font-size: 20rpx;
   color:rgb(127,127,127);
+}
+.login{
+  color: white;
+  background-color: rgb(250, 176, 91);
+  margin-left:10rpx;
+  margin-top: 40rpx;
+  text-align: center;
+  letter-spacing: 4rpx;
+  width:200rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 20rpx;
+  
 }
 
 .sex{
@@ -73,11 +90,36 @@
   height: 36rpx;
   width: 86rpx;
   line-height: 36rpx;
+  font-weight: 550;
   border-radius: 18rpx;
   color:rgb(32, 142, 255);
   text-align: center;
   letter-spacing: 3rpx;
   background-color: rgb(203, 228, 253);
+}
+.sex2{
+  font-weight: 550;
+  flex-direction: row;
+  font-size: 17rpx;
+  height: 36rpx;
+  width: 86rpx;
+  line-height: 36rpx;
+  border-radius: 18rpx;
+  color:rgb(255, 90, 141);
+  text-align: center;
+  letter-spacing: 3rpx;
+  background-color: rgb(255, 238, 243);
+}
+
+#addmessage{
+  height: 36rpx;
+  width: 36rpx;
+  color: white;
+  background-color: rgb(255, 159, 80);
+  border-radius: 18rpx;
+  margin-left:30rpx;
+  font-weight: 550;
+  text-align: center;
 }
 /* 用户id */
 .iden{
@@ -89,18 +131,22 @@
 /* 位置标签和职业标签 */
 .label{
   text-align: center;
-  width: 6em;
   height: 36rpx;
   line-height: 36rpx;
   margin-left: 0rpx;
   letter-spacing: 3rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.label view{
+  padding-left: 4rpx;
 }
 .label2{
   text-align: center;
-  width: 6em;
   height: 36rpx;
   line-height: 36rpx;
-  margin-left: 6rpx;
+  margin-left: 20rpx;
   letter-spacing: 3rpx;
 }
 .sev{

@@ -55,6 +55,16 @@
   border-radius: 2px;
   font-family: "微软雅黑"、Arial、Verdana、"Times New Roman";
 }
+.top_tabbar2{
+  font-size: 12px;
+  margin-left: 15px;
+  font-weight: 700;
+  border-width: 0 0 4px 0;
+  border-color: white;
+  border-style: solid;
+  border-radius: 2px;
+  font-family: "微软雅黑"、Arial、Verdana、"Times New Roman";
+}
 .top_tabbar1{
   font-size: 14px;
   margin-left: 17px;
@@ -73,7 +83,10 @@
   background-color:rgb(247, 247, 248) ;
 }
 
-.column {
+.column-left {
+  width: 50%;
+}
+.column-right{
   width: 50%;
 }
 
@@ -205,4 +218,6 @@ right: 10px;
   margin-top: -5px;
   margin-left: 9px;
 }
+
+
 

@@ -1,5 +1,9 @@
+
+var util = require('../../utils/util.js');
+
 Page({
   data: {
+    title:"",
     latitude:0,//位置纬度
     longitude:0,//位置经度
     imgs:[],//图片路径
@@ -56,7 +60,114 @@ Page({
       type: types[index]
     });
   },
-  submit:function(){
+  addTitle:function(e){
+    this.setData({
+      title: e.detail.value,
+    })
+  },
+  repo:function(e){
+    let topicid = '';
+    
+    // 数据上传服务端
+    let that = this;
+    var title=e.detail.value.title;
+    wx.request({
+      url: 'http://duing.site:8888/topic/addTopic',
+      method: 'POST',
+      data:{
+        topicid:100,
+        userid:"aaa1654859",
+        title:e.detail.value.title,
+        time:new Date().getTime(),
+        site:that.data.place,
+        type:that.data.type,
+        like:0,
+        comment:0,
+        status:0,
+      },
+      success(res){
+        topicid = res.data.topicid;
+        for(let i = 0; i < that.data.imgs.length; i++){
+          wx.uploadFile({
+            url: 'http://duing.site:8888/topic/uploadFile',
+            filePath: that.data.imgs[i],
+            name: 'uploadfile',
+            formData:{
+              topicid:topicid,
+              index:i + 1,
+            },
+            success(res){
+              console.log(res);
+              wx.showToast({
+                title: '发表成功！',
+              })
+            },
+            fail(res){
+              console.log(res);
+            }
+          })
+        }
+        wx.switchTab
+        ({
+        url:'/pages/index/index'
+      })
+      }
+    })
+  },
+  repo2:function(){
+    // 数据上传服务端
+    let that = this;
+    var time = util.formatTime(new Date());
+    // 再通过setData更改Page()里面的data，动态更新页面的数据
+    this.setData({
+      time: time
+    });
+    wx.request({
+      url: 'http://duing.site:8888/topic/addTopic',
+      method: 'POST',
+      header: {
+        "content-type":'application/json;charset=utf-8'
+      },
+      data:{
+        title:that.data.title,
+        site:that.data.place,
+        //imgs=that.data.imgs,
+      },
+      success: function (res) {
+        console.log(res.data);
+      }
+    })
+    wx.reLaunch({
+      url:'/pages/index/index'
+    })
+  },
+  repo1:function(e){
     //数据上传服务端
+    var that=this;
+    var title=e.detail.value.title;
+    var type=that.data.topicTypes[Number(e.detail.value.type)];
+    var place=that.data.place;
+    var imgs=that.data.imgs;
+        wx.reLaunch({
+          url:'/pages/index/index?content='+title+'&pic='+imgs+'&loctext='+place,
+        })
+    console.log(title)
+    console.log(type)
+    console.log(place)
+    var time = util.formatTime(new Date());
+    // 再通过setData更改Page()里面的data，动态更新页面的数据
+    this.setData({
+      time: time
+    });
+
+    wx.cloud.database().collection('index').add({
+      data: {
+        pic:imgs,content:title,loctext:place,time:time
+      }
+    }).then((res) => {
+     console.log(res)//返回的res里面有_id的值，这个_id是系统自动生成的。
+   }).catch(err=>{
+     console.log(err)
+   })
   }
 })

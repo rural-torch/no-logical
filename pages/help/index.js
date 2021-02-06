@@ -1,17 +1,18 @@
 //banner
 var needsData=require('../data/need-datas.js')
+const { needList } = require('../data/need-datas.js')
 Page({
   data: {
     filterItem_a:['三天内','一周内','半年内','其他'],
       filterIndex:0,
     filterIndex:0,
     index:null,
-    preList:needsData.needList,
-    
+    preList:[],
     filterItem_b:['北京','上海',"安徽","江苏","河南","河北","湖北","湖南"],
     filterItem_c:['三天内','一周内','半年内','其他'],
     filterItem_d:['三天内','一周内','半年内','其他'],
     skin: '',
+    
     images:{},
     // 下拉菜单
     first: '发布时间',
@@ -187,9 +188,6 @@ Page({
    /// var text = this.data.first
    /// console.log(text)
   },
-  onLoad: function (options) {
- 
-  },
   // 售价
   clickNum: function (e) {
     console.log(e.target.dataset.num)
@@ -236,8 +234,37 @@ Page({
    /// var text = this.data.name
     ///console.log(text)
   },
-  onLoad: function (options) {
- 
+  onShow: function () {
+    // var that=this
+    // wx.getStorage({
+    //   key: 'need_List',
+    // success:function(res){
+    // that.setData({
+    //   needList:res.data,
+    //   preList:needList
+    //   });
+    //   console.log(needList)
+    // }
+    // })
+    var that=this;
+    wx.request({//get请求
+      url: 'http://duing.site:8888/helpHome', //服务器网址
+      method:"GET",
+      header: {
+          'content-type': 'application/json' // 默认值
+      },
+      success: function(res) {
+        let list=res.data
+        console.log(list)
+        // message=res.data.message,
+        that.setData({
+          preList:list
+        })
+      },
+      fail:function(err){
+        console.log(err);
+      },
+    })
   },
   // 房型
   clickHouse: function (e) {
@@ -265,7 +292,7 @@ Page({
  
  onPostTap: function (event) {
  var needId = event.currentTarget.dataset.needid;
- // console.log("on need id is" + needId);
+ console.log("on need id is" + needId);
  wx.navigateTo({
   url: "../detail/detail?id=" + needId
  })

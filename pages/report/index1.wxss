@@ -33,6 +33,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-left:28rpx;
+  margin-right:28rpx;
 }
 .img{
   display: flex;

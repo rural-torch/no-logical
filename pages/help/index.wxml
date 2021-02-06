@@ -103,22 +103,23 @@
 
   <view class="needs">
         <block wx:for="{{preList}}" wx:for-item="needItem" wx:for-index="needIndex" wx:key="need">
-            <view class="need" catchtap="onPostTap" data-needId="{{needItem.needId}}">
+            <view class="need" catchtap="onPostTap" data-needId="{{needItem.helpid}}">
                 <view class="need-peopic">
-                    <image  src='{{needItem.peopic}}' style="width:60px; height:60px"> </image>
+                    <image  src='{{needItem.headimg}}' style="width:60px; height:60px"> </image>  
+                    <!-- {{needItem.peopic}} -->
                 </view>
-                <view class="need-name">{{needItem.name}}</view>
-                <view class="need-dats">{{needItem.dats}}</view>
-                <view class="need-wanner">{{needItem.forwanner}}</view>
+                <view class="need-name">{{needItem.username}}</view>
+                <view class="need-dats">{{needItem.startime}}</view>
+                <view class="need-wanner">{{needItem.title}}</view>
                 <view class="need-pic">
-                    <image  src='{{needItem.pic}}' style="width:70px; height:70px"> </image>
+                    <image  src='{{needItem.image}}' style="width:70px; height:70px"> </image>
                 </view>
                 <view class="need-honrnum">
                   <image  src='/images/rongyu.png' style="width:15px; height:15px"> </image>
-                  {{needItem.honrnum}}</view>
+                  {{needItem.reward}}</view>
                 <view class="need-location">
                   <image  src='/images/location.png' style="width:15px; height:15px"> </image>
-                  {{needItem.location}}</view>
+                  {{needItem.site}}</view>
             </view>
         </block>
     </view>

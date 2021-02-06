@@ -1,26 +1,27 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/pagemy/index",
     "pages/jumpto/index",
     "pages/search/index",
     "pages/help/index",
-    "pages/auth/index"
+    "pages/pagemy/adddetail"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "enablePullDownRefresh": true ,
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "乡炬",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
-  "tabBar":{
+  "tabBar": {
     "color": "",
     "selectedColor": "",
     "backgroundColor": "",
     "position": "bottom",
     "borderStyle": "black",
-    "list":[
+    "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",

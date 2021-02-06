@@ -1,205 +1,134 @@
-var needsData = require('../data/need-datas.js')
+var needsData = require('../data/need-datas')
+const {needList}=require('../data/need-datas')
 var app = getApp();
+var status = true;
 Page({
  data: {
-  isPlayingMusic: false
+  status:status,
+  needData:[],
+  aneedData:[],
+  img:[],
  },
  onLoad: function (option) {
+  var that=this
+  wx.getStorage({
+    key:'user',
+    success:function(res){
+      console.log('shuju',res.data)
+      that.setData({
+        myid:res.data.uid
+    })
+  }})
+  console.log('myid:',that.data.myid)
+  //   wx.getStorage({
+  //     key: 'need_List',
+  //   success:function(res){
+  //   that.setData({
+  //     needList:res.data,
+  //     preList:needList
+  //     });
+  //     console.log(needList)
+  //   }
+  //   })
+
   var needId = option.id;
   this.data.currentNeedId = needId;
-  var needData = needsData.needList[needId];
-  this.setData({
-   needData: needData
+  console.log(this.data.currentNeedId)
+  var needData = needList[needId];
+  //this.setData({
+  //  needData: needData
+  // })
+  var that=this;
+  wx.request({//get请求
+    url: 'http://duing.site:8888/helpHome', //服务器网址
+    method:"GET",
+    header: {
+        'content-type': 'application/json' // 默认值
+    },
+    success: function(res) {
+      let list=res.data
+      console.log('ssm',list)
+      // message=res.data.message,
+      that.setData({
+        needData:list
+      })
+      that.data.needData.forEach(item => {
+        if (that.data.currentNeedId == item.helpid) {
+          that.setData({
+            aneedData: item
+          })
+          console.log(that.data.aneedData)
+        }
+      })
+      console.log(that.data.needData)
+    },
+    fail:function(err){
+      console.log(err);
+    },
   })
- 
-  var needsCollected = wx.getStorageSync('needs_collected')
-  if (needsCollected) {
-   var needCollected = needsCollected[needId]
-   if (needCollected){
-    this.setData({
-    collected: needCollected
-    })
-   }
-  }
-  else {
-   var needsCollected = {};
-   needsCollected[needId] = false;
-   wx.setStorageSync('needs_collected', needsCollected);
-  }
- 
-  if (app.globalData.g_isPlayingMusic && app.globalData.g_currentMusicNeedId
-   === needId) {
-   this.setData({
-    isPlayingMusic: true
-   })
-  }
-  this.setMusicMonitor();
- },
- 
- setMusicMonitor: function () {
-  //点击播放图标和总控开关都会触发这个函数
-  var that = this;
-  wx.onBackgroundAudioPlay(function (event) {
-   var pages = getCurrentPages();
-   var currentPage = pages[pages.length - 1];
-   if (currentPage.data.currentPostId === that.data.currentPostId) {
-    // 打开多个post-detail页面后，每个页面不会关闭，只会隐藏。通过页面栈拿到到
-    // 当前页面的postid，只处理当前页面的音乐播放。
-    if (app.globalData.g_currentMusicPostId == that.data.currentPostId) {
-     // 播放当前页面音乐才改变图标
-     that.setData({
-      isPlayingMusic: true
-     })
+  wx.request({//get请求
+    url: 'http://duing.site:8888/help/getHelpImgs?helpid='+that.data.currentNeedId, //服务器网址
+    method:"GET",
+    header: {
+        'content-type': 'application/json' // 默认值
+    },
+    success: function(res) {
+      let list=res.data
+      that.setData({
+        img:list
+      })
+
+    },
+    fail:function(err){
+      console.log(err);
+    },
+  })
+  
+  
+},
+preview(event) {
+  console.log(event.currentTarget.dataset.src)
+  let currentUrl = event.currentTarget.dataset.src
+  wx.previewImage({
+    current: currentUrl, // 当前显示图片的http链接
+    urls: this.data.img // 需要预览的图片http链接列表
+  })
+},
+swithtotask: function(event) {
+  this.submit(); 
+  console.log("触发了点击事件，弹出toast")
+  status = false
+  this.setData({status:status})　　　　//setData方法可以建立新的data属性，从而起到跟视图实时同步的效果
+
+
+},
+toastHide:function(event){
+  console.log("触发bindchange，隐藏toast")
+  status =true
+  this.setData({status:status})
+},
+submit:function(){
+  // 数据上传服务端
+  let that = this;
+  wx.request({
+    url: 'http://duing.site:8888/task/addTask',
+    method: 'POST',
+    data:{
+      helpid:that.data.currentNeedId,
+      userid:app.globalData.uid,///'oVmIt5xNGnJCRg-Bd3hVKsHgzNco',
+     
+      status:0,
+      topicid:null,
+    },
+    success(res){
+      console.log('请求成功',res)
+      // console.log(res);
+      that.setData({
+       ////helpid:res.data.helpid
+      })
     }
-    // if(app.globalData.g_currentMusicPostId == that.data.currentPostId )
-    // app.globalData.g_currentMusicPostId = that.data.currentPostId;
-   }
-   app.globalData.g_isPlayingMusic = true;
- 
-  });
-  wx.onBackgroundAudioPause(function () {
-   var pages = getCurrentPages();
-   var currentPage = pages[pages.length - 1];
-   if (currentPage.data.currentNeedId === that.data.currentNeedId) {
-    if (app.globalData.g_currentMusicNeedId == that.data.currentNeedId) {
-     that.setData({
-      isPlayingMusic: false
-     })
-    }
-   }
-   app.globalData.g_isPlayingMusic = false;
-   // app.globalData.g_currentMusicPostId = null;
-  });
-  wx.onBackgroundAudioStop(function () {
-   that.setData({
-    isPlayingMusic: false
-   })
-   app.globalData.g_isPlayingMusic = false;
-   // app.globalData.g_currentMusicPostId = null;
-  });
- },
- 
- onColletionTap: function (event) {
-  // this.getPostsCollectedSyc();
-  this.getPostsCollectedAsy();
- },
- 
- getPostsCollectedAsy: function () {
-  var that = this;
-  wx.getStorage({
-   key: "needs_collected",
-   success: function (res) {
-    var needsCollected = res.data;
-    var needCollected = needsCollected[that.data.currentNeedId];
-    // 收藏变成未收藏，未收藏变成收藏
-    needCollected = !needCollected;
-    needsCollected[that.data.currentNeedId] = needCollected;
-    that.showToast(needsCollected, needCollected);
-   }
-  })
- },
- 
- getPostsCollectedSyc: function () {
-  var postsCollected = wx.getStorageSync('posts_collected');
-  var postCollected = postsCollected[this.data.currentPostId];
-  // 收藏变成未收藏，未收藏变成收藏
-  postCollected = !postCollected;
-  postsCollected[this.data.currentPostId] = postCollected;
-  this.showToast(postsCollected, postCollected);
- },
- 
- showModal: function (postsCollected, postCollected) {
-  var that = this;
-  wx.showModal({
-   title: "收藏",
-   content: postCollected ? "收藏该文章？" : "取消收藏该文章？",
-   showCancel: "true",
-   cancelText: "取消",
-   cancelColor: "#333",
-   confirmText: "确认",
-   confirmColor: "#405f80",
-   success: function (res) {
-    if (res.confirm) {
-     wx.setStorageSync('posts_collected', postsCollected);
-     // 更新数据绑定变量，从而实现切换图片
-     that.setData({
-      collected: postCollected
-     })
-    }
-   }
-  })
- },
- 
- showToast: function (postsCollected, postCollected) {
-  // 更新文章是否的缓存值
-  wx.setStorageSync('posts_collected', postsCollected);
-  // 更新数据绑定变量，从而实现切换图片
-  this.setData({
-   collected: postCollected
-  })
-  wx.showToast({
-   title: postCollected ? "收藏成功" : "取消成功",
-   duration: 1000,
-   icon: "success"
-  })
- },
- 
- onShareTap: function (event) {
-  var itemList = [
-   "分享给微信好友",
-   "分享到朋友圈",
-   "分享到QQ",
-   "分享到微博"
-  ];
-  wx.showActionSheet({
-   itemList: itemList,
-   itemColor: "#405f80",
-   success: function (res) {
-    // res.cancel 用户是不是点击了取消按钮
-    // res.tapIndex 数组元素的序号，从0开始
-    wx.showModal({
-     title: "用户 " + itemList[res.tapIndex],
-     content: "用户是否取消？" + res.cancel + "现在无法实现分享功能，什么时候能支持呢"
-    })
-   }
-  })
- },
- 
- onMusicTap: function (event) {
-  var currentPostId = this.data.currentPostId;
-  var postData = postsData.postList[currentPostId];
-  var isPlayingMusic = this.data.isPlayingMusic;
-  if (isPlayingMusic) {
-   wx.pauseBackgroundAudio();
-   this.setData({
-    isPlayingMusic: false
-   })
-   // app.globalData.g_currentMusicPostId = null;
-   app.globalData.g_isPlayingMusic = false;
-  }
-  else {
-   wx.playBackgroundAudio({
-    dataUrl: postData.music.url,
-    title: postData.music.title,
-    coverImgUrl: postData.music.coverImg,
-   })
-   this.setData({
-    isPlayingMusic: true
-   })
-   app.globalData.g_currentMusicPostId = this.data.currentPostId;
-   app.globalData.g_isPlayingMusic = true;
-  }
- },
- 
- /*
- * 定义页面分享函数
- */
- nShareAppMessage: function (event) {
-  return {
-   title: '离思五首·其四',
-   desc: '曾经沧海难为水，除却巫山不是云',
-   path: '/pages/posts/post-detail/post-detail?id=0'
-  }
- }
- 
+  })},
+
+
+
 })
