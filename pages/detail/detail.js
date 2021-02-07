@@ -14,12 +14,12 @@ Page({
   wx.getStorage({
     key:'user',
     success:function(res){
-      console.log('shuju',res.data)
+      // console.log('shuju',res.data)
       that.setData({
         myid:res.data.uid
     })
   }})
-  console.log('myid:',that.data.myid)
+  // console.log('myid:',that.data.myid)
   //   wx.getStorage({
   //     key: 'need_List',
   //   success:function(res){
@@ -33,7 +33,7 @@ Page({
 
   var needId = option.id;
   this.data.currentNeedId = needId;
-  console.log(this.data.currentNeedId)
+  // console.log(this.data.currentNeedId)
   var needData = needList[needId];
   //this.setData({
   //  needData: needData
@@ -47,7 +47,7 @@ Page({
     },
     success: function(res) {
       let list=res.data
-      console.log('ssm',list)
+      // console.log('ssm',list)
       // message=res.data.message,
       that.setData({
         needData:list
@@ -57,13 +57,13 @@ Page({
           that.setData({
             aneedData: item
           })
-          console.log(that.data.aneedData)
+          // console.log(that.data.aneedData)
         }
       })
-      console.log(that.data.needData)
+      // console.log(that.data.needData)
     },
     fail:function(err){
-      console.log(err);
+      // console.log(err);
     },
   })
   wx.request({//get请求
@@ -80,14 +80,14 @@ Page({
 
     },
     fail:function(err){
-      console.log(err);
+      // console.log(err);
     },
   })
   
   
 },
 preview(event) {
-  console.log(event.currentTarget.dataset.src)
+  // console.log(event.currentTarget.dataset.src)
   let currentUrl = event.currentTarget.dataset.src
   wx.previewImage({
     current: currentUrl, // 当前显示图片的http链接
@@ -96,14 +96,14 @@ preview(event) {
 },
 swithtotask: function(event) {
   this.submit(); 
-  console.log("触发了点击事件，弹出toast")
+  // console.log("触发了点击事件，弹出toast")
   status = false
   this.setData({status:status})　　　　//setData方法可以建立新的data属性，从而起到跟视图实时同步的效果
 
 
 },
 toastHide:function(event){
-  console.log("触发bindchange，隐藏toast")
+  // console.log("触发bindchange，隐藏toast")
   status =true
   this.setData({status:status})
 },
@@ -117,11 +117,11 @@ submit:function(){
       helpid:that.data.currentNeedId,
       userid:app.globalData.uid,///'oVmIt5xNGnJCRg-Bd3hVKsHgzNco',
      
-      status:0,
+      status:3,
       topicid:null,
     },
     success(res){
-      console.log('请求成功',res)
+      // console.log('请求成功',res)
       // console.log(res);
       that.setData({
        ////helpid:res.data.helpid

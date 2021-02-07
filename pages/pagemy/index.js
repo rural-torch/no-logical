@@ -29,6 +29,8 @@ Page({
     video:[1,2,3,4,1,1,1,1,1],
     video2:[1,2,3,4,5,1,1,1,1],
     tasklist:[],
+    mytasklist:[],
+    headimg:'',
   },
   handleContact (e) {
     console.log(e.detail.path)
@@ -49,6 +51,7 @@ Page({
   
   onLoad: function() {
     this.requdata();
+    this.setData({headimg:app.globalData.avatarUrl})
     wx.getStorage({
       key:'user',
       success:function(res){
@@ -140,7 +143,7 @@ Page({
     },
   login:function(){
     wx.navigateTo({
-      url: '/pages/pagemy/adddetail',
+      url: '/pages/pagemy/login/adddetail',
     })
     wx.setStorage({
       data:false,
@@ -151,7 +154,7 @@ Page({
   },
   addlabel:function(){
   wx.navigateTo({
-    url: './adddetail',
+    url: '/pages/pagemy/login/adddetail',
   })
   },
   bt2:function(){
@@ -193,43 +196,72 @@ Page({
   },
   bindfocus: function(){
    wx.navigateTo({
-      url: '/pages/pagemy/focus',
+      url: '/pages/pagemy/focus/focus',
     })
   },
   bindfans: function(){
     wx.navigateTo({
-      url: '/pages/pagemy/fans',
+      url: '/pages/pagemy/focus/fans',
     })
   },
   bindmark:function(){
     wx.navigateTo({
-      url: '/pages/pagemy/honormark',
+      url: '/pages/pagemy/honormark/honormark',
     })
   },
   bindmess:function(){
     wx.navigateTo({
-      url: '/pages/pagemy/message',
+      url: '/pages/pagemy/message/message',
     })
   },
   bindsev:function(){
     wx.navigateTo({
-      url: '/pages/pagemy/service',
+      url: '/pages/pagemy/service/service',
     })
   },
   bindtask:function(event){
     var Id=event.currentTarget.dataset.helpid
     wx.navigateTo({
-      url: "./task?id= " + Id
+      url: "./task/task?id= " + Id
+    })
+  },
+  bindtask2:function(event){
+    var Id=event.currentTarget.dataset.helpid
+    wx.navigateTo({
+      url: "./mytask/mytask?id= " + Id
     })
   },
   adddetial:function(e){
-    wx.navigateTo({
-      url: '/pages/report/index1',
+    wx.getStorage({
+      key: 'city',
+      success: function(res) {
+        wx.navigateTo({
+          url: '/pages/report/index1',
+        })
+      },
+      fail:function(err){
+        wx.showToast({
+          title: '请先进行注册',
+          icon:"loading",
+        })
+      },
     })
+
   },
   adddetial1:function(e){
-    wx.navigateTo({
-      url: '/pages/askhelp/help',
+    wx.getStorage({
+      key: 'city',
+      success: function(res) {
+        wx.navigateTo({
+          url: '/pages/askhelp/help',
+        })
+      },
+      fail:function(err){
+        wx.showToast({
+          title: '请先进行注册',
+          icon:"loading",
+        })
+      },
     })
   },
   requdata:function(){  
@@ -246,6 +278,29 @@ Page({
        
         that.setData({
           tasklist:res.data
+        })
+
+        console.log('任务三',that.data.tasklist)
+       // wx.setNavigationBarTitle({
+         // title: that.data.nickname,
+        //})
+      },
+      fail:function(err){
+        console.log(err);
+      },
+    })
+
+    wx.request({//get请求
+      url: 'http://duing.site:8888/help/getUserHelps?userid='+app.globalData.uid, ////服务器网址
+      method:"GET",
+      header: {
+          'content-type': 'application/json' // 默认值
+      },
+      success: function(res) {
+        console.log('获得的数据是：',res.data)
+       
+        that.setData({
+          mytasklist:res.data
         })
         console.log('任务三',that.data.tasklist)
        // wx.setNavigationBarTitle({

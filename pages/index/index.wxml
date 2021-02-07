@@ -27,7 +27,7 @@
     <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index' wx:for-index="bindex" >
       <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-bindex= '{{bindex}}' id="{{item.index}}"></image>
       <view class="list-loc" style="opacity:{{0.6}}">
-      <image  src="/images/图层 180 拷贝.png" class="loc11"></image>
+      <image  src="http://duing.site:8888/saveFiles/images/180.png" class="loc11"></image>
       <view class="loc_text">{{pics.loctext}}</view>
     </view>
     <view class="list-main">
@@ -36,11 +36,11 @@
     </view>
     <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
     <view class="list-user">
-      <image class="motou" src="/images/南南1.jpg"></image>
-      <text class="authname">作者的昵称</text>
+      <image class="motou" src="{{avatarUrl}}"></image>
+      <text class="authname">{{nickname}}</text>
     </view>
     <view class="list-love">
-      <image src="/images/矢量智能对象 拷贝 2.png" class="love-img" bindtap="addlove"></image>
+      <image src="http://duing.site:8888/saveFiles/images/love.png" class="love-img" bindtap="addlove"></image>
       <view >{{pics.love}}</view>
     </view>
   </view>
@@ -50,7 +50,7 @@
     <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index1' wx:for-index="bindex1" >
       <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-bindex1= '{{bindex1}}' id="{{item.index}}"></image>
       <view class="list-loc" style="opacity:{{0.6}}">
-      <image  src="/images/图层 180 拷贝.png" class="loc11"></image>
+      <image  src="http://duing.site:8888/saveFiles/images/180.png" class="loc11"></image>
       <view class="loc_text">{{pics.loctext}}</view>
     </view>
     <view class="list-main">
@@ -59,11 +59,11 @@
     </view>
     <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
     <view class="list-user">
-      <image class="motou" src="/images/南南1.jpg"></image>
-      <text class="authname">作者的昵称</text>
+      <image class="motou" src="{{avatarUrl}}"></image>
+      <text class="authname">{{nickname}}</text>
     </view>
     <view class="list-love">
-      <image src="/images/矢量智能对象 拷贝 2.png" class="love-img" bindtap="addlove"></image>
+      <image src="http://duing.site:8888/saveFiles/images/love.png" class="love-img" bindtap="addlove"></image>
       <view >{{pics.love}}</view>
     </view>
   </view>
@@ -74,12 +74,12 @@
   <image wx:for="{{tempPics}}" src="{{item.pic}}" bindload="loadPic" binderror="loadPicError" data-index="{{index}}" />
 </view>
 <view class="over" bindtap='adddetial'>
-    <image class="overtext1" src="/images/多人.png">
+    <image class="overtext1" src="http://duing.site:8888/saveFiles/images/people.png">
     </image>
     <view class="overtext3">求助</view>
 </view>
 <view class="over1" bindtap='adddetial1'>
-  <image class="overtext" src="/images/发表帖子.png" mode="widthFix">
+  <image class="overtext" src="http://duing.site:8888/saveFiles/images/fabiao.png" mode="widthFix">
    </image>
    <view class="overtext3">发表</view>
 </view>

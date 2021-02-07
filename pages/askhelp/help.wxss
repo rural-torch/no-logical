@@ -11,10 +11,10 @@
   width: 90%;
 }
 .btn{
-  background-color: white;
-  border: rgb(252, 191, 80) 1rpx solid;
-  border-radius: 19px;
-  font-size: medium;
+  /* background-color: white;
+  border: rgb(252, 191, 80) 1rpx solid; */
+  border-radius: 35rpx;
+  /* font-size: medium;
   width: 60px;
   height: 30px;
   text-align: center;
@@ -25,7 +25,7 @@
   position: absolute;
   display:table-cell; 
   text-align:center;
-  vertical-align:middle
+  vertical-align:middle */
 }
 .imgs{
   margin: 10rpx auto;

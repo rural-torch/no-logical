@@ -1,10 +1,15 @@
 /* pages/jumpto/index.wxss */
-page {
+.page{
   background: white;
   width: 100%;
   height: 100%;
 }
- 
+
+.im{
+  width: 100%;
+  height: 880rpx;
+}
+
 video {
   width: 100%;
   height: 100vh;
@@ -46,66 +51,67 @@ video {
  
  .head{
    display: flex;
+   width: 100%;
  }
  .foc{
-   width: 80px;
-   height: 35px;
-   margin-left:120px;
+   width: 160rpx;
+   height: 70rpx;
+   margin-left:320rpx;
  }
 
  
 .head_img {
-  margin-left: 10px;
+  margin-left: 20rpx;
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
   border: 5rpx #fff solid;
 }
 .jia{
-  margin-top: 10px;
-  margin-left: 3px;
+  margin-top: 20rpx;
+  margin-left: 6rpx;
 color:black;
 font-size: 30rpx;
 }
 .head_font{
   line-height: 120%;
   display: flex;
-  font-size: 13px;
-  margin-left: 17px;
-  width: 280px;
+  font-size: 26rpx;
+  margin-left: 34rpx;
+  width: 660rpx;
 }
 .head_con{
   white-space: pre-line;
 }
 .head_time{
-  font-size: 10px;
+  font-size: 20rpx;
   color: #bbb;
-  margin-left: 17px;
-  margin-top: 3px;
+  margin-left: 34rpx;
+  margin-top: 6rpx;
 }
 .head_pic{
   display: flex;
-  margin-left: 17px;
-  margin-top: 15px;
+  margin-left: 34rpx;
+  margin-top: 30rpx;
 }
 .letter{
-  width: 27px;
-  height: 22px;
+  width: 54rpx;
+  height: 44rpx;
 }
 .share{
-  width: 27px;
-  height: 22px;
-  margin-left: 15px;
+  width: 54rpx;
+  height: 44rpx;
+  margin-left: 30rpx;
 }
 .comm{
-  width: 27px;
-  height: 22px;
-  margin-left: 130px;
+  width: 54rpx;
+  height: 44rpx;
+  margin-left: 360rpx;
 }
 .loved{
-  width: 27px;
-  height: 22px;
-  margin-left: 15px;
+  width: 54rpx;
+  height: 44rpx;
+  margin-left: 30rpx;
 }
 .love_img {
   position: absolute;
@@ -126,7 +132,7 @@ font-size: 30rpx;
   color: #fff;
   font-size: 24rpx;
   text-align: center;
-  top: 260px;
+  top: 520rpx;
 }
 .comment__button{
     width: 60rpx;
@@ -179,19 +185,19 @@ button::after {
 }
 
 .comm-de{
-  width: 4px;
-  height:21px;
+  width: 8rpx;
+  height:42rpx;
   background-color:  rgb(252, 191, 80);
-  margin-top: 2px;
-  margin-right: 10px;
+  margin-top: 4rpx;
+  margin-right: 20rpx;
 }
 .comm-ti{
-  margin-top: 5px;
+  margin-top: 10rpx;
 }
 
 .commentTitle {
   display: flex;
-  font-size: 12px;
+  font-size: 24rpx;
   padding: 10rpx 20rpx;
   background: #fff;
   font-weight: 550;
@@ -212,7 +218,7 @@ button::after {
 }
  
 .contentLeft {
-  margin-left: 30px;
+  margin-left: 60rpx;
   font-size: 26rpx;
   color: #666;
 }
@@ -260,30 +266,30 @@ button::after {
 
 .divLine{
   background: #E0E3DA;
-  margin-top: 5px;
+  margin-top: 10rpx;
   margin-left: 5%;
   width: 90%;
-  height: 1px;
+  height: 2rpx;
  }
  .comm-pic{
-   height: 32px;
-   width: 32px;
+   height: 64rpx;
+   width: 64rpx;
    border-radius: 50%;
-   margin-top: 5px;
+   margin-top: 10rpx;
  }
  .com-love{
-   margin-left: 110px;
+   margin-left: 220rpx;
    font-size: 7px;
-   margin-top: 16px;
+   margin-top: 32rpx;
    width: 20%;
  }
  .com-love-pic{
-   height:18px ;
-   width: 30px;
+   height:36rpx ;
+   width: 60rpx;
  }
  .com-love-text{
-margin-left: 8px;
+margin-left: 16rpx;
 }
 .comment_txt{
-  margin-bottom: 50px;
+  margin-bottom: 100rpx;
 }

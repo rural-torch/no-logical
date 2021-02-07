@@ -14,10 +14,10 @@
   margin: 10rpx;
 }
 .btn{
-  background-color: white;
-  border: 	#FFA500 1rpx solid;
-  border-radius: 19px;
-  font-size: medium;
+  /* background-color: white;
+  border: 	#FFA500 1rpx solid; */
+  border-radius: 35rpx;
+  /* font-size: medium;
   width: 100px;
   height: 30px;
   padding-top: 10px;
@@ -26,15 +26,13 @@
   margin-bottom: 20px;
   margin-top: 10px;
   margin-left:35%;
-  color: #FFA500;
+  color: #FFA500; */
 }
 .imgs{
-  margin: 10rpx auto;
+  margin: 10rpx 15rpx;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left:28rpx;
-  margin-right:28rpx;
 }
 .img{
   display: flex;

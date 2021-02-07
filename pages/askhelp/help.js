@@ -97,13 +97,13 @@ Page({
               index:i + 1,
             },
             success(res){
-              console.log(res);
+              // console.log(res);
               wx.showToast({
                 title: '发表成功！',
               })
             },
             fail(res){
-              console.log(res);
+              // console.log(res);
             }
           })
         }
@@ -134,7 +134,7 @@ Page({
         //imgs=that.data.imgs,
       },
       success: function (res) {
-        console.log(res.data);
+        // console.log(res.data);
       }
     })
     wx.reLaunch({
@@ -151,9 +151,9 @@ Page({
         wx.reLaunch({
           url:'/pages/index/index?content='+title+'&pic='+imgs+'&loctext='+place,
         })
-    console.log(title)
-    console.log(type)
-    console.log(place)
+    // console.log(title)
+    // console.log(type)
+    // console.log(place)
     var time = util.formatTime(new Date());
     // 再通过setData更改Page()里面的data，动态更新页面的数据
     this.setData({
@@ -165,9 +165,9 @@ Page({
         pic:imgs,content:title,loctext:place,time:time
       }
     }).then((res) => {
-     console.log(res)//返回的res里面有_id的值，这个_id是系统自动生成的。
+    //  console.log(res)//返回的res里面有_id的值，这个_id是系统自动生成的。
    }).catch(err=>{
-     console.log(err)
+    //  console.log(err)
    })
   }
 })

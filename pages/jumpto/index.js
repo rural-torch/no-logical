@@ -2,6 +2,8 @@
 Page({
  
     data: {
+      avatarUrl:'',
+      nickname:'',
       commentList: [{
         username: '冷不过人心',
         ComID: '1',
@@ -48,9 +50,9 @@ Page({
       that.lastTapTime = currentTime
       if (currentTime - lastTapTime < 300) {
         // 双击触发
-        console.log("double tap")
+        // console.log("double tap")
         clearTimeout(that.lastTapTimeoutFunc);
-        console.log(this.data)
+        // console.log(this.data)
         var that = this;
         // 提交点赞
         var vid = this.data.vid;
@@ -69,19 +71,19 @@ Page({
       } else {
         //单击触发
         that.lastTapTimeoutFunc = setTimeout(function() {
-          console.log(that.data)
-          console.log(that.data.index_num)
+          // console.log(that.data)
+          // console.log(that.data.index_num)
           that.setData({
             index_num: that.data.index_num + 1
           });
           if (that.data.index_num % 2 == 1) {
-            console.log('播放')
+            // console.log('播放')
             that.videoContext.play()
             that.setData({
               display_play: 'none'
             })
           } else {
-            console.log('暂停')
+            // console.log('暂停')
             that.videoContext.pause()
             that.setData({
               display_play: 'block'
@@ -96,7 +98,7 @@ Page({
     },
     // 点击图片的点赞事件  这里使用的是同步的方式
     toCollect: function(e) {
-      console.log(e)
+      // console.log(e)
       var that = this;
    
       // 提交点赞
@@ -176,7 +178,7 @@ Page({
     // 播放
     bindPlay: function() {
       this.videoContext.play()
-      console.log(11)
+      // console.log(11)
     },
     // 暂停播放
     bindPause: function() {
@@ -187,7 +189,7 @@ Page({
     bindend: function() {
       var a = this.data.index
       var a_dow = a + 1
-      console.log(a + 1);
+      // console.log(a + 1);
       this.setData({
         index: a_dow,
         vid: this.data.scrollTop_list[parseInt(a_dow)].vid,
@@ -200,8 +202,8 @@ Page({
       this.getcomment()
     },
     videoErrorCallback: function(e) {
-      console.log('视频错误信息:')
-      console.log(e.detail.errMsg)
+      // console.log('视频错误信息:')
+      // console.log(e.detail.errMsg)
    
     },
    
@@ -264,7 +266,7 @@ Page({
   onLoad: function (options) {
     var that=this
     var index = options.index
-    console.log(index)
+    // console.log(index)
     wx.request({
       　　url: 'http://duing.site:8888/home', //服务器地址
       header: {
@@ -274,7 +276,7 @@ Page({
         data: {
           　　},
       　　success: function (res) {
-      　　console.log(res.data)
+      // 　　console.log(res.data)
       var i=0
       var images=[]
       for(i=0;i<res.data.length;i++){
@@ -283,6 +285,7 @@ Page({
       that.setData({
         showimg:images[index]
       })
+
       　　}
       　　})
   },
@@ -298,6 +301,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that=this
+    wx.getStorage({
+      key: 'user',
+    success:function(res){
+    that.setData({
+      avatarUrl:res.data.avatarUrl,
+      nickname:res.data.nickname,
+      })
+    }
+  })
 
   },
 

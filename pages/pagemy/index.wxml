@@ -17,13 +17,13 @@
         </view>
         <view wx:if="{{iflogin}}" class="login" bindtap="login">点击注册</view>
         <view wx:else>
-        <view class="iden">用户ID：{{id}}</view>
+        <view class="iden">用户ID：{{nickname}}</view>
         <!-- 第二行内容 -->
         <view class="l2">
           <view class="sex" wx:if="{{sex=='1'}}">♂ 男性</view>
           <view class="sex2" wx:else>♀ 女性</view>
           <view wx:if="{{city!=''}}"class="label">
-          <image src="/images/locat.png"  style="width:20rpx;height:22rpx;margin-left:25rpx;margin-top:8rpx;"></image>
+          <image src="http://duing.site:8888/saveFiles/images/locat.png"  style="width:20rpx;height:22rpx;margin-left:25rpx;margin-top:8rpx;"></image>
           <view >{{city}}</view></view>
           <view class="label2" wx:if="{{job!=''}}">{{job}}</view>
           <view id="addmessage" bindtap="addlabel" wx:if="{{job=='' || city==''}}">+</view>
@@ -33,16 +33,16 @@
       </view>
       <!-- 客服和设置 -->
       <view class="sev" bindtap="bindsev">
-        <image src="/images/ser.png" style="height:38rpx;width:36rpx;margin-left:8rpx"></image>客服</view>
+        <image src="http://duing.site:8888/saveFiles/images/ser.png" style="height:38rpx;width:36rpx;margin-left:8rpx"></image>客服</view>
       <view class="set">
-        <image src="/images/set.png" style="height:38rpx;width:36rpx;margin-left:8rpx"></image>设置</view>
+        <image src="http://duing.site:8888/saveFiles/images/set.png" style="height:38rpx;width:36rpx;margin-left:8rpx"></image>设置</view>
     </view>
     <!-- 我的消息以下区域的内容 -->
     <view class="bmessage">
-      <image src="/images/chat.png" style="width:54rpx;height:45rpx;margin-left:100rpx"></image>
+      <image src="http://duing.site:8888/saveFiles/images/chat.png" style="width:54rpx;height:45rpx;margin-left:100rpx"></image>
       <view class="t" bindtap="bindmess">我的消息</view>
       <view class="t1">({{mes}})</view>
-      <image src="/images/mark.png" style="width:29rpx;height:40rpx;margin-left:58rpx"></image>
+      <image src="http://duing.site:8888/saveFiles/images/mark.png" style="width:29rpx;height:40rpx;margin-left:58rpx"></image>
       <view class="mark" bindtap="bindmark">荣耀积分:</view>
       <view class="mark1">{{mark}}</view>
     </view>
@@ -60,16 +60,16 @@
     <!-- 选中创作时出现的页面 -->
     <view wx:if="{{condition1}}" class="workv">
       <view wx:for="{{video}}" class="box1">
-        <image class="video" src="/images/bc.png">
+        <image class="video" src="http://duing.site:8888/saveFiles/images/bc.png">
       </image></view>
       <!-- 固定布局的按钮 -->
       <view class="over" bindtap='adddetial'>
-    <image class="overtext1" src="/images/多人.png">
+    <image class="overtext1" src="http://duing.site:8888/saveFiles/images/people.png">
     </image>
     <view class="overtext3">求助</view>
 </view>
 <view class="over1" bindtap='adddetial1'>
-  <image class="overtext" src="/images/发表帖子.png" mode="widthFix">
+  <image class="overtext" src="http://duing.site:8888/saveFiles/images/fabiao.png" mode="widthFix">
    </image>
    <view class="overtext3">发表</view>
 </view>
@@ -78,18 +78,18 @@
     <view wx:if="{{condition2}}" class="likev">
     <!-- 固定按钮 -->
     <view class="over" bindtap='adddetial'>
-    <image class="overtext1" src="/images/多人.png">
+    <image class="overtext1" src="http://duing.site:8888/saveFiles/images/people.png">
     </image>
     <view class="overtext3">求助</view>
 </view>
 <view class="over1" bindtap='adddetial1'>
-  <image class="overtext" src="/images/发表帖子.png" mode="widthFix">
+  <image class="overtext" src="http://duing.site:8888/saveFiles/images/fabiao.png" mode="widthFix">
    </image>
    <view class="overtext3">发表</view>
 </view>
       <!-- 视频内容 -->
       <view wx:for="{{video2}}" class="box2">
-        <image class="video" src="/images/bc.png"></image></view>
+        <image class="video" src="http://duing.site:8888/saveFiles/images/bc.png"></image></view>
     </view>
    <!-- 选中任务出现的页面 -->
     <view wx:if="{{condition3}}" class="mov">
@@ -101,19 +101,44 @@
           <!-- 左下内容 -->
           <view class="tleft-b">
             <view class="taskhead">
-              <image src="{{item.headimg}}" style="width:100%;height:100%"></image>
+              <image src="{{item.headimg}}" style="width:100%;height:100%;"></image>
             </view>
-            <view class="na" style="white-space: nowrap;margin-top:25rpx;margin-left:8rpx" >{{item.username}}</view>
-            <image src="/images/mark.png" style="width:20rpx;height:26rpx;margin-left:8rpx;margin-top:25rpx"></image>
-            <view class="em" style="margin-left:5rpx;white-space: nowrap;margin-top:25rpx">{{item.reward}}</view>
-            <image src="/images/locat.png" style="width:20rpx;height:28rpx;margin-left:5rpx;margin-top:25rpx"></image>
-            <view class="pl" style="margin-left:5rpx;white-space: nowrap;margin-top:25rpx;margin-left:8rpx">{{item.site}}</view>
+            <view class="na" style="white-space: nowrap;margin-left:8rpx;" >{{item.username}}</view>
+            <image src="http://duing.site:8888/saveFiles/images/mark.png" style="width:20rpx;height:26rpx;margin-left:8rpx;margin-top:12rpx"></image>
+            <view class="em" style="margin-left:5rpx;white-space: nowrap">{{item.reward}}</view>
+            <image src="http://duing.site:8888/saveFiles/images/locat.png" style="width:20rpx;height:28rpx;margin-left:5rpx;margin-top:12rpx"></image>
+            <view class="pl" style="margin-left:5rpx;white-space: nowrap;margin-left:8rpx;">{{item.site}}</view>
+          </view>
+        </view>
+        <!-- 积分 -->
+        <view class="s" wx:if="{{item.status==3}}">执行中</view>
+        <view class="s" wx:elif='{{item.status==4}}'>已超时</view>
+        <view class="s" wx:elif='{{item.status==5}}'>待审核</view>
+        <view class="s" wx:else>已完成</view>
+      </view>
+    </view>
+
+    <view wx:if="{{condition4}}" class="mov">
+      <view wx:for="{{mytasklist}}" class="ta" bindtap="bindtask2" data-helpId="{{item.helpid}}" >
+        <!-- 左边内容 -->
+        <view class="tleft">
+          <view class="da">{{item.startime}}</view>
+          <view class="ti">{{item.title}}</view>
+          <!-- 左下内容 -->
+          <view class="tleft-b">
+            <view class="taskhead">
+              <image src="{{headimg}}" style="width:100%;height:100%;"></image>
+            </view>
+            <view class="na" style="white-space: nowrap;margin-left:8rpx;" >{{item.username}}</view>
+            <image src="http://duing.site:8888/saveFiles/images/mark.png" style="width:20rpx;height:26rpx;margin-left:8rpx;margin-top:12rpx"></image>
+            <view class="em" style="margin-left:5rpx;white-space: nowrap">{{item.reward}}</view>
+            <image src="http://duing.site:8888/saveFiles/images/locat.png" style="width:20rpx;height:28rpx;margin-left:5rpx;margin-top:12rpx"></image>
+            <view class="pl" style="margin-left:5rpx;white-space: nowrap;margin-left:8rpx;">{{item.site}}</view>
           </view>
         </view>
         <!-- 积分 -->
         <view class="s" wx:if="{{item.fi}}">已完成</view>
         <view class="s" wx:else>执行中</view>
       </view>
-      <view wx:if="{{condition4}}" class="mov">互助</view>
     </view>
 </view>

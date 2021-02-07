@@ -6,10 +6,13 @@
     "pages/jumpto/index",
     "pages/search/index",
     "pages/help/index",
-    "pages/pagemy/adddetail"
+    "pages/pagemy/login/adddetail",
+    "pages/pagemy/mytask/mytask",
+    "pages/detail/detail"
+
   ],
   "window": {
-    "enablePullDownRefresh": true ,
+    "enablePullDownRefresh": true,
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "乡炬",

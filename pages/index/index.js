@@ -13,7 +13,9 @@ Page({
     columnsright:[[]],
     tempPics: [],
     showModalStatus: false ,
-    temp:[]
+    temp:[],
+    avatarUrl:'',
+    nickname:''
   },
   //获取图片尺寸数据
   loadPic: function(e) {
@@ -21,7 +23,6 @@ Page({
       data = that.data,
       tempPics = data.tempPics,
       index = e.currentTarget.dataset.index
-      console.log(e.target.dataset.imgs)
     if (tempPics[index]) {
       //以750为宽度算出相对应的高度
       tempPics[index].height = e.detail.height * 750 / e.detail.width
@@ -64,6 +65,9 @@ Page({
       }
     }
     if (fin) {
+      wx.showLoading({
+        title: 'title',
+      })
       wx.hideLoading()
       if (that.jsData.isLoading) {
         that.jsData.isLoading = false
@@ -120,7 +124,7 @@ Page({
         data: {
           　　},
       　　success: function (res) {
-      　　console.log(res.data)
+
       var i=0
       var pics=[]
       for(i=0;i<res.data.length;i++){
@@ -138,6 +142,15 @@ Page({
       　　})
     }
   },
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading() //启用标题栏显示加载状态
+    this.onShow() //调用相关方法
+    setTimeout(() => {
+      wx.hideNavigationBarLoading() //隐藏标题栏显示加载状态
+      wx.stopPullDownRefresh() //结束刷新
+    }, 2000); //设置执行时间
+  },
+
 
   search:function(e){
     wx.navigateTo({
@@ -147,8 +160,8 @@ Page({
   show:function(e){
     var bindex=e.currentTarget.dataset.bindex
     var bindex1=e.currentTarget.dataset.bindex1
-    console.log(bindex)
-    console.log(bindex1)
+    // console.log(bindex)
+    // console.log(bindex1)
     if(bindex!=undefined)
     {
     wx.navigateTo({
@@ -169,7 +182,17 @@ Page({
 },
 onShow:function(){ //返回显示页面状态函数
   //错误处理
-  console.log("show")
+  var that=this
+  wx.getStorage({
+    key: 'user',
+  success:function(res){
+  that.setData({
+    avatarUrl:res.data.avatarUrl,
+    nickname:res.data.nickname,
+    })
+  }
+})
+  // console.log("show")
   this.loadData()
 },
   onLoad: function() {
@@ -178,14 +201,38 @@ onShow:function(){ //返回显示页面状态函数
   /*onReachBottom: function() {
     this.loadData()
   },*/
+
   adddetial:function(e){
-    wx.navigateTo({
-      url: '/pages/report/index1',
+    wx.getStorage({
+      key: 'city',
+      success: function(res) {
+        wx.navigateTo({
+          url: '/pages/report/index1',
+        })
+      },
+      fail:function(err){
+        wx.showToast({
+          title: '请先进行注册',
+          icon:"loading",
+        })
+      },
     })
+
   },
   adddetial1:function(e){
-    wx.navigateTo({
-      url: '/pages/askhelp/help',
+    wx.getStorage({
+      key: 'city',
+      success: function(res) {
+        wx.navigateTo({
+          url: '/pages/askhelp/help',
+        })
+      },
+      fail:function(err){
+        wx.showToast({
+          title: '请先进行注册',
+          icon:"loading",
+        })
+      },
     })
   },
 
@@ -196,9 +243,9 @@ onShow:function(){ //返回显示页面状态函数
       confirmText:'查看详情',
       success (res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          // console.log('用户点击确定')
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          // console.log('用户点击取消')
         }
       }
     })

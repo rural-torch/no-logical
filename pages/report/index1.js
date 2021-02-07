@@ -28,7 +28,7 @@ Page({
       that.setData({
       uid:res.data.uid
       })
-      console.log(that.data.uid)
+      // console.log(that.data.uid)
     }
   })
 },

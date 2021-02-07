@@ -9,7 +9,7 @@
       <image src="{{item}}" mode="scaleToFill"></image>
     </view>
     <view class="img" bindtap="chooseImg" wx:if="{{imgNum < 9 ? true : false}}">
-      <image class="img-add" src="/images/add.png" mode="scaleToFill"></image>
+      <image class="img-add" src="http://duing.site:8888/saveFiles/images/add.png" mode="scaleToFill"></image>
     </view>
   </view>
 
@@ -17,32 +17,32 @@
     <view class="choose-item" bindtap="choosePlace">
       <!-- <image src="/images/site.png"></image> -->
       {{place == null ? "求助位置" : place}}
-      <image src="/images/choose.png" mode="scaleToFill"></image>
+      <image src="http://duing.site:8888/saveFiles/images/choose.png" mode="scaleToFill"></image>
     </view>
     <picker bindchange="chooseType" name="type" range="{{helpTypes}}">
       <view class="choose-item">
         <!-- <image src="/images/type.png"></image> -->
         {{type == null ? "求助类型" : type}}
-        <image src="/images/choose.png" mode="scaleToFill"></image>
+        <image src="http://duing.site:8888/saveFiles/images/choose.png" mode="scaleToFill"></image>
       </view>
     </picker>
     <picker bindchange="chooseDate" name="time" mode="date">
       <view class="choose-item" bindtap="">
         <!-- <image src="/images/date.png"></image> -->
         {{date == null ? "时间限制" : date}}
-        <image src="/images/choose.png" mode="scaleToFill"></image>
+        <image src="http://duing.site:8888/saveFiles/images/choose.png" mode="scaleToFill"></image>
       </view>
     </picker>
     <picker bindchange="chooseMoney" name="reward" range="{{moneyList}}">
       <view class="choose-item" bindtap="">
         <!-- <image src="/images/date.png"></image> -->
         {{money == null ? "打赏" : money}}
-        <image src="/images/choose.png" mode="scaleToFill"></image>
+        <image src="http://duing.site:8888/saveFiles/images/choose.png" mode="scaleToFill"></image>
       </view>
     </picker>
   </view>
 
   <textarea class="need" placeholder="您可以详细描述您的需求 ......" name="main" bindinput="inputDetail"></textarea>
 </view>
-<button class="btn" formType="submit" >发表{{imgNum}}/9</button>
+<button class="btn" type="primary" formType="submit" >发表{{imgNum}}/9</button>
 </form>
