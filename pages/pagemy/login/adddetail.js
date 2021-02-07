@@ -24,7 +24,7 @@ Page({
     console.log(city)
     if(city!='' && job!=''){
     wx.request({//post请求
-      url: 'http://duing.site:8888/user/registerUser',
+      url: 'https://duing.site/user/registerUser',
       method:"POST",
       header: {
           'content-type': 'application/json' // 默认值

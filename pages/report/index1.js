@@ -131,7 +131,7 @@ Page({
   let title=e.detail.value.title;
   let uid=that.data.uid
   wx.request({
-    url: 'http://duing.site:8888/help/addHelp',
+    url: 'https://duing.site/help/addHelp',
     method: 'POST',
     data:{
       helpid:10000,

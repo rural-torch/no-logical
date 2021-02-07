@@ -100,7 +100,7 @@ Page({
         });
       // console.log(res)
       wx.request({//get请求
-        url: 'http://duing.site:8888/user/getUser?userid='+that.data.userid, //服务器网址
+        url: 'https://duing.site/user/getUser?userid='+that.data.userid, //服务器网址
         method:"GET",
         header: {
             'content-type': 'application/json' // 默认值
@@ -268,7 +268,7 @@ Page({
     // 请求数据
     let that = this;
     wx.request({//get请求
-      url: 'http://duing.site:8888/task/getUserTasks?userid='+app.globalData.uid, ////服务器网址
+      url: 'https://duing.site/task/getUserTasks?userid='+app.globalData.uid, ////服务器网址
       method:"GET",
       header: {
           'content-type': 'application/json' // 默认值
@@ -291,7 +291,7 @@ Page({
     })
 
     wx.request({//get请求
-      url: 'http://duing.site:8888/help/getUserHelps?userid='+app.globalData.uid, ////服务器网址
+      url: 'https://duing.site/help/getUserHelps?userid='+app.globalData.uid, ////服务器网址
       method:"GET",
       header: {
           'content-type': 'application/json' // 默认值

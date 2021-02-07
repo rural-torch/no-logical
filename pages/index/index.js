@@ -116,7 +116,7 @@ Page({
           {
             that.jsData.isLoading = true
     wx.request({
-      　　url: 'http://duing.site:8888/home', //服务器地址
+      　　url: 'https://duing.site/home', //服务器地址
       header: {
         　　'content-type': 'application/json'
         　　},

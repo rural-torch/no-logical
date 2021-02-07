@@ -118,6 +118,7 @@
   flex-direction: column;
   letter-spacing: 3rpx;
   font-family: "Microsoft YaHei","Arial","黑体","宋体",sans-serif;
+  z-index: 1;
 }
 .box4 .box4-1{
   margin-top: 50rpx;
@@ -149,14 +150,14 @@
   width: 34rpx;
   border-radius: 17rpx;
   background-color: rgb(251, 184, 113);
-  z-index: 1;
+  z-index: 2;
 }
 .box4  .line2{
   height: 15rpx;
   width: 242rpx;
-  margin-left: -1rpx;
+  margin-left: 0rpx;
   margin-top:10rpx;
-  border-radius: rpx;
+  border-radius: 1rpx;
   background-color: rgb(251, 184, 113);
 }
 .box4  .cir3{
@@ -169,7 +170,8 @@
 .box4  .line2-n{
   height: 15rpx;
   width: 242rpx;
-  margin-left: -10rpx;
+  z-index: 1;
+  margin-left: -4rpx;
   margin-top:10rpx;
   border-radius: rpx;
   background-color: rgb(153, 153, 153);

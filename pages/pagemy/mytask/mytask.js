@@ -131,7 +131,7 @@ requdata:function(){
     // 请求数据
     let that = this;
     wx.request({//get请求
-      url: 'http://duing.site:8888/help/getHelpDetail?helpid='+that.data.helpid, //服务器网址
+      url: 'https://duing.site/help/getHelpDetail?helpid='+that.data.helpid, //服务器网址
       method:"GET",
       header: {
           'content-type': 'application/json' // 默认值
@@ -207,7 +207,7 @@ submit:function(){
   // 数据上传服务端
   let that = this;
   wx.request({
-    url: 'http://duing.site:8888/task/submitWork',
+    url: 'https://duing.site/task/submitWork',
     method: 'POST',
     data:{
       helpid:that.data.helpid,

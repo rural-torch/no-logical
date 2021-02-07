@@ -8,7 +8,10 @@
     "pages/help/index",
     "pages/pagemy/login/adddetail",
     "pages/pagemy/mytask/mytask",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/pagemy/task/task",
+    "pages/report/index1",
+    "pages/askhelp/help"
 
   ],
   "window": {

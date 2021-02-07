@@ -41,7 +41,7 @@
     <view class="box4-1">
      <view class='cir1'></view>
      <view class="line1"></view>
-     <view class="cir2"></view>
+     <cover-view class="cir2"></cover-view>
      <view class="line2"></view>
      <view class="cir3"></view>
     </view>

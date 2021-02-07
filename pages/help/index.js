@@ -269,7 +269,7 @@ Page({
   onLoad: function (options) {
     var that=this;
     wx.request({//get请求
-      url: 'http://duing.site:8888/helpHome', //服务器网址
+      url: 'https://duing.site/helpHome', //服务器网址
       method:"GET",
       header: {
           'content-type': 'application/json' // 默认值
@@ -373,7 +373,7 @@ Page({
   lower() {
     var that=this;
     wx.request({//get请求
-      url: 'http://duing.site:8888/helpHome', //服务器网址
+      url: 'https://duing.site/helpHome', //服务器网址
       method:"GET",
       header: {
           'content-type': 'application/json' // 默认值

@@ -72,7 +72,7 @@ Page({
     let that = this;
     var title=e.detail.value.title;
     wx.request({
-      url: 'http://duing.site:8888/topic/addTopic',
+      url: 'https://duing.site/topic/addTopic',
       method: 'POST',
       data:{
         topicid:100,
@@ -89,7 +89,7 @@ Page({
         topicid = res.data.topicid;
         for(let i = 0; i < that.data.imgs.length; i++){
           wx.uploadFile({
-            url: 'http://duing.site:8888/topic/uploadFile',
+            url: 'https://duing.site/topic/uploadFile',
             filePath: that.data.imgs[i],
             name: 'uploadfile',
             formData:{
@@ -123,7 +123,7 @@ Page({
       time: time
     });
     wx.request({
-      url: 'http://duing.site:8888/topic/addTopic',
+      url: 'http://duing.site/topic/addTopic',
       method: 'POST',
       header: {
         "content-type":'application/json;charset=utf-8'

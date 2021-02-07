@@ -137,8 +137,10 @@
           </view>
         </view>
         <!-- 积分 -->
-        <view class="s" wx:if="{{item.fi}}">已完成</view>
-        <view class="s" wx:else>执行中</view>
+        <view class="s" wx:if="{{item.status==3||item.status==0}}">执行中</view>
+        <view class="s" wx:elif='{{item.status==4}}'>已超时</view>
+        <view class="s" wx:elif='{{item.status==5}}'>待审核</view>
+        <view class="s" wx:else>已完成</view>
       </view>
     </view>
 </view>
