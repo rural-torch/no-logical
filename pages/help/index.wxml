@@ -116,10 +116,10 @@
                     <image  src='{{needItem.image}}' style="width:70px; height:70px"> </image>
                 </view>
                 <view class="need-honrnum">
-                  <image  src='http://duing.site:8888/saveFiles/images/mark.png' style="width:15px; height:15px"> </image>
+                  <image  src='https://duing.site/saveFiles/images/mark.png' style="width:15px; height:15px"> </image>
                   {{needItem.reward}}</view>
                 <view class="need-location">
-                  <image  src='http://duing.site:8888/saveFiles/images/locat.png' style="width:15px; height:15px"> </image>
+                  <image  src='https://duing.site/saveFiles/images/locat.png' style="width:15px; height:15px"> </image>
                   {{needItem.site}}</view>
             </view>
         </block>

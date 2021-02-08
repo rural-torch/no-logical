@@ -7,7 +7,7 @@
     <!-- 头像 -->
     <image src='{{avatarUrl}}' data-userid='{{item.userid}}' class='head_img' catchtap=''></image>
      <view class='jia'>{{nickname}}</view> 
-     <image src="http://duing.site:8888/saveFiles/images/foc1.png" class="foc"></image>
+     <image src="https://duing.site/saveFiles/images/foc1.png" class="foc"></image>
   </view>
   <view class="head_font">
   <view class="head_con">#乡村美景#邀请大家来四川看丁真哦~邀请大家来四川看丁真哦~</view>
@@ -47,7 +47,7 @@
   <scroll-view scroll-y='true' style='height:500rpx'>
     <block wx:for='{{commentList}}' wx:key='item.vid'>
       <view class="commentContent">
-        <image src="http://duing.site:8888/saveFiles/images/nannan.jpg" class="comm-pic"></image>
+        <image src="https://duing.site/saveFiles/images/nannan.jpg" class="comm-pic"></image>
         <view class="contentLeft">
           <view>{{item.username}}</view>
           <view class="Comment">
@@ -57,7 +57,7 @@
         </view>
         <view class="clear"></view>
         <view class="com-love">
-        <image src="http://duing.site:8888/saveFiles/images/1180.png" class="com-love-pic"></image>
+        <image src="https://duing.site/saveFiles/images/1180.png" class="com-love-pic"></image>
         <view class="com-love-text">5.5w</view>
       </view>
       </view>

@@ -7,19 +7,19 @@
     </view>
     <view class="box1-2">
       <view class="bname">{{taskinner.username}}
-        <image src="http://duing.site:8888/saveFiles/images/chat.png" style="height:15px;width:18px;margin-left:20rpx"></image>
+        <image src="https://duing.site/saveFiles/images/chat.png" style="height:15px;width:18px;margin-left:20rpx"></image>
         <view style="color:rgb(128,128,128)">私信</view></view>
       <view class="boxq">
         <view>用户ID：{{taskinner.helpid}}</view>
         <view style="margin-top:15rpx">
-          <image src="http://duing.site:8888/saveFiles/images/locat.png" style="width:20rpx;height:22rpx;margin-right:10rpx"></image>
+          <image src="https://duing.site/saveFiles/images/locat.png" style="width:20rpx;height:22rpx;margin-right:10rpx"></image>
           <text space="emsp" style="color:rgb(128, 128, 128);margin-top:23rpx">{{taskinner.site}} {{taskinner.startime}}</text></view>
           <view style="color:rgb(128, 128, 128);margin-top:15rpx">
-            <image src="http://duing.site:8888/saveFiles/images/mark.png" style="width:22rpx;height:26rpx;margin-right:7rpx"></image>荣誉积分: {{taskinner.reward}}</view>
+            <image src="https://duing.site/saveFiles/images/mark.png" style="width:22rpx;height:26rpx;margin-right:7rpx"></image>荣誉积分: {{taskinner.reward}}</view>
       </view>
       <view class="btitle">{{taskinner.title}}</view>
     </view>
-    <image src="http://duing.site:8888/saveFiles/images/ju.png" style="width:28px;height:25px;margin-top:22px;margin-left:-10px"></image>
+    <image src="https://duing.site/saveFiles/images/ju.png" style="width:28px;height:25px;margin-top:22px;margin-left:-10px"></image>
     <view class="box1-3" style="white-space:nowrap;color:rgb(128,128,128);font-size:25rpx;margin-top:26px">举报</view>
   </view>
    <!-- 第二框内容 -->

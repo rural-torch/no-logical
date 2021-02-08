@@ -5,19 +5,19 @@
 <view class="author-date">
 <image class="avatar" src="{{aneedData.headimg}}"></image>
 <view class="jubao">
-                 <image  src="http://duing.site:8888/saveFiles/images/ju.png" style="width:20px; height:20px"></image>
+                 <image  src="https://duing.site/saveFiles/images/ju.png" style="width:20px; height:20px"></image>
                <text>  举报</text>
                  </view>
 <text class="author">{{aneedData.username}}</text>
 <view class="sixin">
-                 <image  src='http://duing.site:8888/saveFiles/images/chat.png' style="width:15px; height:15px"></image>
+                 <image  src='https://duing.site/saveFiles/images/chat.png' style="width:15px; height:15px"></image>
                  <text decode="{{true}}">&nbsp;私信</text>
                  </view>
 <view class="didian">
-                 <image  src='http://duing.site:8888/saveFiles/images/locat.png' style="width:15px; height:15px"> </image>                
+                 <image  src='https://duing.site/saveFiles/images/locat.png' style="width:15px; height:15px"> </image>                
                  <text decode="{{true}}">&nbsp;{{aneedData.site}}</text></view>
 <view class="rongyu">
-   <image  src="http://duing.site:8888/saveFiles/images/mark.png" style="width:15px; height:17px"> </image>
+   <image  src="https://duing.site/saveFiles/images/mark.png" style="width:15px; height:17px"> </image>
    <text decode="{{true}}">&nbsp;荣誉积分：{{aneedData.reward}}</text>
                  </view>
 <text class="date">{{aneedData.startime}}</text>

@@ -150,7 +150,7 @@ Page({
       helpid = res.data.helpid;
       for(let i = 0; i < that.data.imgs.length; i++){
         wx.uploadFile({
-          url: 'http://duing.site:8888/help/uploadFile',
+          url: 'https://duing.site:/help/uploadFile',
           filePath: that.data.imgs[i],
           name: 'uploadfile',
           formData:{

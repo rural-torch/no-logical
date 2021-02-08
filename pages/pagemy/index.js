@@ -118,6 +118,16 @@ Page({
             mark:mark,
             id:id,
           })
+          if(that.data.iflogin==true){
+            wx.getStorage({
+              key: 'iflogin',
+              success:function(res){
+              that.setData({
+                iflogin:res.data
+                });
+                }
+              })
+          }
           wx.setNavigationBarTitle({
             title: that.data.nickname,
           })
@@ -130,16 +140,7 @@ Page({
       })
 
   
-      if(that.data.iflogin==true){
-        wx.getStorage({
-          key: 'iflogin',
-          success:function(res){
-          that.setData({
-            iflogin:res.data
-            });
-            }
-          })
-      }
+
     },
   login:function(){
     wx.navigateTo({
