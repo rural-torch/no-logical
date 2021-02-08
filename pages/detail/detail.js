@@ -97,8 +97,7 @@ preview(event) {
 swithtotask: function(event) {
   this.submit(); 
   // console.log("触发了点击事件，弹出toast")
-  status = false
-  this.setData({status:status})　　　　//setData方法可以建立新的data属性，从而起到跟视图实时同步的效果
+  　　　//setData方法可以建立新的data属性，从而起到跟视图实时同步的效果
 
 
 },
@@ -123,9 +122,8 @@ submit:function(){
     success(res){
       // console.log('请求成功',res)
       // console.log(res);
-      that.setData({
-       ////helpid:res.data.helpid
-      })
+      that.setData({status:false})　
+  
     }
   })},
 
