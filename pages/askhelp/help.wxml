@@ -29,5 +29,5 @@
     </picker>
   </view>
 </view>
-<button class="btn"  form-type="submit">发表{{imgNum}}/9</button>
+<button class="btn" type="primary" form-type="submit">发表{{imgNum}}/9</button>
 </form>

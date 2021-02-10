@@ -62,7 +62,17 @@ onLoad: function (option) {
   this.requdata();
   console.log('helpid:',this.data.helpid) ;
   console.log('taksiner:',this.data.taskinner)
-
+  var tes=String(this.data.helpid)
+  var that=this
+  wx.getStorage({ 
+    key: tes, 
+    success: function(res) 
+    { 
+      that.setData({
+      fi:res.data
+    }),
+      console.log('123',res.data) }, 
+  })
 
   /*var tasklist2 =JSON.parse(option.tasklist);
   this.setData({tasklist1:tasklist2}) 
@@ -160,6 +170,13 @@ toastHide:function(event){
     this.setData({status:status})
 },
 swithtopush: function(e) {
+  var tes=String(this.data.helpid)
+  
+  wx.getStorage({ 
+    key: tes, 
+    success: function(res) 
+    { console.log('123',res.data) }, 
+  })
   this.submit();
  /* var id =this.data.tasklist1.id
   var dat = this.data.tasklist;
@@ -193,9 +210,10 @@ swithtopush: function(e) {
  /// this.setData({fi:1})
   console.log(n)
   console.log(logs)
- */ wx.navigateTo({
-   
-    url:  '/pages/askhelp/help',
+ */ 
+var Id=this.data.helpid
+wx.navigateTo({
+    url:  '/pages/askhelp/help?id= ' + Id
  })
 },
 submit:function(){

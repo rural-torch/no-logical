@@ -216,51 +216,90 @@ Page({
     })
   },
   requdata:function(){  
-    // 请求数据
-    let that = this;
-    wx.request({//get请求
-      url: 'https://duing.site/task/getUserTasks?userid='+app.globalData.uid, ////服务器网址
-      method:"GET",
-      header: {
-          'content-type': 'application/json' // 默认值
-      },
-      success: function(res) {
-        console.log('获得的数据是：',res.data)
-       
-        that.setData({
-          tasklist:res.data
-        })
-
-        console.log('任务三',that.data.tasklist)
-       // wx.setNavigationBarTitle({
-         // title: that.data.nickname,
-        //})
-      },
-      fail:function(err){
-        console.log(err);
-      },
-    })
-
-    wx.request({//get请求
-      url: 'https://duing.site/help/getUserHelps?userid='+app.globalData.uid, ////服务器网址
-      method:"GET",
-      header: {
-          'content-type': 'application/json' // 默认值
-      },
-      success: function(res) {
-        console.log('获得的数据是：',res.data)
-       
-        that.setData({
-          mytasklist:res.data
-        })
-        console.log('任务三',that.data.tasklist)
-       // wx.setNavigationBarTitle({
-         // title: that.data.nickname,
-        //})
-      },
-      fail:function(err){
-        console.log(err);
-      },
-    })
-    }
+     // 请求数据
+     let that = this;
+     wx.request({//get请求
+       url: 'https://duing.site/task/getUserTasks?userid='+app.globalData.uid, ////服务器网址
+       method:"GET",
+       header: {
+           'content-type': 'application/json' // 默认值
+       },
+       success: function(res) {
+         console.log('获得的数据是：',res.data)
+         var i=0
+         var tasklist=[]
+         for(i=0;i<res.data.length;i++){
+           var tes=String(res.data[i].helpid)
+           var res1=res.data[i]
+           console.log('1111',res1)
+           var fi=wx.getStorageSync(tes)
+           tasklist.push({
+             reward:res1.reward,
+             site:res1.site,
+             headimg:res1.headimg,
+           helpid:res1.helpid,
+            endtime:res1.endtime,
+           title:res1.title,
+            userid:res1.userid,
+            status:res1.status,
+            username:res1.username,
+            fi:fi,
+          })
+           /*wx.getStorageSync({ 
+             key: tes, 
+             success: function(res) 
+             {
+               console.log('123',res1) ,///}, 
+          /// })
+           tasklist.push({
+            reward:res1.reward,
+            site:res1.site,
+            headimg:res1.headimg,
+          helpid:res1.helpid,
+           endtime:res1.endtime,
+          title:res1.title,
+           userid:res1.userid,
+           status:res1.status,
+           username:res1.username,
+           fi:res.data,
+         })
+          } })
+          */that.setData({
+           tasklist:tasklist
+         })}
+        /* that.setData({
+           tasklist:res.data
+         })*/
+ 
+         console.log('任务三',that.data.tasklist)
+        // wx.setNavigationBarTitle({
+          // title: that.data.nickname,
+         //})
+       },
+       fail:function(err){
+         console.log(err);
+       },
+     })
+     /*wx.request({//get请求
+       url: 'https://duing.site/help/getUserHelps?userid='+app.globalData.uid, ////服务器网址
+       method:"GET",
+       header: {
+           'content-type': 'application/json' // 默认值
+       },
+       success: function(res) {
+         console.log('获得的数据是：',res.data)
+        
+         that.setData({
+           mytasklist:res.data
+         })
+         console.log('任务三',that.data.tasklist)
+        // wx.setNavigationBarTitle({
+          // title: that.data.nickname,
+         //})
+       },
+       fail:function(err){
+         console.log(err);
+       },
+     })*/
+     }
 })

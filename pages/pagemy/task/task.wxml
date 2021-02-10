@@ -37,7 +37,7 @@
     <view>求助详情：</view>
     <view>{{taskinner.content}}</view></view>
     <!-- 第四框内容:已完成的页面 -->
-  <view class="box4" wx:if="{{taskinner.status==5}}">
+    <view class="box4" wx:if="{{taskinner.status==5 && fi==1}}">
     <view class="box4-1">
      <view class='cir1'></view>
      <view class="line1"></view>
@@ -50,13 +50,13 @@
      <view>正在制作</view>
      <view>完成</view>
    </view>
-    <button class="bt"  bindtap="swithtoback"  >已完成</button>
+    <button class="bt2"  bindtap="swithtoback">已完成</button>
     <toast hidden="{{status}}" duration="3000" bindchange="toastHide">
         您已经完成此任务！
     </toast>
   </view>
   <!--第四框内容: 未完成的页面 -->
-  <view class="box4" wx:elif="{{taskinner.status==3}}">
+  <view class="box4" wx:else>
     <view class="box4-1">
      <view class='cir1'></view>
      <view class="line1"></view>

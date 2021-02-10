@@ -44,5 +44,5 @@
 
   <textarea class="need" placeholder="您可以详细描述您的需求 ......" name="main" bindinput="inputDetail"></textarea>
 </view>
-<button class="btn" formType="submit" >发表{{imgNum}}/9</button>
+<button class="btn" type="primary" formType="submit" >发表{{imgNum}}/9</button>
 </form>

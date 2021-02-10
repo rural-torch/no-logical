@@ -58,6 +58,7 @@
 .btitle{
  margin-top:20rpx;
  font-size: 28rpx;
+ 
  font-weight: 400;
  letter-spacing: 3rpx;
 }
@@ -221,4 +222,18 @@ view modal{
   letter-spacing: 3rpx;
   text-indent: 1em;
   font-size: 40rpx;
+}
+.bt2{
+  border-radius:30rpx;
+  background-color: rgb(240, 25, 25);
+  font-size: 40rpx;
+  color:#FFFEFD;
+margin-top: 40rpx;
+margin-left: 150rpx
+;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 6rpx;
 }

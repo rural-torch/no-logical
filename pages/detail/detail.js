@@ -1,4 +1,3 @@
-
 const {needList}=require('../data/need-datas')
 var app = getApp();
 var status = true;
@@ -58,7 +57,8 @@ Page({
       that.data.needData.forEach(item => {
         if (that.data.currentNeedId == item.helpid) {
           that.setData({
-            aneedData: item
+            aneedData: item,
+            helpid:item.helpid
           })
           // console.log(that.data.aneedData)
         }
@@ -98,10 +98,17 @@ preview(event) {
   })
 },
 swithtotask: function(event) {
+  var tes=String(this.data.aneedData.helpid)
+  wx.setStorage({
+    data:0,
+    key:tes,
+    success: function(res){
+      console.log(res)
+    }
+      })
   this.submit(); 
   // console.log("触发了点击事件，弹出toast")
-  status = false
-  this.setData({status:status})　　　　//setData方法可以建立新的data属性，从而起到跟视图实时同步的效果
+
 
 
 },
@@ -127,7 +134,7 @@ submit:function(){
       // console.log('请求成功',res)
       // console.log(res);
       that.setData({
-       ////helpid:res.data.helpid
+        status:false
       })
     }
   })},

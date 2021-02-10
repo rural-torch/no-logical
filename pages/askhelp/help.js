@@ -12,6 +12,10 @@ Page({
     place:null,//位置
     type:null,//类型
   },
+  onLoad: function(option) {
+    var Id = option.id;
+    this.setData({helpid:Number(Id)})
+  },
   chooseImg:function(){
     let addImgs = this.data.imgs;
     let num = addImgs.length;
@@ -113,6 +117,15 @@ Page({
       })
       }
     })
+    var tes=String(this.data.helpid)
+    wx.setStorage({
+      data:1,
+      key:tes,
+      success: function(res){
+        console.log(res)
+      }
+        })
+
   },
   repo2:function(){
     // 数据上传服务端
