@@ -55,8 +55,8 @@ Page({
           data: job,
           key: 'job',
           success: function(res){
-            wx.switchTab({
-              url: '/pages/pagemy/index',
+            wx.navigateBack({
+              delta: 1,
             })
         }
       })

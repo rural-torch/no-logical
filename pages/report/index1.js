@@ -130,6 +130,7 @@ Page({
   let helpid = '';
   let title=e.detail.value.title;
   let uid=that.data.uid
+  if (title!=''&&that.data.place!=''&&that.data.type!=''&&that.data.date!=''&&that.data.money!=''&&that.data.detail!=''&&that.data.imgNum!=0){
   wx.request({
     url: 'https://duing.site/help/addHelp',
     method: 'POST',
@@ -177,6 +178,12 @@ Page({
 },
 
 })
+  }
+  else{
+    wx.showToast({
+      title: '请完善需求内容',
+    })
+  }
 
     //要延时执行的代码
      

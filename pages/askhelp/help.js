@@ -1,6 +1,5 @@
-
 var util = require('../../utils/util.js');
-
+let app=getApp()
 Page({
   data: {
     title:"",
@@ -15,6 +14,15 @@ Page({
   onLoad: function(option) {
     var Id = option.id;
     this.setData({helpid:Number(Id)})
+    var that=this;
+    wx.getStorage({
+      key: 'user',
+    success:function(res){
+      that.setData({
+      uid:res.data.uid
+      })
+    }
+  })
   },
   chooseImg:function(){
     let addImgs = this.data.imgs;
@@ -75,12 +83,13 @@ Page({
     // 数据上传服务端
     let that = this;
     var title=e.detail.value.title;
+    let uid=that.data.uid
     wx.request({
       url: 'https://duing.site/topic/addTopic',
       method: 'POST',
       data:{
         topicid:100,
-        userid:"aaa1654859",
+        userid:app.globalData.uid,
         title:e.detail.value.title,
         time:new Date().getTime(),
         site:that.data.place,
