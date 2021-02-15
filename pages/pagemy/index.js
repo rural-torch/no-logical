@@ -36,15 +36,7 @@ Page({
     console.log(e.detail.query)
 },
   onLoad: function() {
-    this.requdata();
-    this.setData({headimg:app.globalData.avatarUrl})
-    wx.getStorage({
-      key:'user',
-      success:function(res){
-        console.log(res.data)
-      }
-    })
-    
+    this.requdata()
     },
     onPullDownRefresh: function () {
       this.requdata()
@@ -58,7 +50,6 @@ Page({
       let mark;
       let id;
       let that=this
-      this.onLoad()
       wx.getStorage({
         key: 'job',
       success:function(res){
@@ -265,7 +256,7 @@ Page({
          })
           } })
           */that.setData({
-           tasklist:tasklist
+           tasklist:tasklist.reverse()
          })}
         /* that.setData({
            tasklist:res.data
@@ -280,7 +271,7 @@ Page({
          console.log(err);
        },
      })
-     /*wx.request({//get请求
+     wx.request({//get请求
        url: 'https://duing.site/help/getUserHelps?userid='+app.globalData.uid, ////服务器网址
        method:"GET",
        header: {
@@ -290,7 +281,7 @@ Page({
          console.log('获得的数据是：',res.data)
         
          that.setData({
-           mytasklist:res.data
+           mytasklist:res.data.reverse()
          })
          console.log('任务三',that.data.tasklist)
         // wx.setNavigationBarTitle({
@@ -300,6 +291,6 @@ Page({
        fail:function(err){
          console.log(err);
        },
-     })*/
+     })
      }
 })

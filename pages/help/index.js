@@ -275,13 +275,15 @@ Page({
           'content-type': 'application/json' // 默认值
       },
       success: function(res) {
-        let list=res.data
+        let list=res.data.reverse()
         // console.log(list)
         // message=res.data.message,
         if(list.length<=10){
         that.setData({
           preList1:list
-        })}else{
+        })
+        console.log(that.data.pr)
+      }else{
           var preList1=[]
           for(var i=0;i<10;i++){
             preList1.push(list[i])
@@ -379,7 +381,7 @@ Page({
           'content-type': 'application/json' // 默认值
       },
       success: function(res) {
-        let list=res.data
+        let list=res.data.reverse()
         // console.log(list)
         // message=res.data.message,
         if(list.length<(app.globalData.tlelnth+10)){

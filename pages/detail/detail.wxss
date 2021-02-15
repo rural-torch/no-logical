@@ -138,7 +138,7 @@
    height:240rpx;
    width: 660rpx;
    border-bottom:2rpx #e5e5e5 solid;
-   /* letter-spacing: 10rpx; */
+   letter-spacing: 10rpx;
   }
  .leibie{
   left: 29.2rpx;

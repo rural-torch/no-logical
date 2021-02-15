@@ -55,8 +55,8 @@
     </view>
     <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
     <view class="list-user">
-      <image class="motou" src="{{avatarUrl}}"></image>
-      <text class="authname">{{nickname}}</text>
+      <image class="motou" src="{{pics.avatarUrl}}"></image>
+      <text class="authname">{{pics.nickname}}</text>
     </view>
     <view class="list-love">
       <image src="https://duing.site/saveFiles/images/love.png" class="love-img" bindtap="addlove"></image>
@@ -78,8 +78,8 @@
     </view>
     <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
     <view class="list-user">
-      <image class="motou" src="{{avatarUrl}}"></image>
-      <text class="authname">{{nickname}}</text>
+      <image class="motou" src="{{pics.avatarUrl}}"></image>
+      <text class="authname">{{pics.nickname}}</text>
     </view>
     <view class="list-love">
       <image src="https://duing.site/saveFiles/images/love.png" class="love-img" bindtap="addlove"></image>

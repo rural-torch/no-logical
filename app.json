@@ -27,6 +27,11 @@
     "navigationBarTitleText": "乡炬",
     "navigationBarTextStyle": "black"
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于获取周围商家信息"
+    }
+  },
   "tabBar": {
     "color": "",
     "selectedColor": "",

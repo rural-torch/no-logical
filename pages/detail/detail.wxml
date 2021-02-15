@@ -41,7 +41,7 @@
   <text class="mingcheng">求助详情：</text>
   <text class="shuju">{{aneedData.content}}</text>
 </view>
-<button class='butt' wx:if="{{aneedData.status==0}}" bindtap="swithtotask" hover-class='but' hover-stay-time="1000" >帮助完成</button>
+<button class='butt' wx:if="{{aneedData.status==0}}" bindtap="swithtotask" hover-class='but' hover-stay-time="1000" hidden="{{hi}}">帮助完成</button>
 <view class='butto' wx:else >该任务已被接取</view>
 <toast hidden="{{status}}" duration="3000" bindchange="toastHide">
        接取任务成功

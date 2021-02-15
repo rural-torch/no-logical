@@ -7,7 +7,10 @@ Page({
   needData:[],
   aneedData:[],
   img:[],
+  ifuserid:'',
+  hi:false,
  },
+
  onShow:function(){
  
  },
@@ -58,8 +61,18 @@ Page({
         if (that.data.currentNeedId == item.helpid) {
           that.setData({
             aneedData: item,
-            helpid:item.helpid
-          })
+            helpid:item.helpid,
+            ifuserid:item.userid
+          },() => {
+            console.log(item.userid,app.globalData.uid)
+            if (item.userid==app.globalData.uid){
+              console.log(that.ifuserid,app.globalData.uid)
+              that.setData({
+                hi:true,
+              })
+            }
+            })
+         
           // console.log(that.data.aneedData)
         }
       })
@@ -68,6 +81,7 @@ Page({
     fail:function(err){
       // console.log(err);
     },
+
   })
   wx.request({//get请求
     url: 'https://duing.site/help/getHelpImgs?helpid='+that.data.currentNeedId, //服务器网址
@@ -137,6 +151,9 @@ submit:function(){
         status:false
       })
     }
+  })
+  wx.navigateBack({
+    delta: 1,
   })},
 
 

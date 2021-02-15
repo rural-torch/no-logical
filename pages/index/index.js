@@ -136,6 +136,8 @@ Page({
           loctext:res.data[i].site,
           content:res.data[i].title,
           time:res.data[i].time,
+          avatarUrl:res.data[i].headimg,
+          nickname:res.data[i].username
         })
         that.setData({
           tempPics: pics,
@@ -185,16 +187,6 @@ Page({
 },
 onShow:function(){ //返回显示页面状态函数
   //错误处理
-  var that=this
-  wx.getStorage({
-    key: 'user',
-  success:function(res){
-  that.setData({
-    avatarUrl:res.data.avatarUrl,
-    nickname:res.data.nickname,
-    })
-  }
-})
   // console.log("show")
   this.loadData()
 },
