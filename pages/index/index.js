@@ -139,6 +139,7 @@ Page({
           avatarUrl:res.data[i].headimg,
           nickname:res.data[i].username
         })
+        pics.reverse();
         that.setData({
           tempPics: pics,
         })
