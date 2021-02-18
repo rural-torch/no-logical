@@ -139,6 +139,7 @@ Page({
           avatarUrl:res.data[i].headimg,
           nickname:res.data[i].username
         })
+        pics.reverse();
         that.setData({
           tempPics: pics,
         })
@@ -162,29 +163,33 @@ Page({
       url: '/pages/search/index',
     })
 },
-  show:function(e){
-    var bindex=e.currentTarget.dataset.bindex
-    var bindex1=e.currentTarget.dataset.bindex1
-    // console.log(bindex)
-    // console.log(bindex1)
-    if(bindex!=undefined)
-    {
-    wx.navigateTo({
-      url: '/pages/jumpto/index?index='+bindex*2
-    })
-  }
-  if(bindex1!=undefined)
-    {
-      if(bindex1===0)
-      {bindex1=bindex1+1;
-      }
-      else{bindex1=bindex1*2+1;
-      }
-    wx.navigateTo({
-      url: '/pages/jumpto/index?index='+bindex1
-    })
-  }
+show:function(e){
+  var that=this
+  var data=that.data
+  var tempPics=data.tempPics
+  var bindex=e.currentTarget.dataset.bindex
+  var bindex1=e.currentTarget.dataset.bindex1
+  // console.log(bindex)
+  // console.log(bindex1)
+  if(bindex!=undefined)
+  {
+  wx.navigateTo({
+    url: '/pages/jumpto/index?index='+parseInt((parseInt(tempPics.length/2)-bindex)/2)
+  })
+}
+if(bindex1!=undefined)
+  {
+    if(bindex1===0)
+    {bindex1=parseInt(tempPics.length/2)-bindex1+1;
+    }
+    else{bindex1=parseInt((parseInt(tempPics.length/2)-bindex1)/2)+1;
+    }
+  wx.navigateTo({
+    url: '/pages/jumpto/index?index='+bindex1
+  })
+}
 },
+
 onShow:function(){ //返回显示页面状态函数
   //错误处理
   // console.log("show")
@@ -193,35 +198,8 @@ onShow:function(){ //返回显示页面状态函数
 bindGetUserInfo: function(e) {
   if (e.detail.userInfo) {
       //用户按了允许授权按钮
-      wx.showTabBar({})
       var that = this;
       // 获取到用户的信息了，打印到控制台上看下
-      console.log("用户的信息如下：");
-      console.log(e.detail.userInfo);
-      //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
-      that.setData({
-          isHide: false
-      });
-  } else {
-      //用户按了拒绝按钮
-      wx.showModal({
-          title: '警告',
-          content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-          showCancel: false,
-          confirmText: '返回授权',
-          success: function(res) {
-              // 用户没有授权成功，不需要改变 isHide 的值
-              if (res.confirm) {
-                  console.log('用户点击了“返回授权”');
-              }
-          }
-      });
-  }
-},
-  onLoad: function() {
-    this.loadData()
-    wx.hideTabBar({})
-    var that = this;
     let user=[]
     // 查看是否授权
     wx.getSetting({
@@ -237,7 +215,7 @@ bindGetUserInfo: function(e) {
                         app.globalData.sex=res.userInfo.gender
                         // console.log(user)
                         // console.log(user[0])
-                        
+                   
                         wx.login({
                             success: res => {
                                 // 获取到用户的 code 之后：res.code
@@ -259,6 +237,11 @@ bindGetUserInfo: function(e) {
                                           data: user[0],
                                           key: 'user',
                                       })
+                                      app.globalData.ishide=false
+                                      that.setData({
+                                        isHide: false
+                                    });
+                                    wx.showTabBar({})
                                     }
                                   });
                                 } 
@@ -269,6 +252,7 @@ bindGetUserInfo: function(e) {
             } else {
                 // 用户没有授权
                 // 改变 isHide 的值，显示授权页面
+                app.globalData.ishide=true
                 that.setData({
                     isHide: true
                 });
@@ -276,6 +260,34 @@ bindGetUserInfo: function(e) {
             }
         }
     });
+      console.log("用户的信息如下：");
+      console.log(e.detail.userInfo);
+      //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
+      
+  } else {
+      //用户按了拒绝按钮
+      wx.showModal({
+          title: '警告',
+          content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+          showCancel: false,
+          confirmText: '返回授权',
+          success: function(res) {
+              // 用户没有授权成功，不需要改变 isHide 的值
+              if (res.confirm) {
+                  console.log('用户点击了“返回授权”');
+              }
+          }
+      });
+  }
+},
+  onLoad: function() {
+    this.loadData()
+    if(app.globalData.ishide==true){
+    wx.hideTabBar({})
+    }
+    this.setData({
+      isHide:app.globalData.ishide
+    })
   },
   /*onReachBottom: function() {
     this.loadData()

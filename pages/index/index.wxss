@@ -137,9 +137,9 @@
 }
 .loc11{
   position: absolute;
-  right: 80rpx;
-  top: 6rpx;
-  width: 14rpx;
+  top: 8rpx;
+  left:38%;
+  width: 18rpx;
   height: 20rpx;
   display: inline-block;
   /*bottom: 184px;
@@ -149,8 +149,14 @@
 .loc_text{
   position: absolute;
   top: 4rpx;
-  right: 10rpx;
+  left:45%;
   font-size: 20rpx;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  -webkit-box-orient:vertical;
+  word-break:break-all
 }
 .motou{
   border-radius: 50%;

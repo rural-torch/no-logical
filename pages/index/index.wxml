@@ -46,8 +46,8 @@
     <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index' wx:for-index="bindex" >
       <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-bindex= '{{bindex}}' id="{{item.index}}"></image>
       <view class="list-loc" style="opacity:{{0.6}}">
-      <image  src="https://duing.site/saveFiles/images/180.png" class="loc11"></image>
       <view class="loc_text">{{pics.loctext}}</view>
+      <image  src="https://duing.site/saveFiles/images/180.png" class="loc11"></image>
     </view>
     <view class="list-main">
         <view class="list-text">
@@ -69,8 +69,8 @@
     <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index1' wx:for-index="bindex1" >
       <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-bindex1= '{{bindex1}}' id="{{item.index}}"></image>
       <view class="list-loc" style="opacity:{{0.6}}">
-      <image  src="https://duing.site/saveFiles/images/180.png" class="loc11"></image>
       <view class="loc_text">{{pics.loctext}}</view>
+      <image  src="https://duing.site/saveFiles/images/180.png" class="loc11"></image>
     </view>
     <view class="list-main">
         <view class="list-text">
