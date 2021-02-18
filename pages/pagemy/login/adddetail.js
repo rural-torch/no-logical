@@ -1,4 +1,5 @@
 // pages/pagemy/adddetail.js
+let app=getApp()
 Page({
   data: {
   city:"",
@@ -19,7 +20,7 @@ Page({
     let username=that.data.nickname
     let avatarUrl=that.data.avatarUrl
     let sex=that.data.sex
-    let userid=that.data.uid
+    let userid=app.globalData.uid
     console.log(userid)
     console.log(city)
     if(city!='' && job!=''){
@@ -30,7 +31,7 @@ Page({
           'content-type': 'application/json' // 默认值
       },
       data: {
-        userid:userid,
+        userid:app.globalData.uid,
         headimg:avatarUrl,
         username:username,
         gender:sex,
@@ -43,23 +44,24 @@ Page({
       success: function(res) {
         console.log(res)
         wx.showToast({
-          title: '注册成功',
+          title: app.globalData.uid,
           icon:'success'        })
         wx.setStorage({
           data: city,
           key: 'city',
           success: function(res){
+            wx.setStorage({
+              data: job,
+              key: 'job',
+              success: function(res){
+                wx.reLaunch({
+                  url: '/pages/index/index',
+                })
+            }
+          })
           }
         })
-        wx.setStorage({
-          data: job,
-          key: 'job',
-          success: function(res){
-            wx.navigateBack({
-              delta: 1,
-            })
-        }
-      })
+
       },
       fail:function(err){
         console.log(err);

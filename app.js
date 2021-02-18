@@ -5,6 +5,7 @@ App({
     uid:'',
     sex:'',
     tlelnth:10,
+    ishide:true
   },
   onLaunch: function () {
     // let user=[];
