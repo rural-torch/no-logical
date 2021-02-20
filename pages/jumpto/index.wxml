@@ -10,10 +10,10 @@
      <image src="https://duing.site/saveFiles/images/foc1.png" class="foc"></image>
   </view>
   <view class="head_font">
-  <view class="head_con">#乡村美景#邀请大家来四川看丁真哦~邀请大家来四川看丁真哦~</view>
+  <view class="head_con">{{title}}</view>
   </view>
   <view class="head_time">
-  2021-4-9  20:00
+  {{time}}
   </view>
   <view class="head_pic">
     <view>

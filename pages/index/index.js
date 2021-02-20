@@ -17,7 +17,8 @@ Page({
     showModalStatus: false ,
     temp:[],
     avatarUrl:'',
-    nickname:''
+    nickname:'',
+    flag:0
   },
   //获取图片尺寸数据
   loadPic: function(e) {
@@ -82,6 +83,7 @@ Page({
   renderPage: function() {
     var that = this,
       data = that.data,
+      flag=data.flag,
       columnsleft = data.columnsleft,
       columnsright = data.columnsright,
       tempPics = data.tempPics,
@@ -103,9 +105,14 @@ Page({
         else{columnsright[index].push(tempPics[i]);
           rightHeight[index] += tempPics[i].height}
     }
+    if((length-1)%2===0)
+    {
+      flag=1;
+    }
     that.setData({
       columnsleft :columnsleft,
       columnsright : columnsright,
+      flag:flag
       //tempPics: []
     })
     that.jsData.rightHeight = rightHeight
@@ -168,13 +175,23 @@ show:function(e){
   var tempPics=data.tempPics
   var bindex=e.currentTarget.dataset.bindex
   var bindex1=e.currentTarget.dataset.bindex1
+  var flag=data.flag
   // console.log(bindex)
   // console.log(bindex1)
   if(bindex!=undefined)
   {
+    if(flag===0)
+    {
   wx.navigateTo({
-    url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex-1)
+    url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex-2)
   })
+}
+if(flag===1)
+{
+wx.navigateTo({
+url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex-1)
+})
+}
 }
 if(bindex1!=undefined)
   {
@@ -183,9 +200,18 @@ if(bindex1!=undefined)
     }
     else{bindex1=parseInt((parseInt(tempPics.length/2)-bindex1)/2)+1;
     }*/
+    if(flag===0)
+    {
   wx.navigateTo({
-    url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex1-2)
+    url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex1-1)
   })
+}
+if(flag===1)
+{
+wx.navigateTo({
+url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex1-2)
+})
+}
 }
 },
 
