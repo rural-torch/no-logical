@@ -18,8 +18,7 @@ Page({
     temp:[],
     avatarUrl:'',
     nickname:'',
-    flag:0,
-    collected:true
+    flag:0
   },
   //获取图片尺寸数据
   loadPic: function(e) {
@@ -93,13 +92,6 @@ Page({
       leftHeight = that.jsData.leftHeight,
       index = 0
     for(var i = length-1; i >= 0; i--)  {
-      /*if(rightHeight<leftHeight)
-      {
-      columnsright[index].push(tempPics[i]);
-      rightHeight[index] += tempPics[i].height
-      }
-      else{columnsleft[index].push(tempPics[i]);
-        leftHeight[index] += tempPics[i].height}*/
       if(i%2===0)
       {columnsleft[index].push(tempPics[i]);
         leftHeight[index] += tempPics[i].height}
@@ -137,8 +129,27 @@ Page({
       　　success: function (res) {
 
       var i=0
+      var j=0
       var pics=[]
-      for(i=0;i<res.data.length;i++){
+      while(i<res.data.length)
+      {
+        if(res.data[i].type=="类型1")
+        {
+          pics.push({
+            pic:res.data[i].image,
+            loctext:res.data[i].site,
+            content:res.data[i].title,
+            time:res.data[i].time,
+            avatarUrl:res.data[i].headimg,
+            nickname:res.data[i].username
+          })
+        }
+        i++;
+        that.setData({
+          tempPics: pics,
+        })
+      }
+     /* for(i=0;i<res.data.length;i++){
         pics.push({
           pic:res.data[i].image,
           loctext:res.data[i].site,
@@ -150,7 +161,7 @@ Page({
         that.setData({
           tempPics: pics,
         })
-      }
+      }*/
       　　}
       　　})
     }
@@ -181,16 +192,17 @@ show:function(e){
   // console.log(bindex1)
   if(bindex!=undefined)
   {
+    
     if(flag===0)
     {
   wx.navigateTo({
-    url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex-2)
+    url: '/pages/jumpto/jumpfeng/jumpfeng?index='+(tempPics.length-2*bindex-2)
   })
 }
 if(flag===1)
 {
 wx.navigateTo({
-url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex-1)
+ url: '/pages/jumpto/jumpfeng/jumpfeng?index='+(tempPics.length-2*bindex-1)
 })
 }
 }
@@ -204,13 +216,13 @@ if(bindex1!=undefined)
     if(flag===0)
     {
   wx.navigateTo({
-    url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex1-1)
+    url: '/pages/jumpto/jumpfeng/jumpfeng?index='+(tempPics.length-2*bindex1-1)
   })
 }
 if(flag===1)
 {
 wx.navigateTo({
-url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex1-2)
+url: '/pages/jumpto/jumpfeng/jumpfeng?index='+(tempPics.length-2*bindex1-2)
 })
 }
 }
@@ -366,176 +378,5 @@ bindGetUserInfo: function(e) {
         }
       }
     })
-    } ,
-
-    goto_fengjing:function(e){
-      wx.getStorage({
-        key: 'city',
-        success: function(res) {
-          wx.navigateTo({
-            url: '/pages/index/fengjing/fengjing',
-          })
-        },
-        fail:function(err){
-          wx.showToast({
-            title: '请先进行注册',
-            icon:"loading",
-          })
-        },
-      })
-    },
-
-    addlove:function(e){
-      this.setData({
-        collected: false
-      })
-    }
+    } 
 })
-/* var that = this
-    const db = wx.cloud.database()
-    if (!that.jsData.isLoading) {
-      that.jsData.isLoading = true
-        db.collection('index').where({
-          _openid: 'osqkr4y6UIW2MVjCIvSDXGE8mU-A'
-        })
-        .get({
-          success: function(res) {
-            // res.data 包含该记录的数据
-            console.log(res.data)
-            var i=0
-            var pics=[]
-            for(i=0;i<res.data.length;i++){
-            pics.push({
-              pic:res.data[i].pic,
-              loctext:res.data[i].loctext,
-              content:res.data[i].content,
-              time:res.data[i].time
-            })
-            that.setData({
-              tempPics: pics
-            })
-          }
-          }
-        })  
-    }
-      loadData: function() {
-    var that = this
-    if (!that.jsData.isLoading) {
-      wx.showLoading()
-      that.jsData.isLoading = true
-      setTimeout(function() {
-        var pics = []
-        pics.push({
-          pic: '/images/qi.jpeg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"一年一度的大赛开始啦，还不来参观吗~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding2.jpg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/qi.jpeg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding2.jpg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/qi.jpeg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding2.jpg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        that.setData({
-          tempPics: pics
-        })
-      }, 1000)
-    }
-  },
-  <view class="main">
-  <view wx:for="{{columnsleft}}" class="column-left">
-    <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index' wx:for-index="bindex" >
-      <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-bindex= '{{bindex}}' id="{{item.index}}"></image>
-      <view class="list-loc" style="opacity:{{0.6}}">
-      <image  src="/images/图层 180 拷贝.png" class="loc11"></image>
-      <view class="loc_text">{{pics.loctext}}</view>
-    </view>
-    <view class="list-main">
-        <view class="list-text">
-      {{pics.content}}
-    </view>
-    <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
-    <view class="list-user">
-      <image class="motou" src="/images/南南1.jpg"></image>
-      <text class="authname">作者的昵称</text>
-    </view>
-    <view class="list-love">
-      <image src="/images/矢量智能对象 拷贝 2.png" class="love-img" bindtap="addlove"></image>
-      <view >{{pics.love}}</view>
-    </view>
-  </view>
-    </view>
-  </view>
-  <view wx:for="{{columnsright}}" class="column-right">
-    <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index1' wx:for-index="bindex1" >
-      <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-bindex1= '{{bindex1}}' id="{{item.index}}"></image>
-      <view class="list-loc" style="opacity:{{0.6}}">
-      <image  src="/images/图层 180 拷贝.png" class="loc11"></image>
-      <view class="loc_text">{{pics.loctext}}</view>
-    </view>
-    <view class="list-main">
-        <view class="list-text">
-      {{pics.content}}
-    </view>
-    <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
-    <view class="list-user">
-      <image class="motou" src="/images/南南1.jpg"></image>
-      <text class="authname">作者的昵称</text>
-    </view>
-    <view class="list-love">
-      <image src="/images/矢量智能对象 拷贝 2.png" class="love-img" bindtap="addlove"></image>
-      <view >{{pics.love}}</view>
-    </view>
-  </view>
-    </view>
-  </view>
-</view>*/

@@ -270,7 +270,7 @@ Page({
     var index = options.index
     // console.log(index)
     wx.request({
-      　　url: 'https://duing.site/home', //服务器地址
+      　　url: 'https://duing.site/home?userid=uid', //服务器地址
       header: {
         　　'content-type': 'application/json'
         　　},

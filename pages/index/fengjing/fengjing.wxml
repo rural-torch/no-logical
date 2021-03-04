@@ -33,9 +33,9 @@
     </view>
 </view>
 <view class="top">
-  <view class="top_tabbar1">推 荐</view>
+  <view class="top_tabbar">推 荐</view>
   <view class="top_tabbar2"  bindtap="goto_counter">关 注</view>
-  <view class="top_tabbar" bindtap="goto_fengjing">风 景</view>
+  <view class="top_tabbar1">风 景</view>
   <view class="top_tabbar">美 食</view>
   <view class="top_tabbar">活 动</view>
   <view class="top_tabbar">文 化</view>
@@ -59,8 +59,7 @@
       <text class="authname">{{pics.nickname}}</text>
     </view>
     <view class="list-love">
-      <image catchtap="addlove" wx:if="{{collected}}" src="/images/like.png" class="love-img" ></image>
-      <image wx:else catchtap='addlove' src="/images/like1.png" class="love-img"></image>
+      <image src="https://duing.site/saveFiles/images/love.png" class="love-img" bindtap="addlove"></image>
       <view >{{pics.love}}</view>
     </view>
   </view>
@@ -82,9 +81,8 @@
       <image class="motou" src="{{pics.avatarUrl}}"></image>
       <text class="authname">{{pics.nickname}}</text>
     </view>
-    <view class="list-love"> 
-      <image catchtap="addlove" wx:if="{{collected}}" src="/images/like.png" class="love-img" ></image>
-      <image wx:else catchtap='addlove' src="/images/like1.png" class="love-img"></image>
+    <view class="list-love">
+      <image src="https://duing.site/saveFiles/images/love.png" class="love-img" bindtap="addlove"></image>
       <view >{{pics.love}}</view>
     </view>
   </view>

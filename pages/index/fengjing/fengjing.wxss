@@ -179,8 +179,8 @@
   font-size: 20rpx;
 }
 .love-img{
-  height: 36rpx;
-  width: 40rpx;
+  height: 26rpx;
+  width: 30rpx;
 }
 .over{
   position: fixed;
