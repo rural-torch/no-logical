@@ -1,4 +1,4 @@
-var util = require('../../utils/util.js');
+var util = require('../../../utils/util.js');
 let app=getApp()
 Page({
   data: {
@@ -7,7 +7,7 @@ Page({
     longitude:0,//位置经度
     imgs:[],//图片路径
     imgNum:0,//图片数量
-    topicTypes:["风景","美食","活动","文化","其他"],//类型选项
+    topicTypes:["类型1","类型2","类型3"],//类型选项
     place:null,//位置
     type:null,//类型
   },
@@ -134,8 +134,30 @@ Page({
         console.log(res)
       }
         })
-
+    that.submit();
   },
+  submit:function(){
+    // 数据上传服务端
+    console.log('ssssss:',this.data.helpid)
+    let that = this;
+    wx.request({
+      url: 'https://duing.site/task/submitWork',
+      method: 'POST',
+      data:{
+        helpid:that.data.helpid,
+        userid:app.globalData.uid,///'oVmIt5xNGnJCRg-Bd3hVKsHgzNco',
+       
+        status:5,
+        topicid:null,
+      },
+      success(res){
+        console.log('请求成功',res)
+        // console.log(res);
+        that.setData({
+         ////helpid:res.data.helpid
+        })
+      }
+    })},
   repo2:function(){
     // 数据上传服务端
     let that = this;
