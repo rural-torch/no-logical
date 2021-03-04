@@ -4,8 +4,6 @@ Page({
   data: {
     avatarUrl:'',
     nickname:'',
-    title:'',
-    time:'',
     commentList: [{
       username: '冷不过人心',
       ComID: '1',
@@ -270,53 +268,24 @@ onLoad: function (options) {
   var index = options.index
   // console.log(index)
   wx.request({
-    　　url: 'https://duing.site/home?userid=uid', //服务器地址
+    　　url: 'https://duing.site/home', //服务器地址
     header: {
       　　'content-type': 'application/json'
       　　},
       method: 'GET',
-      data: {
-        　　},
+      data: {},
     　　success: function (res) {
     // 　　console.log(res.data)
     var i=0
-    var j=0
-    var images=[]
-    var he=[]
-    var us=[]
-    var ti=[]
-    var me=[]
     for(i=0;i<res.data.length;i++){
-      images[i]=res.data[i].image
-      he[i]=res.data[i].headimg
-      us[i]=res.data[i].username
-      ti[i]=res.data[i].title
-      me[i]=res.data[i].time
-      
-    }
-    for(i=0;i<res.data.length;i++){
-    if(res.data[i].type!="类型1")
-      {   
-        for(j=i;j<res.data.length;j++)
-        {
-        images[j]=images[j+1]
-         he[j]=he[j+1]
-         us[j]=us[j+1]
-         ti[j]=ti[j+1]
-         me[j]=me[j+1]
-        }
+      if(index==res.data[i].topicid){
+        that.setData({
+          showimg:res.data[i].image
+        })
       }
     }
-    console.log(index)
-    that.setData({
-      showimg:images[index],
-      avatarUrl:he[index],
-     nickname:us[index],
-     title:ti[index],
-     time:me[index]
-    })
-
-    　　}
+    
+  }
     　　})
 },
 
@@ -331,6 +300,16 @@ onReady: function () {
  * 生命周期函数--监听页面显示
  */
 onShow: function () {
+  var that=this
+  wx.getStorage({
+    key: 'user',
+  success:function(res){
+  that.setData({
+    avatarUrl:res.data.avatarUrl,
+    nickname:res.data.nickname,
+    })
+  }
+})
 
 },
 
@@ -369,11 +348,3 @@ onShareAppMessage: function () {
 
 }
 })
-//'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" binderror="videoErrorCallback', 'http://v2018.zhuoxuncn.com/zhuoxunvideo/20181220/0104_1.mp4', 'http://v2018.zhuoxuncn.com/zhuoxunvideo/20181123/27.mp4', 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" ,binderror="videoErrorCallback', 'http://v2018.zhuoxuncn.com/zhuoxunvideo/20181220/0104_1.mp4','http://v2018.zhuoxuncn.com/zhuoxunvideo/20181123/27.mp4', 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" binderror="videoErrorCallback', 'http://v2018.zhuoxuncn.com/zhuoxunvideo/20181220/0104_1.mp4', 
-/*.comment_border {
-position: absolute;
-height: 330px;
-top: 45%;
-right: 5px;
-text-align: center;
-}*/

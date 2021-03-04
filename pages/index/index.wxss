@@ -68,9 +68,8 @@
 .top_tabbar1{
   font-size: 28rpx;
   margin-left: 34rpx;
-  margin-top: -6rpx;
   padding-bottom: 8rpx;
-  font-weight: 800;
+  font-weight: 700;
   border-width: 0 0 8rpx 0;
   border-color: rgb(252, 191, 80);
   border-style: solid;
@@ -179,8 +178,8 @@
   font-size: 20rpx;
 }
 .love-img{
-  height: 36rpx;
-  width: 40rpx;
+  height: 26rpx;
+  width: 30rpx;
 }
 .over{
   position: fixed;

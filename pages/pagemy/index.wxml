@@ -56,9 +56,16 @@
     </view> 
     <!-- 选中创作时出现的页面 -->
     <view hidden="{{currentTab!==0}}" class="workv">
-      <view wx:for="{{video}}" class="box1">
-        <image class="video" src="https://duing.site/saveFiles/images/bc.png">
-      </image></view>
+      <view wx:for="{{worklist}}" data-helpId="{{item.topicid}}" bindtap="jump1" class="workvv">
+        <view class="workpic">
+          <image src="{{item.image}}" style="width:100%;height:100%;"></image></view>
+
+        <view class="workpart">
+          <view class="worktitle">{{item.title}}</view>
+          <view class="worktime">{{item.time}}</view>
+          <view class="worklocate">{{item.site}}</view>
+        </view>
+      </view>
       <!-- 固定布局的按钮 -->
 
 
@@ -109,9 +116,9 @@
           <!-- 左下内容 -->
           <view class="tleft-b">
             <view class="taskhead">
-              <image src="{{headimg}}" style="width:100%;height:100%;"></image>
+              <image src="{{avatarUrl}}" style="width:100%;height:100%;"></image>
             </view>
-            <view class="na" style="white-space: nowrap;margin-left:8rpx;" >{{item.username}}</view>
+            <view class="na" style="white-space: nowrap;margin-left:8rpx;" >{{nickname}}</view>
             <image src="https://duing.site/saveFiles/images/mark.png" style="width:20rpx;height:26rpx;margin-left:8rpx;margin-top:12rpx"></image>
             <view class="em" style="margin-left:5rpx;white-space: nowrap">{{item.reward}}</view>
             <image src="https://duing.site/saveFiles/images/locat.png" style="width:20rpx;height:28rpx;margin-left:5rpx;margin-top:12rpx"></image>

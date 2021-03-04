@@ -18,12 +18,7 @@
     "pages/pagemy/focus/focus",
     "pages/pagemy/fans/fans",
     "pages/pagemy/service/service",
-    "pages/index/fengjing/fengjing",
-    "pages/index/meishi/meishi",
-    "pages/index/huodong/huodong",
-    "pages/index/wenhua/wenhua",
-    "pages/index/qita/qita",
-    "pages/jumpto/jumpfeng/jumpfeng"
+    "pages/pagemy/mywork"
   ],
   "window": {
     "enablePullDownRefresh": true,

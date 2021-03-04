@@ -1,3 +1,4 @@
+/* pages/pagemy/mywork.wxss */
 /* pages/jumpto/index.wxss */
 .page{
   background: white;
@@ -54,10 +55,9 @@ video {
    width: 100%;
  }
  .foc{
-   width: 70rpx;
+   width: 160rpx;
    height: 70rpx;
-   margin-left:420rpx;
-   margin-top: 20rpx;
+   margin-left:320rpx;
  }
 
  
@@ -96,22 +96,22 @@ font-size: 30rpx;
   margin-top: 30rpx;
 }
 .letter{
-  width: 74rpx;
-  height: 64rpx;
+  width: 54rpx;
+  height: 44rpx;
 }
 .share{
   width: 54rpx;
-  height: 64rpx;
+  height: 44rpx;
   margin-left: 30rpx;
 }
 .comm{
-  width: 60rpx;
-  height: 64rpx;
+  width: 54rpx;
+  height: 44rpx;
   margin-left: 360rpx;
 }
 .loved{
-  width: 64rpx;
-  height: 64rpx;
+  width: 54rpx;
+  height: 44rpx;
   margin-left: 30rpx;
 }
 .love_img {

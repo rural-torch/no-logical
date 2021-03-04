@@ -17,9 +17,7 @@ Page({
     showModalStatus: false ,
     temp:[],
     avatarUrl:'',
-    nickname:'',
-    flag:0,
-    collected:true
+    nickname:''
   },
   //获取图片尺寸数据
   loadPic: function(e) {
@@ -84,7 +82,6 @@ Page({
   renderPage: function() {
     var that = this,
       data = that.data,
-      flag=data.flag,
       columnsleft = data.columnsleft,
       columnsright = data.columnsright,
       tempPics = data.tempPics,
@@ -92,7 +89,7 @@ Page({
       rightHeight = that.jsData.rightHeight,
       leftHeight = that.jsData.leftHeight,
       index = 0
-    for(var i = length-1; i >= 0; i--)  {
+    for (var i = 0; i < length; i++) {
       /*if(rightHeight<leftHeight)
       {
       columnsright[index].push(tempPics[i]);
@@ -106,14 +103,9 @@ Page({
         else{columnsright[index].push(tempPics[i]);
           rightHeight[index] += tempPics[i].height}
     }
-    if((length-1)%2===0)
-    {
-      flag=1;
-    }
     that.setData({
       columnsleft :columnsleft,
       columnsright : columnsright,
-      flag:flag
       //tempPics: []
     })
     that.jsData.rightHeight = rightHeight
@@ -127,7 +119,7 @@ Page({
           {
             that.jsData.isLoading = true
     wx.request({
-      　　url: 'https://duing.site/home?userid=uid', //服务器地址
+      　　url: 'https://duing.site/home', //服务器地址
       header: {
         　　'content-type': 'application/json'
         　　},
@@ -147,6 +139,7 @@ Page({
           avatarUrl:res.data[i].headimg,
           nickname:res.data[i].username
         })
+        pics.reverse();
         that.setData({
           tempPics: pics,
         })
@@ -176,43 +169,24 @@ show:function(e){
   var tempPics=data.tempPics
   var bindex=e.currentTarget.dataset.bindex
   var bindex1=e.currentTarget.dataset.bindex1
-  var flag=data.flag
   // console.log(bindex)
   // console.log(bindex1)
   if(bindex!=undefined)
   {
-    if(flag===0)
-    {
   wx.navigateTo({
-    url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex-2)
+    url: '/pages/jumpto/index?index='+parseInt((parseInt(tempPics.length/2)-bindex)/2)
   })
-}
-if(flag===1)
-{
-wx.navigateTo({
-url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex-1)
-})
-}
 }
 if(bindex1!=undefined)
   {
-    /*if(bindex1===0)
+    if(bindex1===0)
     {bindex1=parseInt(tempPics.length/2)-bindex1+1;
     }
     else{bindex1=parseInt((parseInt(tempPics.length/2)-bindex1)/2)+1;
-    }*/
-    if(flag===0)
-    {
+    }
   wx.navigateTo({
-    url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex1-1)
+    url: '/pages/jumpto/index?index='+bindex1
   })
-}
-if(flag===1)
-{
-wx.navigateTo({
-url: '/pages/jumpto/index?index='+(tempPics.length-2*bindex1-2)
-})
-}
 }
 },
 
@@ -263,8 +237,12 @@ bindGetUserInfo: function(e) {
                                           data: user[0],
                                           key: 'user',
                                       })
-                                      app.globalData.ishide=false
-                                      that.setData({
+                                    app.globalData.ishide=false
+                                    wx.setStorage({
+                                      data: false,
+                                      key: 'ishide',
+                                    })
+                                    that.setData({
                                         isHide: false
                                     });
                                     wx.showTabBar({})
@@ -308,9 +286,18 @@ bindGetUserInfo: function(e) {
 },
   onLoad: function() {
     this.loadData()
-    if(app.globalData.ishide==true){
     wx.hideTabBar({})
-    }
+
+    let that=this
+    wx.getStorage({
+      key: 'ishide',
+      success:function(res){
+        that.setData({
+          isHide:res.data
+        })
+        wx.showTabBar({})
+      }
+    })
     this.setData({
       isHide:app.globalData.ishide
     })
@@ -366,30 +353,7 @@ bindGetUserInfo: function(e) {
         }
       }
     })
-    } ,
-
-    goto_fengjing:function(e){
-      wx.getStorage({
-        key: 'city',
-        success: function(res) {
-          wx.navigateTo({
-            url: '/pages/index/fengjing/fengjing',
-          })
-        },
-        fail:function(err){
-          wx.showToast({
-            title: '请先进行注册',
-            icon:"loading",
-          })
-        },
-      })
-    },
-
-    addlove:function(e){
-      this.setData({
-        collected: false
-      })
-    }
+    } 
 })
 /* var that = this
     const db = wx.cloud.database()

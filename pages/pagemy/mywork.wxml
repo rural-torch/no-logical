@@ -7,29 +7,29 @@
     <!-- 头像 -->
     <image src='{{avatarUrl}}' data-userid='{{item.userid}}' class='head_img' catchtap=''></image>
      <view class='jia'>{{nickname}}</view> 
-     <image src="/images/加关注.png" class="foc"></image>
+     <image src="https://duing.site/saveFiles/images/foc1.png" class="foc"></image>
   </view>
   <view class="head_font">
-  <view class="head_con">{{title}}</view>
+  <view class="head_con">#乡村美景#邀请大家来四川看丁真哦~邀请大家来四川看丁真哦~</view>
   </view>
   <view class="head_time">
-  {{time}}
+  2021-4-9  20:00
   </view>
   <view class="head_pic">
     <view>
-      <image src="/images/私信1.png" class="letter"></image>
+      <image src="/images/175.png" class="letter"></image>
       <view style="font-size:10px;text-align: center">私信</view>
     </view>
     <view>
-      <image src="/images/分享.png" class="share"></image>
+      <image src="/images/178.png" class="share"></image>
       <view style="font-size:10px;text-align: right">分享</view>
     </view>
     <view>
-      <image src="/images/评论 1.png" class="comm" catchtap='showModal' data-vid="{{item.vid}}" data-img_url='{{item.wapimg}}'></image>
+      <image src="/images/176.png" class="comm" catchtap='showModal' data-vid="{{item.vid}}" data-img_url='{{item.wapimg}}'></image>
       <view style="font-size:10px;text-align:right">评论()</view>
     </view>
     <view>
-      <image src="/images/喜欢1.png" class="loved"></image>
+      <image src="/images/177.png" class="loved"></image>
       <view style="font-size:10px;text-align: right">点赞()</view>
     </view>
   </view>
@@ -71,4 +71,3 @@
   </view>
 </view>
 </view>
-

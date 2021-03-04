@@ -61,11 +61,9 @@ Page({
 onLoad: function (option) {
   this.setData({headimg:app.globalData.avatarUrl,nickname:app.globalData.username})
   console.log(app.globalData.avatarUrl)
-  var Id = option.id;
+  var Id = option.id; 
   this.setData({helpid:Number(Id)})
   this.requdata();
-  console.log('helpid:',this.data.helpid) ;
-  console.log('taksiner:',this.data.taskinner)
 
 
   /*var tasklist2 =JSON.parse(option.tasklist);
