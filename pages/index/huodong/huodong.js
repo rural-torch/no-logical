@@ -1,34 +1,12 @@
-// pages/chat/chat.js
+// pages/index/huodong/huodong.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  ifplus:false,
+
   },
-  bindplus: function(){
-    if (this.data.ifplus==true){
-  this.setData({
-    ifplus:false
-  })
-  }
-  else{
-    this.setData({
-      ifplus:true
-    })
-  }
-},
-adddetial:function(e){
-  wx.navigateTo({
-    url: '/pages/report/index',
-  })
-},
-adddetial1:function(e){
-  wx.navigateTo({
-    url: '/pages/askhelp/help',
-  })
-},
 
   /**
    * 生命周期函数--监听页面加载

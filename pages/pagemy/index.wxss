@@ -286,48 +286,23 @@ display: flex;
   border-radius: 10rpx;
  }
  .workv{
-    margin-top:2rpx;
+   margin-top:2rpx;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border-top: 2rpx solid rgb(209, 209, 209) ;
     width: 100%;
     border-collapse: collapse;
     flex-wrap: wrap;
+    justify-content: flex-start;
  }
- .workvv{
-   display: flex;
-   flex-direction: row;
-   height:200rpx;
-   border-bottom: rgb(201, 200, 200) solid 1rpx;
+ .workv .box1{
+  border-width: 20rpx;
+  border:10rpx rgb(227, 227, 227) solid;
+  height:320rpx;
+  margin:0rpx;
+  width:230rpx;
+  border-collapse: collapse;
  }
-.workpic{
-  width:250rpx;
-
-  margin: 20rpx;
-  border-radius: 10rpx;
-}
-.workpart{
-  margin:20rpx;
-  width:470rpx;
-}
-.worktitle{
-  font-size: 36rpx;
-  margin-bottom: 30rpx;
-}
-.worktime{
-  color: rgb(175, 174, 174);
-  text-overflow:ellipsis;
-  overflow: hidden; 
-  white-space: nowrap;
-  font-size: 26rpx;
-}
-.worklocate{
-  color: rgb(175, 174, 174);
-  text-overflow:ellipsis;
-  overflow: hidden; 
-  white-space: nowrap;
-  font-size: 26rpx;
-}
  .likev{
     margin-top:2rpx;
     display: flex;

@@ -4,6 +4,8 @@ Page({
     data: {
       avatarUrl:'',
       nickname:'',
+      title:'',
+      time:'',
       commentList: [{
         username: '冷不过人心',
         ComID: '1',
@@ -268,12 +270,13 @@ Page({
     var index = options.index
     // console.log(index)
     wx.request({
-      　　url: 'https://duing.site/home', //服务器地址
+      　　url: 'https://duing.site/home?userid=uid', //服务器地址
       header: {
         　　'content-type': 'application/json'
         　　},
         method: 'GET',
-        data: {},
+        data: {
+          　　},
       　　success: function (res) {
       // 　　console.log(res.data)
       var i=0
@@ -282,9 +285,14 @@ Page({
         images[i]=res.data[i].image
       }
       that.setData({
-        showimg:images[index]
+        showimg:images[index],
+        avatarUrl:res.data[index].headimg,
+       nickname:res.data[index].username,
+       title:res.data[index].title,
+       time:res.data[index].time
       })
-    }
+
+      　　}
       　　})
   },
 
@@ -299,16 +307,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that=this
-    wx.getStorage({
-      key: 'user',
-    success:function(res){
-    that.setData({
-      avatarUrl:res.data.avatarUrl,
-      nickname:res.data.nickname,
-      })
-    }
-  })
 
   },
 

@@ -24,7 +24,6 @@ Page({
     video2:[1,2,3,4,5,1,1,1,1],
     tasklist:[],
     mytasklist:[],
-    worklist:[],
     headimg:'',
   },
  navbarTap: function(e){ 
@@ -174,13 +173,6 @@ Page({
       url: "./mytask/mytask?id= " + Id
     })
   },
-  jump1:function(event){
-    var Id=event.currentTarget.dataset.helpid
-    console.log(Id)
-    wx.navigateTo({
-      url: "/pages/pagemy/mywork?index=" + Id
-    })
-  },
   adddetial:function(e){
     wx.getStorage({
       key: 'city',
@@ -300,27 +292,5 @@ Page({
          console.log(err);
        },
      })
-
-     wx.request({//get请求
-      url: 'https://duing.site/topic/getUserTopics?userid='+app.globalData.uid, ////服务器网址
-      method:"GET",
-      header: {
-          'content-type': 'application/json' // 默认值
-      },
-      success: function(res) {
-        console.log('获得的数据是：',res.data)
-       
-        that.setData({
-          worklist:res.data.reverse()
-        })
-       // wx.setNavigationBarTitle({
-         // title: that.data.nickname,
-        //})
-      },
-      fail:function(err){
-        console.log(err);
-      },
-    })
-
      }
 })
