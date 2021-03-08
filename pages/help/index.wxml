@@ -1,0 +1,101 @@
+<!-- 下拉菜单   -->
+<view id="swiper-tab">
+    <view class="swiper-tab">
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="tabNav">
+        <i></i>
+        {{first}}
+      </view>
+      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="tabNav">
+        <i></i>
+        {{second}}
+      </view>
+      <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="tabNav">
+        <i></i>
+        {{thirds}}
+      </view>
+      <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="tabNav">
+        <i></i>
+        {{fours}}
+      </view>
+    </view>
+    <swiper current="{{currentTab}}" duration="1000" class="swiper-item" style='display:{{displays}}'>
+      <swiper-item>
+        <view>
+           <view class="location_bottom" hidden="">
+          <view class="{{_num1 == 1?'add_timeing':'add_time'}}" data-num="1" bindtap="onFilterList" data-name="三天内" data-index="1">三天内</view>
+          <view class="{{_num1 == 2?'add_timeing':'add_time'}}" data-num="2" bindtap="onFilterList" data-name="一周内" data-index="2">一周内</view>
+          <view class="{{_num1 == 3?'add_timeing':'add_time'}}" data-num="3" bindtap="onFilterList" data-name="半年内" data-index="3">半年内</view>
+          <view class="{{_num1 == 4?'add_timeing':'add_time'}}" data-num="4" bindtap="onFilterList" data-name="其他" data-index="4">其他</view>
+            </view>
+          </view>
+      </swiper-item>
+      <swiper-item class="dizhi">
+        <view class="location_bottom" hidden="">
+          <block wx:for="{{shengfen}}" wx:key="key">
+            <view class="{{_num2 == (index+1)?'add_citying':'add_city'}}" data-num="{{index+1}}" bindtap="clickNum" data-name="{{item.name}}">
+              {{item.name}}
+            </view>
+          </block>
+          
+        </view>
+      </swiper-item>
+      <swiper-item class="shaixuankuang">
+        <view class="location_bottom" hidden="">
+          <view class="{{_num3 == 4?'add_citying':'add_city'}}" data-num="4" bindtap="Clicksort" data-name="求助类别">不限</view>
+          <view class="{{_num3 == 1?'add_citying':'add_city'}}" data-num="1" bindtap="Clicksort" data-name="类型1">类型1</view>
+          <view class="{{_num3 == 2?'add_citying':'add_city'}}" data-num="2" bindtap="Clicksort" data-name="类型2">类型2</view>
+          <view class="{{_num3 == 3?'add_citying':'add_city'}}" data-num="3" bindtap="Clicksort" data-name="类型3">类型3</view>
+         
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="location_bottom" hidden="">
+          <view class="{{_res == 5?'add_House':'add_city'}}" data-num="5" bindtap="clickHouse" data-name="荣誉积分">不限</view>
+          <view class="{{_res == 1?'add_House':'add_city'}}" data-num="1" bindtap="clickHouse" data-name="1-10">1-10</view>
+          <view class="{{_res == 2?'add_House':'add_city'}}" data-num="2" bindtap="clickHouse" data-name="10-100">10-100</view>
+          <view class="{{_res == 3?'add_House':'add_city'}}" data-num="3" bindtap="clickHouse" data-name="100-500">100-500</view>
+          <view class="{{_res == 4?'add_House':'add_city'}}" data-num="4" bindtap="clickHouse" data-name="500以上">500以上</view>
+          
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+<view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+            <!-- 搜索框 -->
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
+                    <input bindtap='search' type="text" class="weui-search-bar__input" placeholder="大家都在搜：家乡美食"/>
+                </view>
+                </view>
+            </view>
+<view class="swiper-beijing" bindtap="hideNav" style='display:{{displays}}'></view>
+
+  <view class="needs">
+    <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower'>
+        <block wx:for="{{preList1}}" wx:for-item="needItem" wx:for-index="needIndex" wx:key="need">
+            <view class="need" catchtap="onPostTap" data-needId="{{needItem.helpid}}" hover-class='but' hover-stay-time="1000">
+                <view class="need-peopic">
+                    <image  src='{{needItem.headimg}}' style="width:60px; height:60px;overflow:hidden;border-radius:50%;"> </image>  
+                    <!-- {{needItem.peopic}} -->
+                </view>
+                <view class="need-name">{{needItem.username}}</view>
+                <view class="need-dats">{{needItem.startime}}</view>
+                <view class="need-wanner">{{needItem.title}}</view>
+                <view class="need-pic">
+                    <image  src='{{needItem.image}}' mode="aspectFit"  style="width:160rpx; height:160rpx"> </image>
+                </view>
+                <view class="need-honrnum">
+                  <image  src='https://duing.site/saveFiles/images/mark.png' style="width:15px; height:15px"> </image>
+                  {{needItem.reward}}</view>
+                <view class="need-location">
+                  <image  src='https://duing.site/saveFiles/images/locat.png' style="width:15px; height:15px"> </image>
+                  {{needItem.site}}</view>
+            </view>
+        </block>
+    
+    
+    
+      </scroll-view>
+      </view>
+
