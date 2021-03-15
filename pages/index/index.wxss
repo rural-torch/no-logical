@@ -41,41 +41,34 @@
   line-height: 56rpx;
   font-size: 24rpx;
 }
-.top{
-  display: flex;
+
+.navbar{ 
+  flex: none; 
+  display: flex; 
+  background: #fff; 
   font-family: "微软雅黑"、Arial、Verdana、"Times New Roman";
-}
-.top_tabbar{
-  font-size: 24rpx;
-  margin-left: 50rpx;
-  font-weight: 700;
-  border-width: 0 0 8rpx 0;
-  border-color: white;
-  border-style: solid;
-  border-radius: 4rpx;
-  font-family: "微软雅黑"、Arial、Verdana、"Times New Roman";
-}
-.top_tabbar2{
-  font-size: 24rpx;
-  margin-left: 50rpx;
-  font-weight: 700;
-  border-width: 0 0 8rpx 0;
-  border-color: white;
-  border-style: solid;
-  border-radius: 4rpx;
-  font-family: "微软雅黑"、Arial、Verdana、"Times New Roman";
-}
-.top_tabbar1{
-  font-size: 28rpx;
-  margin-left: 34rpx;
-  margin-top: -6rpx;
-  padding-bottom: 8rpx;
+ } 
+ .navbar .item{ 
+  position: relative; 
+  flex: auto; 
+  text-align: center; 
+  line-height: 80rpx; 
+ } 
+ .navbar .item.active{ 
+  color: rgb(249, 184, 111); 
+ } 
+ .navbar .item.active:after{ 
+  content: ""; 
+  display: block; 
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  height: 6rpx; 
+  background:rgb(249, 184, 111); 
   font-weight: 800;
-  border-width: 0 0 8rpx 0;
-  border-color: rgb(252, 191, 80);
-  border-style: solid;
-  border-radius: 4rpx;
-}
+ }
+
 
 
 .main {
@@ -255,6 +248,5 @@ right: 20rpx;
   margin: 70rpx 50rpx;
   font-size: 35rpx;
 }
-
 
 

@@ -3,7 +3,7 @@
 
 
 <view class="author-date">
-<image class="avatar" src="{{aneedData.headimg}}"></image>
+  <image class="avatar" src="{{aneedData.headimg}}" style="width:50px; height:50px;overflow:hidden;border-radius:50%;"></image>
 <view class="jubao">
                  <image  src="https://duing.site/saveFiles/images/ju.png" style="width:20px; height:20px"></image>
                <text>  举报</text>
@@ -30,7 +30,7 @@
 </view>
 <view class='sucai' ><text class="mingcheng">图片素材：</text> 
  <view  wx:for="{{img}}" class='tupian'>
- <image class="suolue"  src='{{item}}' style="width:30px; height:30px " bindtap="preview" data-src="{{item}}"></image>
+  <image class="suolue"  mode="aspectFit" src='{{item}}' style="width:25px; height:30px " bindtap="preview" data-src="{{item}}"></image>
  </view>
 </view>
 <view class="jiezhi">

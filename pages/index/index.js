@@ -19,8 +19,100 @@ Page({
     avatarUrl:'',
     nickname:'',
     flag:0,
-    collected:true
+    hasChange: false,
+    navbar: ['推荐', '关注', '风景',"美食","活动","文化","其他"], 
+    currentTab: 0 ,
+    thing:'',
+    newArray: [],
+    shoopingtext: "", //清空搜索框,
+
   },
+  navbarTap: function(e){ 
+    this.setData({ 
+    currentTab: e.currentTarget.dataset.idx 
+    }) 
+  this.loadData();
+    this.renderPage();
+    },
+ /* search: function(e) {
+    var searchtext = this.data.shoopingtext; //搜索框的值
+    var sss = true;
+    if (searchtext != "") {
+      //模糊查询 循环查询数组中的title字段
+      for (var index in this.data.shoopingarray) {
+        var num = this.data.shoopingarray[index].title.indexOf(searchtext);
+        let temp = 'shoopingarray[' + index + '].status';
+        if (num != -1) { //不匹配的不显示
+          this.setData({
+            [temp]: 1,
+          })
+          sss = false //隐藏未找到提示
+        }
+      }
+      this.setData({
+        history: false, //隐藏历史记录
+        noneview: sss, //隐藏未找到提示
+        shoppinglist: true, //显示商品列表
+        newArray: this.data.historyArray //给新历史记录数组赋值
+      })
+    } else {
+      this.setData({
+        noneview: true, //显示未找到提示
+        shoppinglist: false, //隐藏商品列表
+        history: false, //隐藏历史记录
+      })
+    }
+  },
+  data: {
+    shoopingtext: "", //搜索框的值
+    history: false, //显示历史记录
+    noneview: false, //显示未找到提示
+    shoppinglist: false, //显示商品列表
+    historyArray: [], //历史记录数组,
+    newArray: [], //添加历史记录数组
+    shoopingarray: [{ //商品
+      id: 0,
+      images: "/images/3201.png",
+      title: "完达山甄选牧场酸奶饮品牛奶饮料常温发酵乳包...",
+      money: "88.00",
+      sold: "78箱",
+      status: 0
+    }, {
+      id: 1,
+      images: "/images/3202.jpg",
+      title: "网红 天日盐饼干 粗粮早餐 代餐宿舍小吃零食 130g*...",
+      money: "26.80",
+      sold: "34包",
+      status: 0
+    }]
+  },
+  //搜索框的值
+  shoppinginput: function(e) {
+    //当删除input的值为空时
+    if (e.detail.value == "") {
+      this.setData({
+        history: true, //显示历史记录
+        shoppinglist: false //隐藏商品列表
+      });
+      //所有商品列表的状态改为0
+      for (var index in this.data.shoopingarray) {
+        let temp = 'shoopingarray[' + index + '].status';
+        this.setData({
+          [temp]: 0,
+        })
+      }
+    }
+    this.setData({
+      shoopingtext: e.detail.value
+    })
+  },
+  //点击历史记录赋值给搜索框
+  textfz: function(e) {
+    this.setData({
+      shoopingtext: e.target.dataset.text
+    })
+  }
+})*/
   //获取图片尺寸数据
   loadPic: function(e) {
     var that = this,
@@ -84,15 +176,15 @@ Page({
   renderPage: function() {
     var that = this,
       data = that.data,
-      flag=data.flag,
       columnsleft = data.columnsleft,
       columnsright = data.columnsright,
+      flag=data.flag,
       tempPics = data.tempPics,
       length = tempPics.length,
       rightHeight = that.jsData.rightHeight,
       leftHeight = that.jsData.leftHeight,
       index = 0
-    for(var i = length-1; i >= 0; i--)  {
+      for(var i = length-1; i >= 0; i--)  {
       /*if(rightHeight<leftHeight)
       {
       columnsright[index].push(tempPics[i]);
@@ -114,41 +206,201 @@ Page({
       columnsleft :columnsleft,
       columnsright : columnsright,
       flag:flag
-      //tempPics: []
     })
     that.jsData.rightHeight = rightHeight
     that.jsData.leftHeight = leftHeight
   },
-
+  addlove: function (e) {
+    console.log(e);
+    var that=this;
+    var data = that.data;
+    var tempPics = data.tempPics;
+    var columnsleft = data.columnsleft;
+    var columnsright = data.columnsright;
+    var islike;
+    var i=0;
+    var j=0;
+    var k=0;
+    for(i=0;i<tempPics.length;i++)
+    {
+      if(tempPics[i].topicid==e.currentTarget.dataset.id)
+      {
+        islike=tempPics[i].islike;
+      }
+    }
+    if(islike===0)
+    {
+    for(j=0;j<tempPics.length/2;j++)
+    {
+      
+        if(columnsright[0][j].topicid==e.currentTarget.dataset.id)
+        {
+          columnsright[0][j].islike=islike + 1;
+          that.setData({
+            columnsright : columnsright
+          });
+        }
+    }
+    for(j=0;j<tempPics.length/2;j++)
+    {
+      
+        if(columnsleft[0][j].topicid==e.currentTarget.dataset.id)
+        {
+          columnsleft[0][j].islike=islike + 1;
+          that.setData({
+            columnsleft : columnsleft
+          });
+        }
+    }
+    console.log(islike)
+    console.log(app.globalData.uid);
+    that.setData({
+      islike:1,
+    })
+    wx.request({
+      url: 'https://duing.site/likeTopic/giveLike',
+      method: 'POST',
+      data:{
+        userid:app.globalData.uid,
+        topicid:e.currentTarget.dataset.id
+      },
+      success(res){
+        console.log(islike)
+            },
+      fail(res){
+              // console.log(res);
+            }
+          })
+        }
+        if(islike!=0)
+        {
+        for(j=0;j<tempPics.length/2;j++)
+        {
+          
+            if(columnsright[0][j].topicid==e.currentTarget.dataset.id)
+            {
+              columnsright[0][j].islike=0;
+              that.setData({
+                columnsright : columnsright
+              });
+            }
+        }
+        for(j=0;j<tempPics.length/2;j++)
+        {
+          
+            if(columnsleft[0][j].topicid==e.currentTarget.dataset.id)
+            {
+              columnsleft[0][j].islike=0;
+              that.setData({
+                columnsleft : columnsleft
+              });
+            }
+        }
+        console.log(islike)
+        console.log(app.globalData.uid);
+        that.setData({
+          islike:0,
+        })
+        wx.request({
+          url: 'https://duing.site/likeTopic/removeLike',
+          method: 'POST',
+          data:{
+            userid:app.globalData.uid,
+            topicid:e.currentTarget.dataset.id
+          },
+          success(res){
+            console.log(islike)
+                },
+          fail(res){
+                  // console.log(res);
+                }
+              })
+            }
+  },
+  
   //加载数据
-  loadData: function() {
+  loadData: function(option) {
     var that=this
+    var data=that.data
+        console.log(that.data.currentTab)
+        console.log(that.data.thing)
     if (!that.jsData.isLoading) 
           {
             that.jsData.isLoading = true
     wx.request({
-      　　url: 'https://duing.site/home?userid=uid', //服务器地址
+      　　url: 'https://duing.site/home', //服务器地址
       header: {
         　　'content-type': 'application/json'
         　　},
-        method: 'GET',
+        method: 'POST',
         data: {
+          userid:app.globalData.uid,
+	        type:'推荐'
           　　},
+         
       　　success: function (res) {
-
+        console.log(that.data.type)
       var i=0
       var pics=[]
+      var type=""
       for(i=0;i<res.data.length;i++){
         pics.push({
+          topicid:res.data[i].topicid,
           pic:res.data[i].image,
           loctext:res.data[i].site,
           content:res.data[i].title,
           time:res.data[i].time,
           avatarUrl:res.data[i].headimg,
-          nickname:res.data[i].username
+          nickname:res.data[i].username,
+          islike:res.data[i].islike
         })
+        console.log(res.data[0].topicid);
         that.setData({
           tempPics: pics,
+        })
+      }
+      　　}
+      　　})
+    }
+  },
+  loadData1: function(option) {
+    var that=this
+    var data=that.data
+        console.log(that.data.currentTab)
+        console.log(that.data.thing)
+    if (!that.jsData.isLoading) 
+          {
+            that.jsData.isLoading = true
+    wx.request({
+      　　url: 'https://duing.site/home', //服务器地址
+      header: {
+        　　'content-type': 'application/json'
+        　　},
+        method: 'POST',
+        data: {
+          userid:app.globalData.uid,
+	        type:'风景'
+          　　},
+         
+      　　success: function (res) {
+        console.log(that.data.type)
+      var i=0
+      var pics1=[]
+      var type=""
+      for(i=0;i<res.data.length;i++){
+        pics1.push({
+          topicid:res.data[i].topicid,
+          pic:res.data[i].image,
+          loctext:res.data[i].site,
+          content:res.data[i].title,
+          time:res.data[i].time,
+          avatarUrl:res.data[i].headimg,
+          nickname:res.data[i].username,
+          islike:res.data[i].islike
+        })
+        console.log(res.data[0].topicid);
+        that.setData({
+          tempPics: pics1,
         })
       }
       　　}
@@ -263,8 +515,12 @@ bindGetUserInfo: function(e) {
                                           data: user[0],
                                           key: 'user',
                                       })
-                                      app.globalData.ishide=false
-                                      that.setData({
+                                    app.globalData.ishide=false
+                                    wx.setStorage({
+                                      data: false,
+                                      key: 'ishide',
+                                    })
+                                    that.setData({
                                         isHide: false
                                     });
                                     wx.showTabBar({})
@@ -308,9 +564,18 @@ bindGetUserInfo: function(e) {
 },
   onLoad: function() {
     this.loadData()
-    if(app.globalData.ishide==true){
     wx.hideTabBar({})
-    }
+
+    let that=this
+    wx.getStorage({
+      key: 'ishide',
+      success:function(res){
+        that.setData({
+          isHide:res.data
+        })
+        wx.showTabBar({})
+      }
+    })
     this.setData({
       isHide:app.globalData.ishide
     })
@@ -352,7 +617,7 @@ bindGetUserInfo: function(e) {
       },
     })
   },
-
+ 
   goto_counter: function(e){ 
     wx.showModal({
       content:'你的互助已有用户开始创作啦，点击下方按钮查看情况',
@@ -367,7 +632,6 @@ bindGetUserInfo: function(e) {
       }
     })
     } ,
-
     goto_fengjing:function(e){
       wx.getStorage({
         key: 'city',
@@ -383,159 +647,5 @@ bindGetUserInfo: function(e) {
           })
         },
       })
-    },
-
-    addlove:function(e){
-      this.setData({
-        collected: false
-      })
     }
 })
-/* var that = this
-    const db = wx.cloud.database()
-    if (!that.jsData.isLoading) {
-      that.jsData.isLoading = true
-        db.collection('index').where({
-          _openid: 'osqkr4y6UIW2MVjCIvSDXGE8mU-A'
-        })
-        .get({
-          success: function(res) {
-            // res.data 包含该记录的数据
-            console.log(res.data)
-            var i=0
-            var pics=[]
-            for(i=0;i<res.data.length;i++){
-            pics.push({
-              pic:res.data[i].pic,
-              loctext:res.data[i].loctext,
-              content:res.data[i].content,
-              time:res.data[i].time
-            })
-            that.setData({
-              tempPics: pics
-            })
-          }
-          }
-        })  
-    }
-      loadData: function() {
-    var that = this
-    if (!that.jsData.isLoading) {
-      wx.showLoading()
-      that.jsData.isLoading = true
-      setTimeout(function() {
-        var pics = []
-        pics.push({
-          pic: '/images/qi.jpeg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"一年一度的大赛开始啦，还不来参观吗~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding2.jpg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/qi.jpeg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding2.jpg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/qi.jpeg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding2.jpg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        that.setData({
-          tempPics: pics
-        })
-      }, 1000)
-    }
-  },
-  <view class="main">
-  <view wx:for="{{columnsleft}}" class="column-left">
-    <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index' wx:for-index="bindex" >
-      <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-bindex= '{{bindex}}' id="{{item.index}}"></image>
-      <view class="list-loc" style="opacity:{{0.6}}">
-      <image  src="/images/图层 180 拷贝.png" class="loc11"></image>
-      <view class="loc_text">{{pics.loctext}}</view>
-    </view>
-    <view class="list-main">
-        <view class="list-text">
-      {{pics.content}}
-    </view>
-    <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
-    <view class="list-user">
-      <image class="motou" src="/images/南南1.jpg"></image>
-      <text class="authname">作者的昵称</text>
-    </view>
-    <view class="list-love">
-      <image src="/images/矢量智能对象 拷贝 2.png" class="love-img" bindtap="addlove"></image>
-      <view >{{pics.love}}</view>
-    </view>
-  </view>
-    </view>
-  </view>
-  <view wx:for="{{columnsright}}" class="column-right">
-    <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index1' wx:for-index="bindex1" >
-      <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-bindex1= '{{bindex1}}' id="{{item.index}}"></image>
-      <view class="list-loc" style="opacity:{{0.6}}">
-      <image  src="/images/图层 180 拷贝.png" class="loc11"></image>
-      <view class="loc_text">{{pics.loctext}}</view>
-    </view>
-    <view class="list-main">
-        <view class="list-text">
-      {{pics.content}}
-    </view>
-    <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
-    <view class="list-user">
-      <image class="motou" src="/images/南南1.jpg"></image>
-      <text class="authname">作者的昵称</text>
-    </view>
-    <view class="list-love">
-      <image src="/images/矢量智能对象 拷贝 2.png" class="love-img" bindtap="addlove"></image>
-      <view >{{pics.love}}</view>
-    </view>
-  </view>
-    </view>
-  </view>
-</view>*/

@@ -18,8 +18,8 @@
  .jubao{
   width: 124rpx;
   position: absolute;
-  top:48rpx;
-  left:470rpx;
+  top:10rpx;
+  left: 600rpx;
   font-size: 27rpx;
   color:  #070707;
   vertical-align: middle;
@@ -88,7 +88,7 @@
 .rongyu{
   width: 300rpx;
   position: absolute;
-  top:150rpx;
+  top:156rpx;
   left:360rpx;
   font-size: 23rpx;
   color: #070707;
@@ -113,10 +113,9 @@
  }
   
  .title {
-  display: flex;
-  justify-content: center;
+
    position: absolute;
-   left: 136rpx;
+   left: 126rpx;
    top: 180rpx;
    height:100rpx;
    width:400rpx;
@@ -138,8 +137,8 @@
    height:240rpx;
    width: 660rpx;
    border-bottom:2rpx #e5e5e5 solid;
-   letter-spacing: 10rpx;
   }
+  .shuju{letter-spacing: 2rpx;}
  .leibie{
   left: 29.2rpx;
   line-height:80rpx;
@@ -200,6 +199,7 @@
  }
  .butto{
   border-radius:30rpx;
+  background-color: hsl(22, 97%, 49%);
   background-color: rgb(240, 25, 25);
   font-size: 40rpx;
   color:#FFFEFD;
@@ -218,6 +218,7 @@
  .mingcheng{
    color: hsl(0, 0%, 0%);
  }
+ 
  .shuju{
    color: #726e6e;
  }

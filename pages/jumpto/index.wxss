@@ -100,9 +100,17 @@ font-size: 30rpx;
   height: 64rpx;
 }
 .share{
-  width: 54rpx;
-  height: 64rpx;
-  margin-left: 30rpx;
+  width: 58rpx;
+  height: 60rpx;
+  padding:0 20rpx;
+  position: absolute;
+  right: 32rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-size: 38rpx 36rpx;
+  background-repeat:no-repeat;
+  border:none;
 }
 .comm{
   width: 60rpx;

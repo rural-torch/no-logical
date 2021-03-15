@@ -98,11 +98,10 @@
           </view>
         </view>
         <!-- 积分 -->
-        <view class="s" wx:if="{{item.status==3 ||(item.status==5&& item.fi!=1)}}">执行中</view>
-        <view class="s" wx:elif='{{item.status==4}}'>已超时</view>
-        <view class="s" wx:elif='{{item.status==5&& item.fi==1}}'>待审核</view>
-
-        <view class="s" wx:else>已完成</view>
+        <image src="/images/5.png" style="height:55rpx;width:140rpx;margin-left:140rpx" wx:if="{{item.status==3 ||(item.status==5&& item.fi!=1)}}">执行中</image>
+        <!-- <view class="s" wx:elif='{{item.status==4}}'>已超时</view>
+        <view class="s" wx:elif='{{item.status==5&& item.fi==1}}'>待审核</view> -->
+        <image src="/images/4.png" style="height:55rpx;width:140rpx;margin-left:140rpx"wx:else>已完成</image>
       </view>
       <view class="ifhave" wx:if="{{tasklist.length==0}}">您还未接取过任务！</view>
     </view>
@@ -126,9 +125,9 @@
           </view>
         </view>
         <!-- 积分 -->
-        <view class="s" wx:if="{{item.status==0}}">待接取</view>
-        <view class="s" wx:elif='{{item.status==3}}'>执行中</view>
-        <view class="s" wx:else>已完成</view>
+        <image src="/images/5.png" style="height:55rpx;width:140rpx;margin-left:140rpx" wx:if="{{item.status==0}}"></image>
+        <image src="/images/3.png" style="height:55rpx;width:140rpx;margin-left:140rpx" wx:elif='{{item.status==3}}'>执行中</image>
+        <image src="/images/4.png" style="height:55rpx;width:140rpx;margin-left:140rpx" wx:else>已完成</image>
       </view>
       <view class="ifhave" wx:if="{{mytasklist.length==0}}">您还未发表内容！</view>
     </view>

@@ -34,33 +34,75 @@ Page({
    * 页面的初始数据
    */
   data: {
+  focus: false,
+  keyfocus:true,
   ifplus:false,
   ifmess:false,
   scrollHeight: '100vh',
-  inputBottom: 0
+  inputBottom: 0,
+  inputVal:''
+  },
+  cleanInput:function() {
+    
+    //button会自动清空，所以不能再次清空而是应该给他设置目前的input值
+    this.setData({
+     inputVal: this.data.inputVal
+    })
+    },
+  sendme:function(e){
+    msgList.push({
+      speaker: 'customer',
+      contentType: 'text',
+      content: this.data.inputVal
+     })
+     inputVal = '';
+     this.setData({
+      msgList,
+      inputVal,
+      ifmess:false,
+     });
   },
   bindplus: function(){
-    if (this.data.ifplus==true){
-  this.setData({
-    ifplus:false
+   
+    //计算msg高度
+    // calScrollHeight(this, keyHeight);
+  if (this.data.ifplus==true){
+    this.setData({
+      scrollHeight: '100vh',
+      inputBottom: 0,
+      keyfocus:false,
+      toView: 'msg-' + (msgList.length - 1),
+      ifplus:false
   })
   }
   else{
+    keyHeight = "235";
+    this.setData({
+     scrollHeight: (windowHeight - keyHeight) + 'px',
+     keyfocus:false,
+     toView: 'msg-' + (msgList.length - 1),
+     inputBottom: keyHeight + 'px',
+
+    })
+    
     this.setData({
       ifplus:true
     })
   }
 },
-iffocus:function(e){
+iffocus:function(res){
   let that=this
- if(e.detail.value==""){
+ if(res.detail.value==""){
  that.setData({
-   ifmess:false
+   ifmess:false,
+   keyfocus:true
  })
  }
  else{
   that.setData({
-    ifmess:true
+    ifmess:true,
+    inputVal:res.detail.value,
+    keyfocus:true
   })
  }
 },
@@ -81,7 +123,7 @@ adddetial1:function(e){
   onLoad: function (options) {
     initData(this);
     this.setData({
-     cusHeadIcon: app.globalData.userInfo.avatarUrl,
+     cusHeadIcon: app.globalData.avatarUrl,
     });
   },
 
@@ -112,7 +154,7 @@ adddetial1:function(e){
      inputBottom: 0
     })
     this.setData({
-     toView: 'msg-' + (msgList.length - 1)
+     toView: 'msg-' + (msgList.length - 1),
     })
    
    },

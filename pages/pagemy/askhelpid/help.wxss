@@ -1,37 +1,31 @@
-.container1{
+.container2{
   margin: 15rpx;
-  padding: 0 !important;
+  padding:0;
 }
-.title{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.title view{
- margin:13rpx;
- color:rgb(66, 65, 65)
-}
-.title input{
-  width: 70%;
-  height: 70rpx;
-  border-bottom: 2rpx solid #008080;
-  margin: 10rpx;
+.title1{
+  background-color: #F5F5F5;
+  border: 1rpx dashed #A9A9A9;
+  border-radius: 30rpx;
+  padding: 30rpx;
+  margin: 20rpx auto;
+  width: 90%;
 }
 .btn{
-
   /* background-color: white;
-  border: 	#FFA500 1rpx solid; */
-  border-radius: 35rpx;
+  border: rgb(252, 191, 80) 1rpx solid; */
+  border-radius: 35px;
   /* font-size: medium;
-  width: 100px;
+  width: 60px;
   height: 30px;
-  padding-top: 10px;
   text-align: center;
   line-height: 50rpx;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  margin-left:35%;
-  color: #FFA500; */
+  bottom: 20px;
+  left:20%;
+  color: rgb(252, 191, 80);
+  position: absolute;
+  display:table-cell; 
+  text-align:center;
+  vertical-align:middle */
 }
 .imgs{
   margin: 10rpx auto;
@@ -72,12 +66,4 @@
   margin-left: 83%;
   width: 60rpx;
   height: 55rpx;
-}
-.need{
-  background-color: #F5F5F5;
-  border: 1rpx dashed #A9A9A9;
-  border-radius: 30rpx;
-  padding: 30rpx;
-  margin: 10rpx auto;
-  width: 90%;
 }

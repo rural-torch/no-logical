@@ -1,4 +1,5 @@
 // pages/jumpto/index.js
+var app = getApp()
 Page({
  
     data: {
@@ -270,12 +271,14 @@ Page({
     var index = options.index
     // console.log(index)
     wx.request({
-      　　url: 'https://duing.site/home?userid=uid', //服务器地址
+      　　url: 'https://duing.site/home', //服务器地址
       header: {
         　　'content-type': 'application/json'
         　　},
-        method: 'GET',
+        method: 'POST',
         data: {
+          userid:app.globalData.uid,
+	        type:'推荐'
           　　},
       　　success: function (res) {
       // 　　console.log(res.data)

@@ -177,7 +177,7 @@ swithtopush: function(e) {
     success: function(res) 
     { console.log('123',res.data) }, 
   })
-  this.submit();
+
  /* var id =this.data.tasklist1.id
   var dat = this.data.tasklist;
   var fi = e.target.dataset.fi;
@@ -213,30 +213,10 @@ swithtopush: function(e) {
  */ 
 var Id=this.data.helpid
 wx.navigateTo({
-    url:  '/pages/askhelp/help?id= ' + Id
+    url:  '/pages/pagemy/askhelpid/help?id= ' + Id
  })
 },
-submit:function(){
-  // 数据上传服务端
-  let that = this;
-  wx.request({
-    url: 'https://duing.site/task/submitWork',
-    method: 'POST',
-    data:{
-      helpid:that.data.helpid,
-      userid:app.globalData.uid,///'oVmIt5xNGnJCRg-Bd3hVKsHgzNco',
-     
-      status:5,
-      topicid:null,
-    },
-    success(res){
-      console.log('请求成功',res)
-      // console.log(res);
-      that.setData({
-       ////helpid:res.data.helpid
-      })
-    }
-  })},
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
