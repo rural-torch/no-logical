@@ -14,9 +14,11 @@ Page({
     tasklist:[],
     mytaskinner:[],
     see:true,
+    img:[],
     status:status,
     headimg:'',
     nickname:'',
+    windowHeight:wx.getSystemInfoSync().screenHeight+"px",
   /*taskinner:[{
   name:"胡乱起的名字",
   id:"856942333",
@@ -58,14 +60,21 @@ Page({
     this.setData({ modal: (e && e.currentTarget.dataset.modal) || "", input: self.data.user });
     // 这里对modal的赋值是关键
 },
+preview(event) {
+  // console.log(event.currentTarget.dataset.src)
+  let currentUrl = event.currentTarget.dataset.src
+  wx.previewImage({
+    current: currentUrl, // 当前显示图片的http链接
+    urls: this.data.img // 需要预览的图片http链接列表
+  })
+},
 onLoad: function (option) {
-  this.setData({headimg:app.globalData.avatarUrl,nickname:app.globalData.username})
+  this.setData({headimg:app.globalData.avatarUrl,
+    nickname:app.globalData.username})
   console.log(app.globalData.avatarUrl)
-  var Id = option.id;
+  var Id = option.id; 
   this.setData({helpid:Number(Id)})
   this.requdata();
-  console.log('helpid:',this.data.helpid) ;
-  console.log('taksiner:',this.data.taskinner)
 
 
   /*var tasklist2 =JSON.parse(option.tasklist);
@@ -138,8 +147,15 @@ requdata:function(){
       },
       success: function(res) {
         console.log('获得的数据是：',res.data)
-        that.setData({
-          taskinner:res.data
+        var pro=res.data.site
+        console.log(pro)
+        var p=pro.substring(0,3)
+        var d=pro.substring(3)
+       that.setData({
+        province:p,
+         detail:d,
+          taskinner:res.data,
+          img:res.data.imgs
         })
        // wx.setNavigationBarTitle({
          // title: that.data.nickname,

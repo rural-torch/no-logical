@@ -8,6 +8,19 @@ App({
     ishide:true
   },
   onLaunch: function () {
+    let that=this;
+    
+   
+    wx.getStorage({
+      key: 'user',
+      success:function(res){
+        that.globalData.avatarUrl=res.data.avatarUrl,
+        that.globalData.username=res.data.nickName,
+        that.globalData.sex=res.data.gender,
+        that.globalData.uid=res.data.uid,
+        console.log(that.globalData.uid)
+      }
+    })
     // let user=[];
     // let that=this
     // wx.login({

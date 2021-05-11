@@ -1,6 +1,58 @@
 <!-- 任务详情页面 -->
+<!--先静后动，先样式再数据-->
+<view class="container3" style=" display: flex;flex-direction: column;padding: 0px;background: -webkit-linear-gradient(bottom,rgb(254, 90, 21),white);height:{{windowHeight}};">
+ <view class="row1">
+  <image src="{{taskinner.headimg}}" style="height:125rpx;width:125rpx;border-radius:50%;margin-left:53rpx;margin-top:20rpx"></image>
+  <view class="column2">
+    <view style="margin-left:20rpx;margin-top:50rpx;font-size:100%;font-weight:700">{{taskinner.username}}</view>
+    <view style="margin-top:20rpx;margin-left:20rpx;margin-right:20rpx;color:rgb(146, 147, 146);font-size:16rpx;">{{taskinner.startime}}</view>
+  </view>
+  <view class='mess' bindtap="bindmess">
+          <view class='fist'>
+          <view class='num'>{{province}}  
+            <view class="dnot"></view></view>
+            <image src="/images/5-11.png" style="margin-left:20rpx;opacity:1;width:50rpx;height:50rpx;margin-top:10rpx"></image>
+        </view>
+          <view class="word">{{detail}}</view>
+        </view>
+   <view class="hon" bindtap="bindmark">
+        <view class='fist'>
+        <view class='num'>{{taskinner.reward}}
+          <image src="/images/5-08.png" style="height:15rpx;width:12rpx;margin-top:15rpx;margin-left:4rpx"></image></view>
+          <image src="/images/5-09.png" style="width:50rpx;height:50rpx;margin-top:10rpx"></image>
+        </view>
+        <view class="word">荣耀积分</view>
+        </view>
+       </view>
 
-  <!-- 第一框内容 -->
+ <view class="row2">
+   <view class="title">{{taskinner.title}}</view>
+   <view class='type'>求助类别</view>
+   <view class="photo1">图片素材</view>
+   <view class="photo">
+      <view wx:for="{{img}}" class="box2" >
+        <image class="video"  mode="aspectFit" src='{{item}}'  bindtap="preview" data-src="{{item}}"></image></view>
+    </view>
+   <view class="photo1">求助详情</view>
+   <view class="detail">{{taskinner.content}}</view>
+   <view class="photo1">时间限制</view>
+   <view class="time">{{taskinner.endtime}}</view>
+
+   <view class="box4" wx:if="{{taskinner.status==5 && fi==1}}">
+    <view class="bt2"  bindtap="swithtoback">已完成</view>
+    <toast hidden="{{status}}" duration="3000" bindchange="toastHide">
+        您已经完成此任务！
+    </toast>
+  </view>
+
+    <view class="help" bindtap="swithtopush" data-fi="1" >提交作品</view>
+
+<toast hidden="{{status}}" duration="3000" bindchange="toastHide">
+       接取任务成功
+</toast>
+ </view>
+</view>
+  <!-- 第一框内容
   <view class="box1">
     <view class="box1-1">
       <image src="{{taskinner.headimg}}" style="height:100%;width:100%"></image>
@@ -23,21 +75,21 @@
     <view class="box1-3" style="white-space:nowrap;color:rgb(128,128,128);font-size:25rpx;margin-top:3px">举报</view>
   </view>
    <!-- 第二框内容 -->
-  <view class="box2">求助类别：乡村振兴</view>
+  <!-- <view class="box2">求助类别：乡村振兴</view>
   <view class="box2">图片素材:
     
       <image src="{{tasklist1.pic}}" style="width:90%;height:100%"></image>
       <image src="{{tasklist1.pic}}" style="width:90%;height:100%"></image>
       <image src="{{tasklist1.pic}}" style="width:90%;height:100%"></image>
   </view>
-  <view class="box2">时间限制: {{taskinner.endtime}}</view>
+  <view class="box2">时间限制: {{taskinner.endtime}}</view> -->
 
   <!-- 第三框内容 -->
-  <view class="box3" bindtap="bindbox3">
+  <!-- <view class="box3" bindtap="bindbox3">
     <view>求助详情：</view>
-    <view>{{taskinner.content}}</view></view>
+    <view>{{taskinner.content}}</view></view> -->
     <!-- 第四框内容:已完成的页面 -->
-    <view class="box4" wx:if="{{taskinner.status==5 && fi==1}}">
+    <!-- <view class="box4" wx:if="{{taskinner.status==5 && fi==1}}">
     <view class="box4-1">
      <view class='cir1'></view>
      <view class="line1"></view>
@@ -54,9 +106,9 @@
     <toast hidden="{{status}}" duration="3000" bindchange="toastHide">
         您已经完成此任务！
     </toast>
-  </view>
+  </view> -->
   <!--第四框内容: 未完成的页面 -->
-  <view class="box4" wx:else>
+  <!-- <view class="box4" wx:else>
     <view class="box4-1">
      <view class='cir1'></view>
      <view class="line1"></view>
@@ -70,7 +122,7 @@
      <view>完成</view>
    </view>
     <buttom class="bt" bindtap="swithtopush" data-fi="1" >提交作品</buttom>
-  </view>
+  </view> -->
 
 
 <view><modal wx:for="{{taskinner}}"  cancel-text="关闭" confirm-text="确定"

@@ -1,6 +1,7 @@
 <form bindsubmit="submitdata">
 <view class="container1">
   <view class="title">
+    <view style="margin-top:24rpx;margin-right:30rpx;font-size:800;color:#222929">标题</view>
     <input type="text" name="title" placeholder="请输入您的标题" />
   </view>
 

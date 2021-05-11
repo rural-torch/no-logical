@@ -1,21 +1,66 @@
-<!--pages/search/index.wxml-->
-<view>
-     <view>
-        <view class="weui-search-bar">
-            <view class="weui-search-bar__form">
-            <!-- 搜索框 -->
-                <view class="weui-search-bar__box">
-                    <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
-                    <input bindtap="search" type="text" class="weui-search-bar__input" placeholder="大家都在搜：家乡美食"/>
-                </view>
-            </view>
-        </view>
+<view class="top">
+  <view class="topsearch">
+    <view class="frame">
+      <input value="{{shoopingtext}}" bindinput="shoppinginput"></input>
     </view>
+    <text bindtap="search">搜索</text>
+  </view>
 </view>
-<view class="history_title">
-<view class="history">历史搜索</view>
-<icon class="icon-box-img" type="cancel" size="15"></icon>
+<view class="none" wx:if="{{noneview}}">
+  <image src="/images/null.png" mode="widthFix" style="width:20%"></image>
+  <text>抱歉，没有相关商品</text>
 </view>
-<view class="history_content">
-  <text wx:for="{{alltext}}" class="ebox">{{item.message}}</text>
-</view>
+<view class="main">
+      <view wx:for="{{columnsleft}}" class="column-left">
+    <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index' wx:for-index="bindex" >
+      <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-id="{{pics.topicid}} "></image>
+      <view class="list-loc" style="opacity:{{0.6}}">
+      <view class="loc_text">{{pics.loctext}}</view>
+      <image  src="https://duing.site/saveFiles/images/180.png" class="loc11"></image>
+    </view>
+    <view class="list-main">
+        <view class="list-text">
+      {{pics.content}}
+    </view>
+    <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
+    <view class="list-user">
+      <image class="motou" src="{{pics.avatarUrl}}"></image>
+      <text class="authname">{{pics.nickname}}</text>
+    </view>
+    <view class="list-love">
+      <image bindtap='addlove' data-id="{{pics.topicid}}" wx:if="{{pics.islike==0}}" src="https://duing.site/saveFiles/images/like.png" class="love-img" ></image>
+      <view style="display:flex"  wx:if="{{pics.islike!=0}}">
+      <image bindtap='addlove' data-id="{{pics.topicid}}"  src="https://duing.site/saveFiles/images/like1.png" class="love-img" ></image>
+      <view style="margin-top:5rpx;margin-left:5rpx;">{{pics.islike}}</view>
+    </view>
+    </view>
+  </view>
+    </view>
+  </view>
+  <view wx:for="{{columnsright}}" class="column-right">
+    <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index1' wx:for-index="bindex1" >
+      <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-id="{{pics.topicid}}" ></image>
+      <view class="list-loc" style="opacity:{{0.6}}">
+      <view class="loc_text">{{pics.loctext}}</view>
+      <image  src="https://duing.site/saveFiles/images/180.png" class="loc11"></image>
+    </view>
+    <view class="list-main">
+        <view class="list-text">
+      {{pics.content}}
+    </view>
+    <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
+    <view class="list-user">
+      <image class="motou" src="{{pics.avatarUrl}}"></image>
+      <text class="authname">{{pics.nickname}}</text>
+    </view>
+    <view class="list-love"> 
+      <image bindtap='addlove' data-id="{{pics.topicid}}" wx:if="{{pics.islike==0}}" src="/images/like.png" class="love-img" ></image>
+      <view style="display:flex"  wx:if="{{pics.islike!=0}}">
+      <image bindtap='addlove' data-id="{{pics.topicid}}"  src="/images/like1.png" class="love-img" ></image>
+      <view style="margin-top:5rpx;margin-left:5rpx;">{{pics.islike}}</view>
+    </view>
+    </view>
+  </view>
+    </view>
+  </view>
+      </view>

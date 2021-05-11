@@ -1,49 +1,47 @@
 <!--先静后动，先样式再数据-->
-<view class="container3">
+<view class="container3" style=" display: flex;flex-direction: column;padding: 0px;background: -webkit-linear-gradient(bottom,rgb(254, 90, 21),white);height:{{windowHeight}};">
+ <view class="row1">
+  <image src="{{aneedData.headimg}}" style="height:125rpx;width:125rpx;border-radius:50%;margin-left:33rpx;margin-top:20rpx"></image>
+  <view class="column2">
+    <view style="margin-left:4rpx;margin-top:50rpx;font-size:100%;font-weight:700;warp:nowrap;padding-right:10rpx">{{aneedData.username}}</view>
+    <view style="margin-top:20rpx;margin-left:20rpx;margin-right:20rpx;color:rgb(146, 147, 146);font-size:16rpx;">{{aneedData.startime}}</view>
+  </view>
+  <view class='mess' bindtap="bindmess">
+          <view class='fist'>
+          <view class='num'>{{province}}  
+            <view class="dnot"></view></view>
+            <image src="/images/5-11.png" style="margin-left:20rpx;opacity:1;width:50rpx;height:50rpx;margin-top:10rpx"></image>
+        </view>
+          <view class="word">{{detail}}</view>
+        </view>
+   <view class="hon" bindtap="bindmark">
+        <view class='fist'>
+        <view class='num'>{{aneedData.reward}}
+          <image src="/images/5-08.png" style="height:15rpx;width:12rpx;margin-top:15rpx;margin-left:4rpx"></image></view>
+          <image src="/images/5-09.png" style="width:50rpx;height:50rpx;margin-top:10rpx"></image>
+        </view>
+        <view class="word">荣耀积分</view>
+        </view>
+       </view>
 
-
-<view class="author-date">
-<image class="avatar" src="{{aneedData.headimg}}"></image>
-<view class="jubao">
-                 <image  src="https://duing.site/saveFiles/images/ju.png" style="width:20px; height:20px"></image>
-               <text>  举报</text>
-                 </view>
-<text class="author">{{aneedData.username}}</text>
-<view class="sixin">
-                 <image  src='https://duing.site/saveFiles/images/chat.png' style="width:15px; height:15px"></image>
-                 <text decode="{{true}}">&nbsp;私信</text>
-                 </view>
-<view class="didian">
-                 <image  src='https://duing.site/saveFiles/images/locat.png' style="width:15px; height:15px"> </image>                
-                 <text decode="{{true}}">&nbsp;{{aneedData.site}}</text></view>
-<view class="rongyu">
-   <image  src="https://duing.site/saveFiles/images/mark.png" style="width:15px; height:17px"> </image>
-   <text decode="{{true}}">&nbsp;荣誉积分：{{aneedData.reward}}</text>
-                 </view>
-<text class="date">{{aneedData.startime}}</text>
-</view>
-<text class="title">{{aneedData.title}}
-</text>
-<view class="leibie">
- <text class="mingcheng">求助类别：</text>
- <text class="shuju">{{aneedData.type}}</text>
-</view>
-<view class='sucai' ><text class="mingcheng">图片素材：</text> 
- <view  wx:for="{{img}}" class='tupian'>
- <image class="suolue"  src='{{item}}' style="width:30px; height:30px " bindtap="preview" data-src="{{item}}"></image>
- </view>
-</view>
-<view class="jiezhi">
- <text class="mingcheng">时间限制：</text>
- <text class="shuju">{{aneedData.endtime}} 前完成</text>
-</view>
-<view class='biaotidet'>
-  <text class="mingcheng">求助详情：</text>
-  <text class="shuju">{{aneedData.content}}</text>
-</view>
-<button class='butt' wx:if="{{aneedData.status==0}}" bindtap="swithtotask" hover-class='but' hover-stay-time="1000" hidden="{{hi}}">帮助完成</button>
-<view class='butto' wx:else >该任务已被接取</view>
+ <view class="row2">
+   <view class="title">{{aneedData.title}}</view>
+   <view class='type'>求助类别 
+     <view style="font-size: 20rpx;margin-top:10rpx;text-indent:2em;letter-spacing:2rpx;font-weight:200;color:rgb(111, 112, 111) ">{{aneedData.type}}</view>
+   </view>
+   <view class="photo1">图片素材</view>
+   <view class="photo">
+      <view wx:for="{{img}}" class="box2">
+        <image class="video"  mode="aspectFit" src='{{item}}'  bindtap="preview" data-src="{{item}}"></image></view>
+    </view>
+   <view class="photo1">求助详情</view>
+   <view class="detail">{{aneedData.content}}</view>
+   <view class="photo1">时间限制</view>
+   <view class="time">{{aneedData.endtime}}</view>
+   <view class='help' wx:if="{{aneedData.status==0}}" bindtap="swithtotask" hover-class='but' hover-stay-time="1000" hidden="{{hi}}">帮助完成</view>
+<view class='help1' wx:else >该任务已被接取</view>
 <toast hidden="{{status}}" duration="3000" bindchange="toastHide">
        接取任务成功
 </toast>
+ </view>
 </view>

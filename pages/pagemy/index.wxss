@@ -3,31 +3,123 @@
 .message{
   display:flex;
   width:750rpx;
-  height:320rpx;
-  flex-direction: column;
-  border:3rpx rgb(192, 192, 192) solid;
+  height:380rpx;
+  flex-direction: row;
+  background: -webkit-linear-gradient(top,rgb(235, 101, 47),white);
 }
-
-
 .tmessage{
   display:flex;
   flex-direction: row;
-  width: 100%;
-  height:230rpx;
+  width: 222rpx;
+  height:170rpx;
 }
 .tmessage .head{
-  width: 152rpx;
-  height: 152rpx;
+  width: 130rpx;
+  height: 130rpx;
   border-radius:74rpx;
-  margin-left: 54rpx;
-  margin-top: 55rpx;
+  margin-left: 55rpx;
+  margin-top: 30rpx;
   display: flex;
 }
-
-
-.mamsg{
- width:390rpx;
- margin-left: 30rpx;
+.column{
+  display: flex;
+  flex-direction: column;
+  width:400rpx;
+}
+.row1{
+  display: flex;
+  flex-direction: row;
+  margin-top: 38rpx;
+  margin-left:8rpx;
+  font-size: 10rpx;
+  color: white;
+  font-weight: 900;
+  letter-spacing: 3rpx;
+}
+.row2{
+  display: flex;
+  flex-direction: row;
+  font-size: 18rpx;
+  font-weight: 800;
+  margin-top:35rpx;
+  margin-left:0rpx;
+  color:white;
+  letter-spacing: 3rpx;
+}
+.row3{
+  display: flex;
+  flex-direction: row;
+  letter-spacing: 3rpx;
+  margin-left:10rpx;
+}
+.name{
+  color: white;
+  font-size: 36rpx;
+}
+.fan{
+  font-size: 35rpx;
+  margin-top: -15rpx;
+  margin-left: 10rpx;
+  margin-right: 7rpx;
+}
+.mess{
+  margin-top:40rpx;
+  width: 180rpx;
+  height: 120rpx;
+  background-color: white;
+  border-radius: 30rpx;
+  box-shadow:0px 0px 5px rgb(192, 192, 192);
+}
+.dnot{
+  background-color: #f00;
+  border-radius: 50%;
+  width: 8rpx;
+  height: 8rpx;
+  margin-top:4rpx;
+}
+.hon{
+  margin-top:40rpx;
+  width: 180rpx;
+  height: 120rpx;
+  background-color: white;
+  border-radius: 10rpx;
+  margin-left: 20rpx;
+  border-radius: 30rpx;
+  box-shadow:0px 0px 5px rgb(168, 168, 168);
+}
+.num{
+  display: flex;
+  flex-direction: row;
+  font-size: 24rpx;
+  font-weight: 800;
+  width:78rpx;
+  margin-top:50rpx;
+  margin-left:30rpx;
+}
+.fist{
+  display: flex;
+  flex-direction: row;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+.word{
+  margin-top:4rpx;
+  font-weight: 800;
+  font-size: 14rpx;
+  margin-left: 30rpx;
+}
+.job{
+  background-color:rgb(232, 84, 26);
+  color:white;
+  font-size: 12rpx;
+  height: 24rpx;
+  margin-top:20rpx;
+  margin-left:5rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  border-radius: 12rpx;
+  line-height: 24rpx;
+  text-align: center;
 }
 /* 关注和粉丝 */
 .l1{
@@ -72,14 +164,14 @@
 }
 .login{
   color: white;
-  background-color: rgb(250, 176, 91);
+  background-color: rgb(236, 74, 10);
   margin-left:10rpx;
   margin-top: 40rpx;
   text-align: center;
   letter-spacing: 4rpx;
   width:200rpx;
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 80rpx;
+  line-height: 50rpx;
   border-radius: 20rpx;
   
 }
@@ -129,16 +221,7 @@
   letter-spacing: 3rpx;
 }
 /* 位置标签和职业标签 */
-.label{
-  text-align: center;
-  height: 36rpx;
-  line-height: 36rpx;
-  margin-left: 0rpx;
-  letter-spacing: 3rpx;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
+
 .label view{
   padding-left: 4rpx;
 }
@@ -151,23 +234,34 @@
 }
 .sev{
   width:50rpx;
-  margin-top: 15rpx;
-  margin-left:0rpx;
+  margin-top: 44rpx;
+  margin-left:30rpx;
   font-size: 12rpx;
   text-align: center;
   height: 200rpx;
   display: flex;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+}
+.column3{
+  display: flex;
   flex-direction: column;
 }
-
+.pro{
+  color: white;
+  font-size: 19rpx;
+  margin-top: -120rpx;
+  margin-left:50rpx;
+}
 .set{
   width:50rpx;
   text-indent: 6em;
   font-size: 12rpx;
-  margin-top: 15rpx;
-  margin-right:20rpx;
+  margin-top: 44rpx;
+  margin-left:0rpx;
   display: flex;
-  flex-direction: column;
   text-align: center;
 }
 
@@ -182,75 +276,10 @@
 }
 
 /* 消息 */
-.t{
-  margin-top:5rpx;
-  margin-left: 20rpx;
-}
-.t1{
-  margin-left: 15rpx;
-  margin-top:5rpx;
-}
-.mark{
-  margin-left: 20rpx;
-  margin-top:5rpx;
-}
-.mark1{
-  margin-left:9rpx;
-  margin-top:5rpx;
-}
-/* 创作中固定按钮 */
-.workv .hbtn{
-  position: fixed;
-  display: inline-block;
-  width: 35px;
-  height: 35px;
-  background-color:white;
-  border: 3rpx solid rgb(247, 247, 248);
-	border-radius: 50%;
-	padding: 10rpx;
-  bottom: 75px;
-right: 10px;
-}
- .workv .hbtn2{
-  position: fixed;
-  display: inline-block;
-  width: 35px;
-  height: 35px;
-  background-color:white;
-  border: 3rpx solid rgb(247, 247, 248);
-	border-radius: 50%;
-	padding: 10rpx;
-  bottom: 25px;
-right: 10px;
-display: flex;
-}
 
-/* 喜欢中固定按钮 */
-.likev .hbtn{
-  position: fixed;
-  display: inline-block;
-  width: 35px;
-  height: 35px;
-  background-color:white;
-  border: 3rpx solid rgb(247, 247, 248);
-	border-radius: 50%;
-	padding: 10rpx;
-  bottom: 75px;
-right: 10px;
-}
- .likev .hbtn2{
-  position: fixed;
-  display: inline-block;
-  width: 35px;
-  height: 35px;
-  background-color:white;
-  border: 3rpx solid rgb(247, 247, 248);
-	border-radius: 50%;
-	padding: 10rpx;
-  bottom: 25px;
-right: 10px;
-display: flex;
-}
+
+/* 创作中固定按钮 */
+
 
 .main{
   width:750rpx;
@@ -286,29 +315,64 @@ display: flex;
   border-radius: 10rpx;
  }
  .workv{
-   margin-top:2rpx;
+    margin-top:20rpx;
     display: flex;
-    flex-direction: row;
-    border-top: 2rpx solid rgb(209, 209, 209) ;
+    flex-direction: column;
     width: 100%;
     border-collapse: collapse;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    
  }
- .workv .box1{
-  border-width: 20rpx;
-  border:10rpx rgb(227, 227, 227) solid;
-  height:320rpx;
-  margin:0rpx;
-  width:230rpx;
-  border-collapse: collapse;
+ .workvv{
+   display: flex;
+   flex-direction: row;
+   height:200rpx;
+   width: 710rpx;
+   border-radius: 30rpx;
+   margin:20rpx;
+   box-shadow:0px 1px 3px rgb(182, 182, 182);
  }
+.workpic{
+  width:250rpx;
+
+  margin: 20rpx;
+  border-radius: 10rpx;
+}
+.workpart{
+  margin:30rpx;
+  width:470rpx;
+}
+.worktitle{
+  font-size: 40rpx;
+  margin-bottom: 50rpx;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  -webkit-box-orient:vertical;
+  word-break:break-all;
+}
+.worktime{
+  color: rgb(175, 174, 174);
+  text-overflow:ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+  font-size: 19rpx;
+}
+.worklocate{
+  color: rgb(175, 174, 174);
+  text-overflow:ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+  font-size: 19rpx;
+  
+}
  .likev{
     margin-top:2rpx;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    border-top: 3rpx solid rgb(209, 209, 209) ;
+
     width: 100%;
     border-collapse: collapse;
     justify-content: flex-start;
@@ -322,18 +386,20 @@ display: flex;
   border-collapse: collapse;
  }
 .mov{
-  border-top: 5rpx  rgb(209, 209, 209) solid;
   display: flex;
   flex-direction: column;
-
+  margin-top: 30rpx;
 }
 .mov .ta{
   display: flex;
   flex-direction: row;
-
-  border-bottom: 4rpx  rgb(209, 209, 209) dashed ;
-  height: 260rpx;
+  box-shadow:0px 1px 3px rgb(182, 182, 182);
+  height: 220rpx;
+  border-radius: 20rpx;
+  margin-left:20rpx;
+  width: 710rpx;
   align-items: center;
+  margin-top: 20rpx;
 }
 .mov .ta .tleft{
   display: flex;
@@ -350,7 +416,7 @@ display: flex;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  font-size: 20rpx;
+  font-size: 15rpx;
   width:750rpx;
   flex-wrap: wrap;
   align-items: center;
@@ -359,10 +425,11 @@ display: flex;
   letter-spacing: 3rpx;
 }
 .mov .ta .tleft .da{
-  margin-top:40rpx;
+  margin-top:10rpx;
   letter-spacing: 3rpx;
   font-weight: 800;
   font-size: 24rpx;
+  color:rgb(134, 134, 134)
 }
 .mov .ta .tleft .ti{
   margin-top:20rpx;
@@ -373,8 +440,9 @@ display: flex;
   margin-top: 10rpx;
 }
 .taskhead{
-  width:60rpx;
-  height:60rpx;
+  width:36rpx;
+  height:36rpx;
+
 }
 .over{
   position: fixed;
@@ -428,25 +496,26 @@ right: 10px;
 .navbar{ 
   flex: none; 
   display: flex; 
-  background: #fff; 
+  margin-top: -80rpx;
  } 
  .navbar .item{ 
   position: relative; 
   flex: auto; 
   text-align: center; 
+  font-weight: 700;
   line-height: 80rpx; 
+  font-size: 26rpx;
  } 
  .navbar .item.active{ 
-  color: rgb(249, 184, 111); 
+  color: rgb(232, 77, 11); 
  } 
  .navbar .item.active:after{ 
   content: ""; 
   display: block; 
   position: absolute; 
   bottom: 0; 
-  left: 0; 
-  right: 0; 
+  left: 40rpx; 
+  right: 40rpx; 
   height: 6rpx; 
-  background:rgb(249, 184, 111); 
+  background:rgb(232, 77, 11); 
  }
-

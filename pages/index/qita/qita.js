@@ -1,4 +1,4 @@
-// pages/pagemy/fans/fans.js
+// pages/index/qita/qita.js
 Page({
 
   /**

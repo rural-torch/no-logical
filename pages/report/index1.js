@@ -6,7 +6,7 @@ Page({
     longitude:0,//位置经度
     imgs:[],//图片路径
     imgNum:0,//图片数量
-    helpTypes:["类型1","类型2","类型3"],//求助类型选择
+    helpTypes:["风景","美食","活动","文化","其他"],//求助类型选择
     moneyList:[1,3,5,10,20,50,100],//打赏
     place:null,//求助位置
     type:null,//求助类型

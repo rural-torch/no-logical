@@ -16,9 +16,11 @@
     "pages/pagemy/message/message",
     "pages/pagemy/honormark/honormark",
     "pages/pagemy/focus/focus",
-    "pages/pagemy/fans/fans",
-    "pages/pagemy/service/service"
-
+    "pages/pagemy/service/service",
+    "pages/jumpto/jumpfeng/jumpfeng",
+    "pages/pagemy/mywork",
+    "pages/pagemy/askhelp/help",
+    "pages/askhelpv/askhelpv"
   ],
   "window": {
     "enablePullDownRefresh": true,

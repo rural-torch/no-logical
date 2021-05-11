@@ -1,17 +1,10 @@
 // pages/focus/f.js
+var app=getApp()
 Page({
 
   data: {
-  focuslist:[{
-    name:"李相"
-  },
-  {
-    name:"徐风年"
-  },
-  {
-    name:"青鸟"
-  }
-]
+  focuslist:[],
+
   },
 
 
@@ -19,7 +12,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this
+    wx.request({//get请求
+      url: 'https://duing.site/fans/getUserAllFocus?userid='+app.globalData.uid, ////服务器网址
+      method:"GET",
+      header: {
+          'content-type': 'application/json' // 默认值
+      },
+      success: function(res) {
+        console.log('获得的数据是：',res.data)
+        that.setData({
+          focuslist:res.data.reverse()
+        })
+       // wx.setNavigationBarTitle({
+         // title: that.data.nickname,
+        //})
+      },
+      fail:function(err){
+        console.log(err);
+      },
+    })
   },
 
   /**

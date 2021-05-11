@@ -1,8 +1,63 @@
-<!--pages/pagemy/adddetail.wxml-->
-<view class="all" >
-<form bindsubmit="formSubmit">
-<view class="label">所在城市：<input name="city" placeholder="请输入您的所在城市" maxlength="8"/></view>
-<view class="label">职业：<input name="job" placeholder="请输入您的职业" maxlength="8"/></view>
-<button formType="submit" >提交</button>
-</form>
+<form bindsubmit="savePersonInfo">
+    
+    <view  bindtap="chooseImg" class="img" >
+        <view class="form-item-hd">头像</view>
+        
+            <image src="{{img}}" style="width:50px; height:50px;overflow:hidden;border-radius:50%;"></image>
+        
+    </view>
+
+<view class="form-list">
+    
+    <view class="form-item">
+        <view class="form-item-hd">昵称</view>
+        <view class="form-item-bd">
+            <input type="text" name="nickName" value="{{username}}" placeholder="请输入昵称" maxlength="8"/>
+        </view>
+    </view>
+    <view class="form-item">
+        <view class="form-item-hd">性别</view>
+        <view class="form-item-bd">
+            <picker mode="selector" value="{{genderIndex}}" range="{{genderArray}}" bindchange="changeGender">
+                <block wx:if="{{gender ===''}}">
+                    <view class="input input-placeholder">请选择性别</view>
+                    <input type="text" name="gender" value="" class="hidden" maxlength="1"/>
+                </block>
+                <block wx:else>
+                    <view class="input">{{genderArray[gender]}}</view>
+                    <input type="text" name="gender" value="{{genderIndex}}" class="hidden" maxlength="1"/>
+                </block>
+            </picker>
+        </view>
+    </view>
+    <view class="form-item">
+        <view class="form-item-hd">职业</view>
+        <view class="form-item-bd">
+            <input type="str" name="job" value="{{job}}" placeholder="请输入职业" maxlength="10"/>
+        </view>
+    </view>
+    <view class="form-item">
+        <view class="form-item-hd">地点</view>
+        <view class="form-item-bd">
+            <input type="str" name="address" value="{{address}}" placeholder="请输入地址" maxlength="10"/>
+        </view>
+    </view>
 </view>
+<view class="form-list">
+    <view class="form-item">
+        <view class="form-item-hd">手机号码</view>
+        <view class="form-item-bd">
+            <input type="str" name="tel" value="{{phone}}" placeholder="请输入手机号码" maxlength="11"/>
+        </view>
+    </view>
+</view>
+<view class="sign">
+    <view class="form-item">
+        <view class="form-item-hd">个性签名</view>
+        <view class="form-item-bd">
+            <input type="text" name="sign" value="{{sign}}" placeholder="请输入个性签名" maxlength="25"/>
+        </view>
+    </view>
+</view>
+<button formType="submit" class="edit-btn">点击注册</button>
+</form>

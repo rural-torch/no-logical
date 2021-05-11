@@ -1,18 +1,22 @@
 const {needList}=require('../data/need-datas')
 var app = getApp();
 var status = true;
+var windowHeight = wx.getSystemInfoSync().windowHeight
 Page({
  data: {
   status:status,
   needData:[],
   aneedData:[],
+  province:'',
+  detailsite:'',
   img:[],
   ifuserid:'',
   hi:false,
+  windowHeight:wx.getSystemInfoSync().screenHeight+"px"
  },
 
  onShow:function(){
- 
+
  },
  onLoad: function (option) {
   var that=this
@@ -62,9 +66,17 @@ Page({
           that.setData({
             aneedData: item,
             helpid:item.helpid,
-            ifuserid:item.userid
+            ifuserid:item.userid,
           },() => {
             console.log(item.userid,app.globalData.uid)
+            var pro=item.site
+            console.log(pro)
+            var p=pro.substring(0,3)
+            var d=pro.substring(3)
+            that.setData({
+              province:p,
+              detail:d
+            })
             if (item.userid==app.globalData.uid){
               console.log(that.ifuserid,app.globalData.uid)
               that.setData({
@@ -112,7 +124,9 @@ preview(event) {
   })
 },
 swithtotask: function(event) {
-  var tes=String(this.data.aneedData.helpid)
+  let that=this
+  if (app.globalData.avatarUrl!=''){
+      var tes=String(that.data.aneedData.helpid)
   wx.setStorage({
     data:0,
     key:tes,
@@ -120,9 +134,18 @@ swithtotask: function(event) {
       console.log(res)
     }
       })
-  this.submit(); 
+  that.submit(); 
   // console.log("触发了点击事件，弹出toast")
 
+    }
+    else{
+      wx.showToast({
+        title: '请先进行注册',
+        icon: "loading",
+      })
+    }
+
+  
 
 
 },

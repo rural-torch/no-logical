@@ -6,8 +6,10 @@ Page({
     latitude:0,//位置纬度
     longitude:0,//位置经度
     imgs:[],//图片路径
+    vidio:[],
     imgNum:0,//图片数量
-    topicTypes:["类型1","类型2","类型3"],//类型选项
+
+    topicTypes:["风景","美食","活动","文化","其他"],//类型选项
     place:null,//位置
     type:null,//类型
   },
@@ -30,8 +32,11 @@ Page({
     let that = this;
     wx.chooseImage({
       count: 9 - num,
-      sizeType:['original','compressed'],
-      success:function(res){
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      maxDuration: 30,
+      success (res) {
+        // tempFilePath可以作为img标签的src属性显示图片
         addImgs = addImgs.concat(res.tempFilePaths);
         num = addImgs.length;
         that.setData({
@@ -39,7 +44,7 @@ Page({
           imgNum: num
         });
       }
-    });
+    })
   },
   addPlace:function(){
     let that = this;
@@ -120,10 +125,13 @@ Page({
             }
           })
         }
-        wx.switchTab
-        ({
-        url:'/pages/index/index'
-      })
+        
+    setTimeout(function () {
+      wx.switchTab
+      ({
+      url:'/pages/index/index'
+    })
+    }, 1000) //延迟时间 这里是1秒
       }
     })
     var tes=String(this.data.helpid)
@@ -136,60 +144,4 @@ Page({
         })
 
   },
-  repo2:function(){
-    // 数据上传服务端
-    let that = this;
-    var time = util.formatTime(new Date());
-    // 再通过setData更改Page()里面的data，动态更新页面的数据
-    this.setData({
-      time: time
-    });
-    wx.request({
-      url: 'http://duing.site/topic/addTopic',
-      method: 'POST',
-      header: {
-        "content-type":'application/json;charset=utf-8'
-      },
-      data:{
-        title:that.data.title,
-        site:that.data.place,
-        //imgs=that.data.imgs,
-      },
-      success: function (res) {
-        // console.log(res.data);
-      }
-    })
-    wx.reLaunch({
-      url:'/pages/index/index'
-    })
-  },
-  repo1:function(e){
-    //数据上传服务端
-    var that=this;
-    var title=e.detail.value.title;
-    var type=that.data.topicTypes[Number(e.detail.value.type)];
-    var place=that.data.place;
-    var imgs=that.data.imgs;
-        wx.reLaunch({
-          url:'/pages/index/index?content='+title+'&pic='+imgs+'&loctext='+place,
-        })
-    // console.log(title)
-    // console.log(type)
-    // console.log(place)
-    var time = util.formatTime(new Date());
-    // 再通过setData更改Page()里面的data，动态更新页面的数据
-    this.setData({
-      time: time
-    });
-
-    wx.cloud.database().collection('index').add({
-      data: {
-        pic:imgs,content:title,loctext:place,time:time
-      }
-    }).then((res) => {
-    //  console.log(res)//返回的res里面有_id的值，这个_id是系统自动生成的。
-   }).catch(err=>{
-    //  console.log(err)
-   })
-  }
 })

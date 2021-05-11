@@ -54,40 +54,44 @@ video {
    width: 100%;
  }
  .foc{
-   width: 160rpx;
+   width: 70rpx;
    height: 70rpx;
-   margin-left:320rpx;
+   margin-left:420rpx;
+   margin-top: 20rpx;
  }
 
  
 .head_img {
-  margin-left: 20rpx;
-  width: 80rpx;
-  height: 80rpx;
+  margin-left: 35rpx;
+  width: 90rpx;
+  height: 90rpx;
   border-radius: 50%;
   border: 5rpx #fff solid;
 }
 .jia{
-  margin-top: 20rpx;
-  margin-left: 6rpx;
+  margin-top: 10rpx;
+  margin-left: 20rpx;
 color:black;
-font-size: 30rpx;
+font-size: 35rpx;
+font-weight: 520;
 }
 .head_font{
   line-height: 120%;
   display: flex;
   font-size: 26rpx;
-  margin-left: 34rpx;
+  margin-left: 60rpx;
   width: 660rpx;
+  margin-top: 10rpx;
 }
 .head_con{
   white-space: pre-line;
+  margin-top: 10rpx;
 }
 .head_time{
   font-size: 20rpx;
   color: #bbb;
-  margin-left: 34rpx;
-  margin-top: 6rpx;
+  margin-left: 60rpx;
+  margin-top: 16rpx;
 }
 .head_pic{
   display: flex;
@@ -95,23 +99,33 @@ font-size: 30rpx;
   margin-top: 30rpx;
 }
 .letter{
-  width: 54rpx;
-  height: 44rpx;
+  width: 64rpx;
+  height: 54rpx;
+  margin-left: 15rpx;
 }
 .share{
-  width: 54rpx;
-  height: 44rpx;
-  margin-left: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
+  padding:0 20rpx;
+  position: absolute;
+  right: 32rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-size: 38rpx 36rpx;
+  background-repeat:no-repeat;
+  border:none;
 }
 .comm{
-  width: 54rpx;
-  height: 44rpx;
+  width: 60rpx;
+  height: 64rpx;
   margin-left: 360rpx;
 }
 .loved{
-  width: 54rpx;
-  height: 44rpx;
-  margin-left: 30rpx;
+  width: 106rpx;
+  height:58rpx;
+  margin-left: 440rpx;
+  margin-top: 15rpx;
 }
 .love_img {
   position: absolute;

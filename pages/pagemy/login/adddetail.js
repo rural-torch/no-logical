@@ -2,49 +2,77 @@
 let app=getApp()
 Page({
   data: {
-  city:"",
-  avatarUrl:'',
-  uid:'',
-  nickname:'',
-  sex:'',
-  city:'',
-  job:'',
-  fans:0,
-  focu:0,
-  intergal:0,
+    renzheng:0,
+    name: '',
+    nickName: '',
+    gender: 0,
+    genderArray: ['女', '男'],
+    genderIndex: 0,
+    age: '',
+    birthday: '',
+    constellation: '',
+    constellationArray: ['白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '摩羯座', '水瓶座', '双鱼座'],
+    constellationIndex: 0,
+    company: '',
+    school: '',
+    tel: '',
+    email:'',
+    intro: '',
+    birthdayEndDate: '',
+    img:'',
   },
-  formSubmit: function (e) {  //表单提交绑定事件
-    var city=e.detail.value.city
+  chooseImg:function(){
+    
+    let that = this;
+    wx.chooseImage({
+     
+      sizeType:['original','compressed'],
+      success:function(res){
+        console.log( res.tempFilePaths);
+        
+        that.setData({
+          img:res.tempFilePaths,
+         
+        });
+      }
+    });
+  },
+  savePersonInfo: function (e) {  //表单提交绑定事件
+    var city=e.detail.value.address
     var job=e.detail.value.job
     let that=this
+    var data = e.detail.value
     let username=that.data.nickname
     let avatarUrl=that.data.avatarUrl
     let sex=that.data.sex
     let userid=app.globalData.uid
+
     console.log(userid)
     console.log(city)
+    wx.setStorage({
+      data:false,
+      key: 'iflogin',
+      success: function(res){
+      }
+        })
     if(city!='' && job!=''){
     wx.request({//post请求
       url: 'https://duing.site/user/registerUser',
       method:"POST",
-      header: {
-          'content-type': 'application/json' // 默认值
-      },
       data: {
         userid:app.globalData.uid,
-        headimg:avatarUrl,
-        username:username,
-        gender:sex,
-        address:city,
-        job:job,
-        fans:0,
-        focus:0,
-        integral:0,
+        headimg:that.data.img,
+       username:data.nickName,
+       gender:data.gender,
+        address:data.address,
+        job:data.job,
+        phone:data.tel,
+        sign:data.sign,
       },
       success: function(res) {
         console.log(res)
         wx.showToast({
-          title: app.globalData.uid,
+          title: "成功注册",
           icon:'success'        })
         wx.setStorage({
           data: city,
@@ -130,10 +158,10 @@ Page({
       key: 'user',
     success:function(res){
       that.setData({
-      avatarUrl:res.data.avatarUrl,
-      nickname:res.data.nickname,
+      img:res.data.avatarUrl,
+      username:res.data.nickname,
       uid:res.data.uid,
-      sex:res.data.sex,
+      gender:res.data.sex,
       })
       // console.log(that.data.avatarUrl)
     }

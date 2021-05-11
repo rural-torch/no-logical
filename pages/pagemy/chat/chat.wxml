@@ -1,16 +1,36 @@
 <!--聊天主页面-->
 <view class="chat">
 <!-- 聊天区 -->
- <view class="chat-main"></view>
- <!-- 输入区 -->
- <view class="chat-border">
-     <image class="listen" bindtap="bindsound" src="https://duing.site/saveFiles/images/sound.png" style="width:52rpx;height:52rpx;margin-left:20rpx;margin-top:25rpx"></image>
-     <input type="text" class="input-b"  ></input>
-     <image class="emoji" bindtap="bindemoji" src="https://duing.site/saveFiles/images/emoji.png" style="width:52rpx;height:50rpx;margin-left:20rpx;margin-top:25rpx"></image>
-     <image class="more" bindtap="bindplus" src="https://duing.site/saveFiles/images/plus.png" style="width:52rpx;height:52rpx;margin-left:20rpx;margin-top:25rpx"></image>
-  </view>
-  <!-- 聊天点击加号出现的图标 -->
-  <view class="plus-main" wx:if="{{ifplus}}">
+<scroll-view scroll-y scroll-into-view='{{toView}}' style='height: {{scrollHeight}};'>
+  <!-- <view class='scrollMsg'> -->
+  <block wx:key wx:for='{{msgList}}' wx:for-index="index">
+ 
+   <!-- 单个消息1 客服发出（左） -->
+   <view wx:if='{{item.speaker=="server"}}' id='msg-{{index}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+    <view style='width: 11vw; height: 11vw;'>
+     <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='/images/emoji.png'></image>
+    </view>
+    <view style='width: 4vw; height: 11vw; margin-left: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+     <image style='width: 4vw;' src='/images/2.png' mode='widthFix'></image>
+    </view>
+    <view class='leftMsg'>{{item.content}}</view>
+   </view>
+ 
+   <!-- 单个消息2 用户发出（右） -->
+   <view wx:else id='msg-{{index}}' style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+    <view class='rightMsg'>{{item.content}}</view>
+    <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+     <image style='width: 4vw;' src='/images/1.png' mode='widthFix'></image>
+    </view>
+    <view style='width: 11vw; height: 11vw;'>
+     <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='{{cusHeadIcon}}'></image>
+    </view>
+   </view>
+ 
+  </block>
+  <!-- </view> -->
+  <view class="plus-main" wx:if="{{inputBottom!=0&&inputBottom!='0px'}}">
+    <!-- {{inputBottom!=0}} -->
     <view class="plus-deta">
       <view style="width:100rpx;height:130rpx;margin-left:70rpx;display:flex;flex-direction:column;align-items:center;"><image src='https://duing.site/saveFiles/images/album.png' style="width:100rpx;height:100rpx;"></image>相册</view>
       <view style="width:100rpx;height:130rpx;margin-left:70rpx;display:flex;flex-direction:column;align-items:center;"><image src='https://duing.site/saveFiles/images/cam.png' style="width:100rpx;height:100rpx;"></image>拍摄</view>
@@ -22,4 +42,26 @@
       <view style="width:100rpx;height:130rpx;margin-left:70rpx;display:flex;flex-direction:column;align-items:center;"><image src='https://duing.site/saveFiles/images/colect.png' style="width:100rpx;height:100rpx;"></image>我的收藏</view>
     </view>
   </view>
+  <!-- 占位 -->
+  <view style='width: 100%; height: 18vw;'></view>
+ </scroll-view>
+ <form bindreset="cleanInput" >
+ <view class='inputRoom' style='bottom: {{inputBottom}}'>
+  <image class="listen" bindtap="bindsound" src="https://duing.site/saveFiles/images/sound.png" style="width:52rpx;height:52rpx;margin-left:20rpx;margin-top:25rpx"></image>
+  <input bindconfirm='sendClick' focus="{{focus}}"  bindinput="iffocus" adjust-position='{{false}}' value='{{inputVal}}' confirm-type='send' bindfocus='focus' bindblur='blur'></input>
+  <!-- hold-keyboard="{{keyfocus}}" -->
+  <image class="emoji" bindtap="bindemoji" src="https://duing.site/saveFiles/images/emoji.png" style="width:52rpx;height:50rpx;margin-left:20rpx;margin-top:25rpx"></image>
+  <view  formType="reset" style="background-color:rgb(7, 193, 96);width:100rpx;height:60rpx;margin-left:20rpx;margin-right:20rpx;margin-top:25rpx;border-radius: 10rpx;text-align: center;line-height: 60rpx;color:white" wx:if="{{ifmess}}" bindtap="sendme">发送</view>
+  <image wx:else  class="moret" bindblur='lo' bindtap="bindplus" src="https://duing.site/saveFiles/images/plus.png" style="width:52rpx;height:52rpx;margin-left:20rpx;margin-top:25rpx"></image>
+ </view>
+ </form>
+ <!-- 输入区 -->
+ <!-- <view class="chat-border">
+     <input type="text" class="input-b" bindinput="iffocus" ></input>
+     <image class="emoji" bindtap="bindemoji" src="https://duing.site/saveFiles/images/emoji.png" style="width:52rpx;height:50rpx;margin-left:20rpx;margin-top:25rpx"></image>
+     <view class="more" wx:if="{{ifmess}}" >发送</view>
+     <image class="moret" bindtap="bindplus" src="https://duing.site/saveFiles/images/plus.png" wx:else style="width:52rpx;height:52rpx;margin-left:20rpx;margin-top:25rpx"></image>
+  </view> -->
+  <!-- 聊天点击加号出现的图标 -->
+
 </view>

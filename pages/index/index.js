@@ -1,26 +1,44 @@
 var app = getApp()
 var columnsleft = new Array();
 var columnsright = new Array();
+
 Page({
   //不需要渲染到wxml的数据存储在jsData中
-  jsData: {
-    rightHeight: [0],
-    leftHeight:[0],
-    isLoading: false
-  },
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     isHide: true,
-    columnsleft:[[]],
-    columnsright:[[]],
+    columnsleft: new Array(7).fill(0).map(() => new Array()),
+    columnsright: new Array(7).fill(0).map(() => new Array()),
     tempPics: [],
-    showModalStatus: false ,
-    temp:[],
-    avatarUrl:'',
-    nickname:''
+    showModalStatus: false,
+    topicid:0,
+    avatarUrl: '',
+    nickname: '',
+    flag: 0,
+    hasChange: false,
+    navbar: ['推荐', '关注', '风景', "美食", "活动", "文化", "其他"],
+    currentTab: 0,
+    thing: '',
+    newArray: [],
+    shoopingtext: "", //清空搜索框,
+    typeIndex:0,
+    islike:0,
+  },
+  navbarTap: function(e) {
+    console.log(this)
+    const typeIndex = e.currentTarget.dataset.idx;
+    const type = this.data.navbar[e.currentTarget.dataset.idx];
+    console.log(typeIndex, type)
+    if (this.data.columnsleft[typeIndex].length === 0) {
+      this.loadData(typeIndex)
+    }
+    this.setData({
+      currentTab: typeIndex,
+      typeIndex : e.currentTarget.dataset.idx
+    })
   },
   //获取图片尺寸数据
-  loadPic: function(e) {
+  loadPic: function (e) {
     var that = this,
       data = that.data,
       tempPics = data.tempPics,
@@ -32,13 +50,13 @@ Page({
     }
     that.setData({
       tempPics: tempPics,
-    }, function() {
+    }, function () {
       that.finLoadPic()
     })
   },
   //图片加载错误处理
- 
-  loadPicError: function(e) {
+
+  loadPicError: function (e) {
     var that = this,
       data = that.data,
       tempPics = data.tempPics,
@@ -50,12 +68,12 @@ Page({
     }
     that.setData({
       tempPics: tempPics,
-    }, function() {
+    }, function () {
       that.finLoadPic()
     })
   },
   //判断图片是否加载完成
-  finLoadPic: function() {
+  finLoadPic: function () {
     var that = this,
       data = that.data,
       tempPics = data.tempPics,
@@ -72,81 +90,177 @@ Page({
         title: 'title',
       })
       wx.hideLoading()
-      if (that.jsData.isLoading) {
-        that.jsData.isLoading = false
-        that.renderPage()
-      }
     }
   },
   //渲染到瀑布流
-  renderPage: function() {
+  renderPage: function (typeIndex = 0) {
     var that = this,
       data = that.data,
       columnsleft = data.columnsleft,
       columnsright = data.columnsright,
+      flag = data.flag,
       tempPics = data.tempPics,
       length = tempPics.length,
-      rightHeight = that.jsData.rightHeight,
-      leftHeight = that.jsData.leftHeight,
-      index = 0
-    for (var i = 0; i < length; i++) {
-      /*if(rightHeight<leftHeight)
-      {
-      columnsright[index].push(tempPics[i]);
-      rightHeight[index] += tempPics[i].height
+      index = 0;
+    
+      columnsleft[typeIndex] = [];
+      columnsright[typeIndex] = [];
+
+    for (var i = length - 1; i >= 0; i--) {
+      if (i % 2 === 0) {
+        columnsleft[typeIndex].push(tempPics[i]);
+      } else {
+        columnsright[typeIndex].push(tempPics[i]);
       }
-      else{columnsleft[index].push(tempPics[i]);
-        leftHeight[index] += tempPics[i].height}*/
-      if(i%2===0)
-      {columnsleft[index].push(tempPics[i]);
-        leftHeight[index] += tempPics[i].height}
-        else{columnsright[index].push(tempPics[i]);
-          rightHeight[index] += tempPics[i].height}
+    }
+    if ((length - 1) % 2 === 0) {
+      flag = 1;
     }
     that.setData({
-      columnsleft :columnsleft,
-      columnsright : columnsright,
-      //tempPics: []
+      columnsleft: columnsleft,
+      columnsright: columnsright,
+      flag: flag
     })
-    that.jsData.rightHeight = rightHeight
-    that.jsData.leftHeight = leftHeight
+  },
+  addlove: function (e) {
+    var that = this;
+    var data = that.data;
+    var tempPics = data.tempPics;
+    var columnsleft = data.columnsleft;
+    var columnsright = data.columnsright;
+    var islike;
+    var typeIndex=data.typeIndex;
+    var topicid=that.data.topicid;
+    console.log(data.typeIndex)
+    var i = 0;
+    var j = 0;
+    var k = 0;
+    if (app.globalData.avatarUrl!='') {
+        for (i = 0; i < tempPics.length; i++) {
+          if (tempPics[i].topicid == e.currentTarget.dataset.id) {
+            islike = tempPics[i].islike;
+          }
+        }
+        console.log('###',that.data.columnsright)
+        if (islike === 0) {
+          for (j = 0; j < Math.floor(tempPics.length / 2); j++) {
+            if (columnsright[typeIndex][j].topicid == e.currentTarget.dataset.id) {
+              columnsright[typeIndex][j].islike = islike + 1;
+              that.setData({
+                columnsright: columnsright
+              });
+            }
+          }    
+          for (j = 0; j < Math.ceil(tempPics.length / 2); j++) {   
+            if (columnsleft[typeIndex][j].topicid == e.currentTarget.dataset.id) {
+              columnsleft[typeIndex][j].islike = islike + 1;
+              that.setData({
+                columnsleft: columnsleft
+              });
+            }
+          }
+          that.setData({
+            islike: 1,
+          })
+          wx.request({
+            url: 'https://duing.site/likeTopic/giveLike',
+            method: 'POST',
+            data: {
+              userid: app.globalData.uid,
+              topicid: e.currentTarget.dataset.id
+            },
+            success(res) {
+              console.log(islike)
+            },
+            fail(res) {
+              // console.log(res);
+            }
+          })
+        }
+        if (islike != 0) {
+          for (j = 0; j < Math.floor(tempPics.length / 2); j++) {
+    
+            if (columnsright[typeIndex][j].topicid == e.currentTarget.dataset.id) {
+              columnsright[typeIndex][j].islike = 0;
+              that.setData({
+                columnsright: columnsright
+              });
+            }
+          }
+          for (j = 0; j <  Math.floor(tempPics.length / 2); j++) {
+    
+            if (columnsleft[typeIndex][j].topicid == e.currentTarget.dataset.id) {
+              columnsleft[typeIndex][j].islike = 0;
+              that.setData({
+                columnsleft: columnsleft
+              });
+            }
+          }
+          that.setData({
+            islike: 0,
+          })
+          wx.request({
+            url: 'https://duing.site/likeTopic/removeLike',
+            method: 'POST',
+            data: {
+              userid: app.globalData.uid,
+              topicid: e.currentTarget.dataset.id
+            },
+            success(res) {
+              console.log(islike)
+            },
+            fail(res) {
+            }
+          })
+        }
+      }
+
+      else{
+        wx.showToast({
+          title: '请先进行注册',
+          icon: "loading",
+        })
+      }
+
+
+   
   },
 
   //加载数据
-  loadData: function() {
-    var that=this
-    if (!that.jsData.isLoading) 
-          {
-            that.jsData.isLoading = true
-    wx.request({
-      　　url: 'https://duing.site/home', //服务器地址
-      header: {
-        　　'content-type': 'application/json'
-        　　},
-        method: 'GET',
+  loadData: function (typeIndex) {
+    var that = this
+    var data = that.data
+    var type = that.data.navbar[typeIndex];
+      wx.request({
+        url: 'https://duing.site/home', //服务器地址
+        header: {
+          'content-type': 'application/json'
+        },
+        method: 'POST',
         data: {
-          　　},
-      　　success: function (res) {
+          userid: app.globalData.uid,
+          type: type
+        },
 
-      var i=0
-      var pics=[]
-      for(i=0;i<res.data.length;i++){
-        pics.push({
-          pic:res.data[i].image,
-          loctext:res.data[i].site,
-          content:res.data[i].title,
-          time:res.data[i].time,
-          avatarUrl:res.data[i].headimg,
-          nickname:res.data[i].username
-        })
-        pics.reverse();
-        that.setData({
-          tempPics: pics,
-        })
-      }
-      　　}
-      　　})
-    }
+        success: function (res) {
+          var type = ""
+          res.data.forEach(item => {
+            item.content = item.title;
+            item.topicid = item.topicid;
+            item.pic = item.image;
+            item.loctext = item.site;
+            item.time = item.time;
+            item.avatarUrl = item.headimg;
+            item.nickname = item.username;
+            item.islike = item.islike;
+            item.isimg=item.isimg;
+          })
+          that.setData({
+            tempPics: res.data,
+          })
+          that.renderPage(typeIndex);
+        },
+      })
   },
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //启用标题栏显示加载状态
@@ -158,181 +272,117 @@ Page({
   },
 
 
-  search:function(e){
+  search: function (e) {
     wx.navigateTo({
       url: '/pages/search/index',
     })
-},
-show:function(e){
-  var that=this
-  var data=that.data
-  var tempPics=data.tempPics
-  var bindex=e.currentTarget.dataset.bindex
-  var bindex1=e.currentTarget.dataset.bindex1
-  // console.log(bindex)
-  // console.log(bindex1)
-  if(bindex!=undefined)
-  {
-  wx.navigateTo({
-    url: '/pages/jumpto/index?index='+parseInt((parseInt(tempPics.length/2)-bindex)/2)
-  })
-}
-if(bindex1!=undefined)
-  {
-    if(bindex1===0)
-    {bindex1=parseInt(tempPics.length/2)-bindex1+1;
-    }
-    else{bindex1=parseInt((parseInt(tempPics.length/2)-bindex1)/2)+1;
-    }
-  wx.navigateTo({
-    url: '/pages/jumpto/index?index='+bindex1
-  })
-}
-},
+  },
+  show: function (e) {
+    var that = this
+    var data = that.data
+    var tempPics = data.tempPics
+        wx.navigateTo({
+          url: '/pages/jumpto/index?topicid=' + e.currentTarget.dataset.id
+        })
+  },
 
-onShow:function(){ //返回显示页面状态函数
-  //错误处理
-  // console.log("show")
-  this.loadData()
-},
-bindGetUserInfo: function(e) {
-  if (e.detail.userInfo) {
-      //用户按了允许授权按钮
-      var that = this;
-      // 获取到用户的信息了，打印到控制台上看下
-    let user=[]
-    // 查看是否授权
-    wx.getSetting({
-        success: function(res) {
-            if (res.authSetting['scope.userInfo']) {
-                wx.getUserInfo({
-                    success: function(res) {
-                        // 用户已经授权过,不需要显示授权页面,所以不需要改变 isHide 的值
-                        // 根据自己的需求有其他操作再补充
-                        // 我这里实现的是在用户授权成功后，调用微信的 wx.login 接口，从而获取code
-                        app.globalData.avatarUrl=res.userInfo.avatarUrl,
-                        app.globalData.username=res.userInfo.nickName,
-                        app.globalData.sex=res.userInfo.gender
-                        // console.log(user)
-                        // console.log(user[0])
-                   
-                        wx.login({
-                            success: res => {
-                                // 获取到用户的 code 之后：res.code
-                                console.log("用户的code:" + res.code);
-                                if (res.code) {
-                                 //将url中的appid和secret换成自己的  （可以在开发平台查看）
-                                 var url = 'https://duing.site/user/getUserid?appid=wx29ec46bf9b823b20&secret=d4afc24d341231c8e6e8be329f1af029&code='+res.code
-                                  wx.request({
-                                    url: url,
-                                    method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT 
-                                    success: function (res) {
-                                      // res.data.openid 即为所求openid
-                                      app.globalData.uid=res.data.openid
-                                      // console.log(that.globalData.uid)
-                                      user.push({uid:app.globalData.uid,avatarUrl:app.globalData.avatarUrl,
-                                        nickname:app.globalData.username,sex:app.globalData.sex})
-                                      console.log(user)
-                                    wx.setStorage({
-                                          data: user[0],
-                                          key: 'user',
-                                      })
-                                      app.globalData.ishide=false
-                                      that.setData({
-                                        isHide: false
-                                    });
-                                    wx.showTabBar({})
-                                    }
-                                  });
-                                } 
-                            }
-                        });
-                    }
-                });
-            } else {
-                // 用户没有授权
-                // 改变 isHide 的值，显示授权页面
-                app.globalData.ishide=true
-                that.setData({
-                    isHide: true
-                });
-                console.log("没有授权")
-            }
-        }
-    });
-      console.log("用户的信息如下：");
-      console.log(e.detail.userInfo);
-      //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
-      
-  } else {
-      //用户按了拒绝按钮
-      wx.showModal({
-          title: '警告',
-          content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-          showCancel: false,
-          confirmText: '返回授权',
-          success: function(res) {
-              // 用户没有授权成功，不需要改变 isHide 的值
-              if (res.confirm) {
-                  console.log('用户点击了“返回授权”');
-              }
-          }
-      });
-  }
-},
-  onLoad: function() {
-    this.loadData()
-    if(app.globalData.ishide==true){
-    wx.hideTabBar({})
-    }
+
+  
+  onLoad: function () {
+    this.loadData(0);
+    let that = this
+    wx.getStorage({
+      key: 'ishide',
+      success: function (res) {
+        that.setData({
+          isHide: res.data
+        })
+        wx.showTabBar({})
+      }
+    })
     this.setData({
-      isHide:app.globalData.ishide
+      isHide: app.globalData.ishide
     })
   },
   /*onReachBottom: function() {
     this.loadData()
   },*/
 
-  adddetial:function(e){
-    wx.getStorage({
-      key: 'city',
-      success: function(res) {
+  onShow:function(){
+    var that=this;
+    var jsData=that.jsData;
+    this.setData({
+      jsData : jsData
+    })
+     this.loadData(0);
+  },
+
+  adddetial: function (e) {
+
+      if (app.globalData.avatarUrl!='') {
         wx.navigateTo({
           url: '/pages/report/index1',
         })
-      },
-      fail:function(err){
+      }
+      else{
         wx.showToast({
           title: '请先进行注册',
-          icon:"loading",
+          icon: "loading",
         })
-      },
-    })
+      }
+
 
   },
-  adddetial1:function(e){
-    wx.getStorage({
-      key: 'city',
-      success: function(res) {
+  adddetial1: function (e) {
+wx.showActionSheet({
+  itemList: ['以照片形式发表', '以视频形式发表'],
+  success: function(res) {
+    if(res.tapIndex===0)
+    {
+      if (app.globalData.avatarUrl!=''){
         wx.navigateTo({
           url: '/pages/askhelp/help',
         })
-      },
-      fail:function(err){
+      }
+      else{
         wx.showToast({
           title: '请先进行注册',
-          icon:"loading",
+          icon: "loading",
         })
-      },
-    })
+      }
+
+  }
+  if(res.tapIndex===1)
+  {
+  wx.getStorage({
+    key: 'city',
+    success: function (res) {
+      wx.navigateTo({
+        url: '/pages/askhelpv/askhelpv',
+      })
+    },
+    fail: function (err) {
+      wx.showToast({
+        title: '请先进行注册',
+        icon: "loading",
+      })
+    },
+  })
+}
+  },
+  fail: function(res) {
+    console.log(res.errMsg)
+  }
+})
+    
   },
 
-  goto_counter: function(e){ 
+  goto_counter: function (e) {
     wx.showModal({
-      content:'你的互助已有用户开始创作啦，点击下方按钮查看情况',
+      content: '你的互助已有用户开始创作啦，点击下方按钮查看情况',
       cancelColor: 'cancelColor',
-      confirmText:'查看详情',
-      success (res) {
+      confirmText: '查看详情',
+      success(res) {
         if (res.confirm) {
           // console.log('用户点击确定')
         } else if (res.cancel) {
@@ -340,153 +390,6 @@ bindGetUserInfo: function(e) {
         }
       }
     })
-    } 
-})
-/* var that = this
-    const db = wx.cloud.database()
-    if (!that.jsData.isLoading) {
-      that.jsData.isLoading = true
-        db.collection('index').where({
-          _openid: 'osqkr4y6UIW2MVjCIvSDXGE8mU-A'
-        })
-        .get({
-          success: function(res) {
-            // res.data 包含该记录的数据
-            console.log(res.data)
-            var i=0
-            var pics=[]
-            for(i=0;i<res.data.length;i++){
-            pics.push({
-              pic:res.data[i].pic,
-              loctext:res.data[i].loctext,
-              content:res.data[i].content,
-              time:res.data[i].time
-            })
-            that.setData({
-              tempPics: pics
-            })
-          }
-          }
-        })  
-    }
-      loadData: function() {
-    var that = this
-    if (!that.jsData.isLoading) {
-      wx.showLoading()
-      that.jsData.isLoading = true
-      setTimeout(function() {
-        var pics = []
-        pics.push({
-          pic: '/images/qi.jpeg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"一年一度的大赛开始啦，还不来参观吗~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding2.jpg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/qi.jpeg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding2.jpg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/qi.jpeg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding2.jpg',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        pics.push({
-          pic: '/images/ding1.png',
-          loctext:"那达慕",
-          content:"欢迎来四川找丁真玩哦~",
-          time:"2020-1-17  20:00"
-        })
-        that.setData({
-          tempPics: pics
-        })
-      }, 1000)
-    }
   },
-  <view class="main">
-  <view wx:for="{{columnsleft}}" class="column-left">
-    <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index' wx:for-index="bindex" >
-      <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-bindex= '{{bindex}}' id="{{item.index}}"></image>
-      <view class="list-loc" style="opacity:{{0.6}}">
-      <image  src="/images/图层 180 拷贝.png" class="loc11"></image>
-      <view class="loc_text">{{pics.loctext}}</view>
-    </view>
-    <view class="list-main">
-        <view class="list-text">
-      {{pics.content}}
-    </view>
-    <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
-    <view class="list-user">
-      <image class="motou" src="/images/南南1.jpg"></image>
-      <text class="authname">作者的昵称</text>
-    </view>
-    <view class="list-love">
-      <image src="/images/矢量智能对象 拷贝 2.png" class="love-img" bindtap="addlove"></image>
-      <view >{{pics.love}}</view>
-    </view>
-  </view>
-    </view>
-  </view>
-  <view wx:for="{{columnsright}}" class="column-right">
-    <view wx:for="{{item}}" class="column_item" wx:for-item="pics"  wx:key = 'index1' wx:for-index="bindex1" >
-      <image catchtap="show" src="{{pics.pic}}" class="column_pic" mode="widthFix" data-bindex1= '{{bindex1}}' id="{{item.index}}"></image>
-      <view class="list-loc" style="opacity:{{0.6}}">
-      <image  src="/images/图层 180 拷贝.png" class="loc11"></image>
-      <view class="loc_text">{{pics.loctext}}</view>
-    </view>
-    <view class="list-main">
-        <view class="list-text">
-      {{pics.content}}
-    </view>
-    <view class="list-time" style="color:{{timeColor}}">{{pics.time}}</view>
-    <view class="list-user">
-      <image class="motou" src="/images/南南1.jpg"></image>
-      <text class="authname">作者的昵称</text>
-    </view>
-    <view class="list-love">
-      <image src="/images/矢量智能对象 拷贝 2.png" class="love-img" bindtap="addlove"></image>
-      <view >{{pics.love}}</view>
-    </view>
-  </view>
-    </view>
-  </view>
-</view>*/
+
+})

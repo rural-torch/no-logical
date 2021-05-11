@@ -1,0 +1,41 @@
+<view >
+    <block wx:for="{{cells}}" wx:for-item="cellsItem" wx:for-index="cellsIndex" wx:key="cells">
+        <view class="cell3" wx:if="{{cellsIndex==3}}">
+            <block wx:for="{{cellsItem}}" wx:for-item="cellItem" wx:for-index="cellIndex" wx:key="cells">
+    
+                <view class="cell {{cellItem.access ? 'cell-access' : ''}}" bindtap="{{cellItem.fn}}" >
+                    <view class="cell-bd">{{cellItem.title}}</view>
+                  
+                    <view class="cell-ft" wx:if="{{cellItem.text=='未填写'}}">{{cellItem.text}}</view>
+                    <view class="cell-fn" wx:else>{{cellItem.text}}</view>
+                </view>
+                
+            </block>
+        </view>
+        <view class="cells" wx:elif="{{cellsIndex==0}}">
+            <block wx:for="{{cellsItem}}" wx:for-item="cellItem" wx:for-index="cellIndex" wx:key="cells">
+    
+                <view class="cell {{cellItem.access ? 'cell-access' : ''}}" bindtap="{{cellItem.fn}}" >
+                    <view class="cell-bd">{{cellItem.title}}</view>
+                  
+                    <view class="cell-ft" ><image  src="{{cellItem.text}}" style="overflow:hidden;border-radius:50%;"></image></view>
+                   
+                </view>
+                
+            </block>
+        </view>
+        <view class="cells" wx:else>
+            <block wx:for="{{cellsItem}}" wx:for-item="cellItem" wx:for-index="cellIndex" wx:key="cells">
+    
+                <view class="cell {{cellItem.access ? 'cell-access' : ''}}" bindtap="{{cellItem.fn}}" >
+                    <view class="cell-bd">{{cellItem.title}}</view>
+                  
+                    <view class="cell-ft" wx:if="{{cellItem.text=='未填写'}}">{{cellItem.text}}</view>
+                    <view class="cell-fn" wx:else>{{cellItem.text}}</view>
+                </view>
+                
+            </block>
+        </view>
+    </block>
+</view>
+<navigator url="../editPersonInfo/editPersonInfo"  class="edit-btn"  >编 辑</navigator>

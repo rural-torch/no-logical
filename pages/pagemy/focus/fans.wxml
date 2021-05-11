@@ -14,9 +14,11 @@
   <view wx:for="{{fanslist}}" >
     <!-- 关注列表 -->
     <view class="fbox">
-      <view class="fphoto"></view>
-      <view class="fname">{{item.name}}</view>
-      <view wx:if="{{item.iffocus}}"class="fbtn">关注</view>
+      <view class="fphoto">
+        <image src="{{item.headimg}}" style="height:100%;width:100%"></image></view>
+      <view class="fname">{{item.username}}</view>
+      <view wx:if="{{item.isfocus==0}}" data-userid='{{item.userid}}' data-isfocus='{{item.isfocus}}' bindtap="foc" class="fbtn" >关注</view>
+      <view wx:if="{{item.isfocus==1}}" data-userid='{{item.userid}}' data-isfocus='{{item.isfocus}}'  bindtap="foc"  class="fbtn1">已关注</view>
     </view>
   </view>
 </view>

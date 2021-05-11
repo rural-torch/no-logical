@@ -78,3 +78,15 @@
   border-radius: 30rpx;
   color: white;
 }
+.fbtn1{
+  width:130rpx;
+  height: 50rpx;
+  margin-left:0rpx;
+  font-size: 32rpx;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(251, 184, 113);
+  text-align: center;
+  line-height: 50rpx;
+  border-radius: 30rpx;
+  color: rgb(251, 184, 113);
+}

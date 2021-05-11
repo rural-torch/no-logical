@@ -1,0 +1,31 @@
+<form bindsubmit="repo">
+<view class="container2">
+  <view class="top">
+    <textarea class="title1" name="title" placeholder="请输入您的标题 ......" bindinput="addTitle" value='{{title}}'>
+    </textarea>
+  </view>
+
+  <view class="imgs">
+    <view class="img">
+      <image wx:if="{{!flag}}" class="img-add" src="https://duing.site/saveFiles/images/add.png" mode="scaleToFill" bindtap="chooseImg" ></image>
+      <video wx:if="{{flag}}" class="img-add" src="{{img}}" mode="scaleToFill" bindtap="chooseImg" ></video>
+    </view>
+  </view>
+
+  <view class="choose">
+    <view class="choose-item" bindtap="addPlace">
+      <!-- <image src="/images/site.png"></image> -->
+      {{place == null ? "添加位置" : place}}
+      <image src="https://duing.site/saveFiles/images/choose.png" mode="scaleToFill"></image>
+    </view>
+    <picker bindchange="addType" range="{{topicTypes}}">
+      <view class="choose-item">
+        <!-- <image src="/images/type.png"></image> -->
+        {{type == null ? "添加类型" : type}}
+        <image src="https://duing.site/saveFiles/images/choose.png" mode="scaleToFill"></image>
+      </view>
+    </picker>
+  </view>
+</view>
+<button class="btn" type="primary" form-type="submit">发表/1</button>
+</form>

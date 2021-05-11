@@ -13,8 +13,10 @@
   </view>
   <view wx:for="{{focuslist}}" >
     <view class="fbox">
-      <view class="fphoto"></view>
-      <view class="fname">{{item.name}}</view>
+      <view class="fphoto">
+      <image src="{{item.headimg}}" style="height:100%;width:100%"></image>
+      </view>
+      <view class="fname">{{item.username}}</view>
     </view>
   </view>
 </view>
